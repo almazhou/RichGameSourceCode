@@ -31,13 +31,13 @@ public abstract class LandForm {
         displayName= Blockade.getDisplayName();
     }
 
-    public void clearBomb(RichGameMap map){
+    public void clearBomb(RichGameMap map, Game rich){
         bombFlag=false;
-        Game.clearDisplayName(map,landIndex);
+        rich.clearDisplayName(map, landIndex);
     }
-    public void clearBlock(RichGameMap map){
+    public void clearBlock(RichGameMap map, Game rich){
         blockFlag=false;
-        Game.clearDisplayName(map,landIndex);
+        rich.clearDisplayName(map,landIndex);
     }
     public boolean isBlocked(){
         if(blockFlag) {

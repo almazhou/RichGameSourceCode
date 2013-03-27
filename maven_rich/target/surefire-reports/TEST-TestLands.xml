@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite failures="0" time="0.125" errors="0" skipped="0" tests="20" name="TestLands">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_09\jre\bin"/>
+    <property name="java.vm.version" value="23.5-b02"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) Client VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="CN"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="Service Pack 3"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="C:\Documents and Settings\dell\IdeaProjects\maven_rich"/>
+    <property name="java.runtime.version" value="1.7.0_09-b05"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.7.0_09\jre\lib\endorsed"/>
+    <property name="os.arch" value="x86"/>
+    <property name="java.io.tmpdir" value="C:\DOCUME~1\dell\LOCALS~1\Temp\"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows XP"/>
+    <property name="classworlds.conf" value="C:\Program Files\Java\apache-maven-3.0.4-bin\apache-maven-3.0.4\bin\m2.conf"/>
+    <property name="sun.jnu.encoding" value="GB18030"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.7.0_09\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:.;C:\Program Files\Java\jdk1.7.0_09\bin;C:\Program Files\Java\jdk1.7.0_09\jre\bin;C:\WINDOWS\system32;C:\Program Files\Java\gradle-1.2-all\gradle-1.2\bin;C:\Program Files\Java\android-sdk-windows\tools;C:\WINDOWS;C:\WINDOWS\system32\wbem;C:\Program Files\Java\apache-maven-3.0.4-bin\apache-maven-3.0.4\bin;;."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="51.0"/>
+    <property name="sun.management.compiler" value="HotSpot Client Compiler"/>
+    <property name="os.version" value="5.1"/>
+    <property name="user.home" value="C:\Documents and Settings\dell"/>
+    <property name="user.timezone" value="Asia/Shanghai"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.7"/>
+    <property name="file.encoding" value="GB18030"/>
+    <property name="user.name" value="dell"/>
+    <property name="java.class.path" value="C:\Program Files\Java\apache-maven-3.0.4-bin\apache-maven-3.0.4\boot\plexus-classworlds-2.4.jar"/>
+    <property name="java.vm.specification.version" value="1.7"/>
+    <property name="sun.arch.data.model" value="32"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.7.0_09\jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean install"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="zh"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.version" value="1.7.0_09"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.7.0_09\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.7.0_09\jre\lib\resources.jar;C:\Program Files\Java\jdk1.7.0_09\jre\lib\rt.jar;C:\Program Files\Java\jdk1.7.0_09\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.7.0_09\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.7.0_09\jre\lib\jce.jar;C:\Program Files\Java\jdk1.7.0_09\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.7.0_09\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.7.0_09\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="C:\Program Files\Java\apache-maven-3.0.4-bin\apache-maven-3.0.4"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
+  </properties>
+  <testcase time="0.015" classname="TestLands" name="player_will_cost_200_for_upGrade_its_land_in_3"/>
+  <testcase time="0" classname="TestLands" name="should_the_price_of_bareLand_in_6_is_200"/>
+  <testcase time="0" classname="TestLands" name="should_the_price_of_bareLand_in_34_is_500"/>
+  <testcase time="0.016" classname="TestLands" name="player_can_upgrade_its_House_to_skyscraper"/>
+  <testcase time="0" classname="TestLands" name="player_can_not_upgrade_when_the_land_is_a_skyscraper"/>
+  <testcase time="0" classname="TestLands" name="player_can_not_upgrade_when_money_is_not_enough"/>
+  <testcase time="0" classname="TestLands" name="player_receive_400_buy_selling_bareLands_in_3"/>
+  <testcase time="0" classname="TestLands" name="player_receive_800_buy_selling_cottage_in_3"/>
+  <testcase time="0.016" classname="TestLands" name="player_receive_1200_buy_selling_house_in_3"/>
+  <testcase time="0" classname="TestLands" name="player_receive_1600_buy_selling_house_in_3"/>
+  <testcase time="0" classname="TestLands" name="cottage_would_be_bareLand_after_selling"/>
+  <testcase time="0" classname="TestLands" name="house_would_be_bareLand_after_selling"/>
+  <testcase time="0.015" classname="TestLands" name="skyscraper_would_be_bareLand_after_selling"/>
+  <testcase time="0" classname="TestLands" name="player_can_buy_bareLand_2_when_it_is_not_sold"/>
+  <testcase time="0" classname="TestLands" name="should_the_price_of_bareLand_in_40_is_300"/>
+  <testcase time="0" classname="TestLands" name="land_will_be_red_if_it_is_bought_by_player1"/>
+  <testcase time="0" classname="TestLands" name="player_will_cost_500_for_upGrade_its_land_in_30"/>
+  <testcase time="0" classname="TestLands" name="player_will_cost_300_for_upGrade_its_land_in_40"/>
+  <testcase time="0" classname="TestLands" name="player_can_upgrade_its_land_to_cottage"/>
+  <testcase time="0" classname="TestLands" name="player_can_upgrade_its_cottage_to_House"/>
+</testsuite>

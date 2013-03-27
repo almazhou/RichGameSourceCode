@@ -1,12 +1,13 @@
 package src.tools;
 
+import src.Game.Game;
 import src.map.LandForm;
 import src.map.RichGameMap;
 
 
 public class Robot extends OwnedTools {
     private static final int LANDNUM = 70;
-    private static final int SEARCHSTEP = 10;
+    public static final int SEARCHSTEP = 10;
     private static int point;
     private static String name;
     private static int toolIndex;
@@ -44,27 +45,27 @@ public class Robot extends OwnedTools {
         return false;
 
     }
-    public void clearBombAndBlock(RichGameMap map, int playerIndex) {
+    public void clearBombAndBlock(RichGameMap map, int playerIndex, Game rich) {
         int startIndex=(playerIndex-SEARCHSTEP+LANDNUM)%LANDNUM;
         int stopIndex=(playerIndex+SEARCHSTEP+LANDNUM)%LANDNUM;
         if(startIndex>stopIndex){
             for(int i=startIndex;i<LANDNUM;i++){
                 LandForm tempLandForm=(LandForm)map.landList.get(i);
-                tempLandForm.clearBomb(map);
-                tempLandForm.clearBlock(map);
+                tempLandForm.clearBomb(map, rich);
+                tempLandForm.clearBlock(map, rich);
             }
             for(int i=0;i<stopIndex;i++){
                 LandForm tempLandForm=(LandForm)map.landList.get(i);
-                tempLandForm.clearBomb(map);
-                tempLandForm.clearBlock(map);
+                tempLandForm.clearBomb(map, rich);
+                tempLandForm.clearBlock(map, rich);
             }
 
         }
         else{
             for(int i=startIndex;i<stopIndex;i++){
                 LandForm tempLandForm=(LandForm)map.landList.get(i);
-                tempLandForm.clearBomb(map);
-                tempLandForm.clearBlock(map);
+                tempLandForm.clearBomb(map, rich);
+                tempLandForm.clearBlock(map, rich);
             }
         }
 

@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 import src.Administration.ABHL;
 import src.Game.Game;
@@ -12,11 +13,20 @@ import static org.junit.Assert.assertThat;
 
 
 public class TestLands {
-    Game rich=new Game(2);
-    Player player= Game.player[0];
-    Player player1= Game.player[1];
-    RichGameMap map=new RichGameMap();
-    ABHL abhl=new ABHL(map);
+    Game rich;
+    Player player,player1;
+    RichGameMap map;
+    ABHL abhl;
+    @Before
+    public void setUp(){
+        rich=new Game(2);
+        player= rich.getPlayer(0);
+        player1=rich.getPlayer(1);
+        map=new RichGameMap();
+        abhl=new ABHL(map);
+
+    }
+
     @Test
     public void should_the_price_of_bareLand_in_6_is_200(){
         //when
@@ -153,7 +163,7 @@ public class TestLands {
     public void player_receive_400_buy_selling_bareLands_in_3(){
         rich.buyLand(map, player,3);
         int money=player.getMoney();
-        player.sellLand(map, 3);
+        player.sellLand(map, 3, rich);
         int money1= player.getMoney();
         assertThat(money1-money,is(400));
     }
@@ -162,7 +172,7 @@ public class TestLands {
         rich.buyLand(map, player,3);
         rich.upGradeLand(map,player,3);
         int money=player.getMoney();
-        player.sellLand(map, 3);
+        player.sellLand(map, 3, rich);
         int money1= player.getMoney();
         assertThat(money1-money,is(800));
     }
@@ -172,7 +182,7 @@ public class TestLands {
         rich.upGradeLand(map,player,3);
         rich.upGradeLand(map,player,3);
         int money=player.getMoney();
-        player.sellLand(map, 3);
+        player.sellLand(map, 3, rich);
         int money1= player.getMoney();
         assertThat(money1-money,is(1200));
     }
@@ -183,7 +193,7 @@ public class TestLands {
         rich.upGradeLand(map,player,3);
         rich.upGradeLand(map,player,3);
         int money=player.getMoney();
-        player.sellLand(map, 3);
+        player.sellLand(map, 3, rich);
         int money1= player.getMoney();
         assertThat(money1-money,is(1600));
     }
@@ -192,7 +202,7 @@ public class TestLands {
         rich.buyLand(map, player,3);
         rich.upGradeLand(map,player,3);
         int money=player.getMoney();
-        player.sellLand(map, 3);
+        player.sellLand(map, 3, rich);
         int money1= player.getMoney();
         BareLand bareLand=(BareLand)map.landList.get(3);
         int level=bareLand.getHouseLevel();
@@ -204,7 +214,7 @@ public class TestLands {
         rich.upGradeLand(map,player,3);
         rich.upGradeLand(map,player,3);
         int money=player.getMoney();
-        player.sellLand(map, 3);
+        player.sellLand(map, 3, rich);
         int money1= player.getMoney();
         BareLand bareLand=(BareLand)map.landList.get(3);
         int level=bareLand.getHouseLevel();
@@ -219,7 +229,7 @@ public class TestLands {
         rich.upGradeLand(map,player,3);
         rich.upGradeLand(map,player,3);
         int money=player.getMoney();
-        player.sellLand(map, 3);
+        player.sellLand(map, 3, rich);
         int money1= player.getMoney();
         BareLand bareLand=(BareLand)map.landList.get(3);
         int level=bareLand.getHouseLevel();

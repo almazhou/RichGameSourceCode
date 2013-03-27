@@ -1,14 +1,10 @@
 package src.map;
 
-import enigma.console.Console;
-import enigma.console.TextAttributes;
 import src.Game.Game;
 import src.player.Player;
-import src.tools.Blockade;
-import src.tools.Bomb;
 
-import java.awt.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 public class RichGameMap {
     public static final int BARELAND_NUM = 58;
@@ -19,7 +15,6 @@ public class RichGameMap {
     public static final int GIFT_HOUSE_INDEX = 35;
     public static final int PRISON_INDEX = 49;
     public  List landList=new ArrayList();
-    //LandForm []land;
     LandForm startPoint,toolHouse,magicHouse,giftHouse,hospital,prison;
     LandForm []bareLands;
     LandForm  []mines;
@@ -60,22 +55,22 @@ public class RichGameMap {
 
         }
     }
-    public void displayMap(Console console){
+    public void displayMap(){
         for(int j=0;j<=7;j++){
         for(int i=0;i<29;i++){
             if(j==0) {
             LandForm tempLandForm=(LandForm)landList.get(i);
-            print(i, tempLandForm,console);
+            print(i, tempLandForm);
             }else if(j==7){
             LandForm tempLandForm=(LandForm)landList.get(MAGIC_HOUSE_INDEX-i);
-            print(MAGIC_HOUSE_INDEX-i, tempLandForm, console);
+            print(MAGIC_HOUSE_INDEX-i, tempLandForm);
             } else{
             if(i==0){
             LandForm tempLandForm=(LandForm)landList.get(LANDNUM-j);
-            print(LANDNUM-j, tempLandForm, console);
+            print(LANDNUM-j, tempLandForm);
             }else if(i==TOOL_HOUSE_INDEX){
             LandForm tempLandForm=(LandForm)landList.get(i+j);
-            print(i+j, tempLandForm, console);
+            print(i+j, tempLandForm);
             }else{
             System.out.print(" ");
             }
@@ -87,67 +82,12 @@ public class RichGameMap {
 
     }
 
-    private void print(int i, LandForm tempLandForm, Console console) {
-        Color landColor=tempLandForm.getColor();
-        if(landColor==null){ landColor=Color.WHITE; }
-        TextAttributes tempAttrs = new TextAttributes(landColor);
-        console.setTextAttributes(tempAttrs);
+    private void print(int i, LandForm tempLandForm) {
 
         System.out.print(tempLandForm.displayName);
-        /*if(!hasPlayer(i)){
-        displayWithoutPlayersOn(i, tempLandForm);
-        }else {
-            System.out.print(tempLandForm.displayName);
-        }*/
-    }
-
-    private void displayWithoutPlayersOn(int i, LandForm tempLandForm) {
-        if(tempLandForm.blockFlag){
-            System.out.print(Blockade.getDisplayName());
-        }else if(tempLandForm.bombFlag){
-            System.out.print(Bomb.getDisplayName());
-        }else if(tempLandForm.getClass()==BareLand.class){
-            BareLand tempLand=(BareLand)landList.get(i);
-            if(tempLand.getHouseLevel()>0) {
-            System.out.print(tempLand.getHouseLevel());
-            }else {
-                System.out.print(tempLandForm.displayName);
-            }
-        }else {
-            System.out.print(tempLandForm.displayName);
-        }
-    }
-
-
-    public int findBomb(int startIndex, int stopIndex) {
-        startIndex=(startIndex+LANDNUM)%LANDNUM;
-        stopIndex=(stopIndex+LANDNUM)%LANDNUM;
-        if(startIndex>stopIndex){
-            for(int i=startIndex;i<LANDNUM;i++){
-                LandForm tempLandForm=(LandForm)landList.get(i);
-                if(tempLandForm.bombFlag){
-                    return tempLandForm.landIndex;
-                }
-            }
-            for(int i=0;i<stopIndex;i++){
-                LandForm tempLandForm=(LandForm)landList.get(i);
-                if(tempLandForm.bombFlag){
-                    return tempLandForm.landIndex;
-                }
-            }
-
-        }
-        else{
-        for(int i=startIndex;i<stopIndex;i++){
-            LandForm tempLandForm=(LandForm)landList.get(i);
-            if(tempLandForm.bombFlag){
-                return tempLandForm.landIndex;
-            }
-        }
-        }
-        return -1;
 
     }
+
 
     public void clearBomb(int bombIndex) {
         LandForm tempLandForm=(LandForm)landList.get(bombIndex);
@@ -170,12 +110,12 @@ public class RichGameMap {
         return tempLand.getName().equals("0");
     }
 
-    public boolean hasPlayer(int targetIndex) {
-        for(int i=0;i< Game.playerList.size();i++)
+    public boolean hasPlayer(int targetIndex, Game rich) {
+        List<Player> tempPlayerList=rich.getPlayerList();
+        for(Iterator<Player> i=tempPlayerList.iterator();i.hasNext();)
         {
-            Player tempPlayer=(Player)Game.playerList.get(i);
+            Player tempPlayer= i.next();
             if(tempPlayer.getLandIndex()==targetIndex){
-                //System.out.println("该处有玩家");
                 return true;
             }
         }
@@ -240,11 +180,11 @@ public class RichGameMap {
         return false;
     }
 
-    public Player getPlayer(int landIndex) {
-        for(int i=0;i< Game.playerList.size();i++)
-        {   Player tempPlayer=(Player)Game.playerList.get(i);
+    public Player getPlayer(int landIndex, Game rich) {
+         List<Player> tempPlayerList=rich.getPlayerList();
+        for(Iterator<Player> it=tempPlayerList.iterator();it.hasNext();)
+        {   Player tempPlayer=it.next();
             if(tempPlayer.getLandIndex()==landIndex){
-                //System.out.println("该处有玩家");
                 return tempPlayer;
             }
         }

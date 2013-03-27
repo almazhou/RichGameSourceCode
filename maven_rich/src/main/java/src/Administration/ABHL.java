@@ -1,12 +1,12 @@
 package src.Administration;
 
-import src.Game.Game;
 import src.map.BareLand;
 import src.map.LandForm;
 import src.map.RichGameMap;
 import src.player.Player;
 
-import java.util.*;
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -32,7 +32,6 @@ public class ABHL {
 
             }
         }
-       // houseTable=new Hashtable();
 
     }
 
@@ -50,12 +49,13 @@ public class ABHL {
     }
 
 
-    public static void sellLandToPlayer(Player player, BareLand tempBareLand) {
+    public static void sellLandToPlayer(Player player, BareLand tempBareLand, Player rich) {
         if(player.getMoney()>=tempBareLand.getPrice()){
         landTable.put(tempBareLand.getLandIndex(),player.getPlayerIndex());
         tempBareLand.setColor(player.getColor());
         tempBareLand.setOwnerIndex(player.getPlayerIndex()) ;
-        Game.deductMoney(player.getPlayerIndex(), tempBareLand.getPrice());
+        player.deductMoney(tempBareLand.getPrice());
+        System.out.println(player.getName()+">您已经购买到编号为"+tempBareLand.getLandIndex()+"的空地");
         player.takeLands(tempBareLand);
         } else{
             System.out.println("您当前剩余的钱为" + player.getMoney() + "，不足以购买编号为" + tempBareLand.getLandIndex() + "的空地");

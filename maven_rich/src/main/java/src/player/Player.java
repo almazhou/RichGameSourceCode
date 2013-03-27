@@ -24,23 +24,29 @@ import java.util.List;
 public class Player {
     public static final int TIME_IN_HOSPITAL = 3;
     public static final int TIME_IN_PRISON = 2;
+    private static final int LANDNUM = 70;
+    public static final int TOOL_HOUSE_INDEX = 28;
+    public static final int GIFT_HOUSE_INDEX = 35;
+    public static final int MAGIC_HOUSE_INDEX = 63;
+    public static final int HOSPITAL_INDEX = 14;
+    public static final int PRISON_INDEX = 49;
+
     private int currentIndex=0;
     private int totalPoint =0;
     private int totalMoney=0;
     private int bombNum=0,blockNum=0,robotNum=0,landNum=0,cottageNum=0,houseNum=0,skyscraperNum=0,bareLandNum=0;
     List bombList, blockList, robotList,landList;
-    private static final int SEARCHSTEP = 10;
-    private static final int LANDNUM = 70;
-    //public int landNum;
+
     private int playerIndex;
     private String name;
-    private static final int HOSPITAL_INDEX = 14;
+
     private Color color=Color.WHITE;
     private List giftList;
     private int timeInHospital=0;
     private int timeInPrison=0;
     private String abbreviation=null;
     public  String commandWord=null;
+
 
 
     public Player(int playerIndex){
@@ -72,14 +78,14 @@ public class Player {
 
         }
 
-    public void forward(RichGameMap map, int rollingSteps) {
+    public void forward(RichGameMap map, int rollingSteps, Game rich) {
         int preIndex=currentIndex;
-        if(Game.inHospital(playerIndex,map)&&timeInHospital>0){
+        if(currentIndex==HOSPITAL_INDEX&&timeInHospital>0){
            timeInHospital--;
            System.out.println(this.name+">玩家仍然在医院养病！还有"+timeInHospital+"天出院！");
            return;
        }
-        if(Game.isInPrison(playerIndex, map)&&timeInPrison>0){
+        if(currentIndex==PRISON_INDEX&&timeInPrison>0){
             timeInPrison--;
             System.out.println(this.name+">玩家在监狱中！还有"+timeInPrison+"天出狱！");
             return;
@@ -102,19 +108,15 @@ public class Player {
         if(currentIndex>=LANDNUM){
             currentIndex%=LANDNUM;
         }
-        Game.clearDisplayName(map,preIndex);
-        Game.setDisplayName(playerIndex,map);
-        /*if(Game.inHospital(playerIndex, map)&&timeInHospital==0){
-            timeInHospital=3;
-            return;
-        }*/
-        if(Game.isInPrison(playerIndex, map)&&timeInPrison==0){
+        rich.clearDisplayName(map,preIndex);
+        rich.setDisplayName(playerIndex,map);
+        if(rich.isInPrison(playerIndex, map)&&timeInPrison==0){
             timeInPrison= TIME_IN_PRISON;
             System.out.println(this.name+">玩家步入监狱！将被监禁"+timeInPrison+"天!");
             return;
         }
         System.out.println("到达编号为"+currentIndex+"的地！");
-        if(Game.isInToolHouse(playerIndex, map)){
+        if(currentIndex==TOOL_HOUSE_INDEX){
             System.out.println(this.name+">欢迎光临道具屋，请选择您所需要的道具(1-3)：");
             ToolHouse toolHouse=(ToolHouse)map.landList.get(currentIndex);
             toolHouse.displayTools();
@@ -123,54 +125,53 @@ public class Player {
             chooseTools(toolIndexInString);
             return;
         }
-        if(Game.isInGiftHouse(playerIndex, map)){
+        if(currentIndex==GIFT_HOUSE_INDEX){
             System.out.println(this.name+">欢迎光临礼品屋，请选择一件您喜欢的礼品：");
             GiftHouse.displayGifts();
             String giftIndexInString=Game.getPlayerCommand(this);
             chooseGift(giftIndexInString);
             return;
         }
-        if(Game.isInMagicHouse(playerIndex, map)){
+        if(currentIndex==MAGIC_HOUSE_INDEX){
             return;
         }
-        if(Game.isInBareLand(playerIndex, map)) {
-        if(Game.isOwner(this,currentIndex)){
+        if(rich.isInBareLand(playerIndex, map)) {
+        if(rich.isOwner(this,currentIndex)){
             System.out.println(this.name+">是否升级该处地产"+ABHL.getPrice(currentIndex,map)+"元（Y/N）？");
             String upGradeLandOrNot=Game.getPlayerCommand(this);
             if(upGradeLandOrNot.equalsIgnoreCase("Y")) {
-            Game.upGradeLand(map,this,currentIndex);
+            rich.upGradeLand(map, this, currentIndex);
             } else {
                 return;
             }
         }
         else{
             if(ABHL.checkIfSold(map,currentIndex)){
-            Game.payPassingFee(map, currentIndex, this);
+            rich.payPassingFee(map, currentIndex, this);
             }
             else {
                 System.out.println(this.name+">是否购买该处空地"+ABHL.getPrice(currentIndex,map)+"元（Y/N）？");
                 String buyLandOrNot=Game.getPlayerCommand(this);
-                boolean flag=buyLandOrNot.equalsIgnoreCase("Y")||buyLandOrNot.equalsIgnoreCase("N");
                 while (!(buyLandOrNot.equalsIgnoreCase("Y")||buyLandOrNot.equalsIgnoreCase("N"))){
                     System.out.println(this.name+">请输入正确的命令（Y/N）");
                     buyLandOrNot=Game.getPlayerCommand(this);
                 }
                 if(buyLandOrNot.equalsIgnoreCase("Y")) {
                 Game.buyLand(map,this,currentIndex);
-                return;}
-                else if(buyLandOrNot.equalsIgnoreCase("N")) {
-                return;
                 }
-                return;
+                else if(buyLandOrNot.equalsIgnoreCase("N")) {
+
+                }
+
             }
 
         }
 
         return;
         }
-        if(Game.isInMine(playerIndex, map)){
-            Game.doMining(playerIndex);
-            return;
+        if(currentIndex==MAGIC_HOUSE_INDEX){
+            rich.doMining(playerIndex);
+
 
         }
 
@@ -181,8 +182,8 @@ public class Player {
         try{
         int toolIndex=Integer.parseInt(toolIndexInString);
         if(toolIndex>0&&toolIndex<4){
-             Game.buyTools(this, toolIndex);
-             return;
+             buyTools(toolIndex);
+
         }else {
             System.out.println(this.name+">请输入正确的道具编号（1-3）");
             Game.getPlayerCommand(this);
@@ -195,17 +196,22 @@ public class Player {
         }
     }
 
-
- /*   public boolean hasMascot() {
-        for(int i=0;i<giftList.size();i++){
-            Gift tempGift=(Gift)giftList.get(i);
-            if(tempGift.getName().equals("福神")){
-               return true;
-            }
+    private void buyTools(int toolIndex) {
+        if(toolNumberExceed10()){
+            return;
         }
-        return false;
-    }  */
+        if(toolIndex==Blockade.getToolIndex()){
+            buyBlock();
+        } else if(toolIndex==Robot.getToolIndex()){
+            buyRobot();
+        } else if(toolIndex==Bomb.getToolIndex()){
+            buyBomb();
+        }
+    }
 
+    private boolean toolNumberExceed10() {
+        return robotNum+blockNum+bombNum>=10;
+    }
 
     public int getLandIndex() {
         return currentIndex;
@@ -229,15 +235,9 @@ public class Player {
         return false;
     }
 
-    public boolean setBomb(RichGameMap map, int offset) {
-        int landIndex=currentIndex+offset;
-        if(landIndex>=LANDNUM){
-            landIndex%=LANDNUM;
-        }
-        if(landIndex<0){
-            landIndex=LANDNUM+landIndex;
-        }
-        if(canSetBomb(map,landIndex)){
+    public boolean setBomb(RichGameMap map, int offset, Game rich) {
+        int landIndex = getLandIndexWithOffSet(offset);
+        if(canSetBomb(map,landIndex, rich)){
         LandForm tempLandForm=(LandForm)map.landList.get(landIndex);
         tempLandForm.setBomb();
         bombNum--;
@@ -249,8 +249,19 @@ public class Player {
         return false ;
     }
 
-    private boolean canSetBomb(RichGameMap map, int landIndex) {
-        return map.isWithinRange(landIndex, currentIndex)&&!map.hasOtherTools(landIndex)&&!map.hasPlayer(landIndex)&& hasBomb();
+    private int getLandIndexWithOffSet(int offset) {
+        int landIndex=currentIndex+offset;
+        if(landIndex>=LANDNUM){
+            landIndex%=LANDNUM;
+        }
+        if(landIndex<0){
+            landIndex=LANDNUM+landIndex;
+        }
+        return landIndex;
+    }
+
+    private boolean canSetBomb(RichGameMap map, int landIndex, Game rich) {
+        return map.isWithinRange(landIndex, currentIndex)&&!map.hasOtherTools(landIndex)&&!map.hasPlayer(landIndex, rich)&& hasBomb();
     }
 
     private boolean hasBomb() {
@@ -260,15 +271,9 @@ public class Player {
         return bombNum>0;
     }
 
-    public boolean setBlock(RichGameMap map, int offset) {
-        int landIndex=currentIndex+offset;
-        if(landIndex>=LANDNUM){
-            landIndex%=LANDNUM;
-        }
-        if(landIndex<0){
-            landIndex=LANDNUM+landIndex;
-        }
-        if(canSetBlock(map,landIndex)){
+    public boolean setBlock(RichGameMap map, int offset, Game rich) {
+        int landIndex = getLandIndexWithOffSet(offset);
+        if(canSetBlock(map,landIndex, rich)){
         LandForm tempLandForm=(LandForm)map.landList.get(landIndex);
         tempLandForm.setBlock();
         blockNum--;
@@ -280,8 +285,8 @@ public class Player {
         return false;
     }
 
-    public boolean canSetBlock(RichGameMap map, int index) {
-        return map.isWithinRange(index, currentIndex)&& !map.hasOtherTools(index)&&!map.hasPlayer(index)&& hasBlock();
+    public boolean canSetBlock(RichGameMap map, int index, Game rich) {
+        return map.isWithinRange(index, currentIndex)&& !map.hasOtherTools(index)&&!map.hasPlayer(index, rich)&& hasBlock();
     }
 
     private boolean hasBlock() {
@@ -294,17 +299,11 @@ public class Player {
         }
     }
 
-    public void useRobot(RichGameMap map) {
-        int startIndex=currentIndex-SEARCHSTEP;
-        int stopIndex=currentIndex+SEARCHSTEP;
+    public void useRobot(RichGameMap map, Game rich) {
         Robot robot=(Robot) robotList.get(0);
-        robot.clearBombAndBlock(map, currentIndex);
+        robot.clearBombAndBlock(map, currentIndex, rich);
         robotList.remove(0);
         robotNum--;
-    }
-
-    private int findBomb(RichGameMap map, int startIndex, int stopIndex) {
-            return map.findBomb(startIndex,stopIndex);
     }
 
     public int getMoney() {
@@ -366,13 +365,11 @@ public class Player {
                 addPoint(PointCard.getPoint());
             } else if(giftIndex==Mascot.getGiftIndex()){
                 giftList.add(new Mascot(giftIndex));
-            }  else {
-               return;
             }
         }
         catch (NumberFormatException e){
             System.out.println(this.name+">您输入了非数字字符："+e);
-            return;
+
 
         }
 
@@ -383,8 +380,8 @@ public class Player {
         return giftList;
     }
 
-    public void sellLand(RichGameMap map, int landIndex) {
-        Game.sellLands(map, this,landIndex);
+    public void sellLand(RichGameMap map, int landIndex, Game rich) {
+        rich.sellLands(map, this, landIndex);
         for(int i=0;i<landList.size();i++){
             BareLand land=(BareLand)landList.get(i);
             if(land.getLandIndex()==landIndex){
@@ -394,22 +391,32 @@ public class Player {
         }
     }
 
-    public void addBlock(Blockade block) {
+    public void buyBlock() {
+        if(pointIsEnough(Blockade.getPoint())&&!toolNumberExceed10()) {
         deductPoint(Blockade.getPoint());
-        blockList.add(block);
+        blockList.add(new Blockade());
         blockNum++;
+        }
     }
 
-    public void addBomb(Bomb bomb) {
+    private boolean pointIsEnough(int point) {
+        return totalPoint>=point;
+    }
+
+    public void buyBomb() {
+        if(pointIsEnough(Bomb.getPoint())&&!toolNumberExceed10()){
         deductPoint(Bomb.getPoint());
-        bombList.add(bomb);
+        bombList.add(new Bomb());
         bombNum++;
+        }
     }
 
-    public void addRobot(Robot robot) {
+    public void buyRobot() {
+        if(pointIsEnough(Robot.getPoint())&&!toolNumberExceed10()) {
         deductPoint(Robot.getPoint());
-        robotList.add(robot);
+        robotList.add(new Robot());
         robotNum++;
+        }
     }
 
     public void deductMoney(int deductMoney){
@@ -468,22 +475,6 @@ public class Player {
     public String getName() {
         return name;
     }
-
-    public void query() {
-
-
-       /* for(int i=0;i<landList.size();i++){
-            BareLand tempLand=(BareLand)landList.get(i);
-            if(tempLand.getHouseLevel()==0){
-                bareLandNum++;
-            }else if(tempLand.getHouseLevel()==1){}
-               cottageNum++;
-        }
-
-    }*/
-
-    }
-
     public void manageLand(BareLand land) {
         if(land.getHouseLevel()==0) {
             bareLandNum++;
@@ -517,5 +508,9 @@ public class Player {
 
     public void setLocation(int Index) {
         this.currentIndex=Index;
+    }
+
+    public void setPoint(int amount) {
+        totalPoint=amount;
     }
 }
