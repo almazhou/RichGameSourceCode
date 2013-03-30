@@ -1,9 +1,6 @@
 package src.map;
 
 import src.Gift.Gift;
-import src.Gift.Mascot;
-import src.Gift.MoneyCard;
-import src.Gift.PointCard;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,11 +10,11 @@ import src.Gift.PointCard;
  * To change this template use File | Settings | File Templates.
  */
 public class GiftHouse extends LandForm{
-    Gift moneyCard=new MoneyCard(1);
-    Gift pointCard=new PointCard(2);
-    Gift mascot=new Mascot(3);
-    public GiftHouse(int index){
-        super("G",index);
+    Gift moneyCard=Gift.MoneyCard;
+    Gift pointCard=Gift.PointCard;
+    Gift mascot=Gift.Mascot;
+    public GiftHouse(){
+        super("G",35);
     }
 
     @Override
@@ -25,10 +22,10 @@ public class GiftHouse extends LandForm{
         return 0;
     }
 
-    public static void displayGifts() {
+    public void displayGifts() {
         System.out.println("礼品    编号");
-        System.out.println(MoneyCard.getName()+"    "+MoneyCard.getGiftIndex());
-        System.out.println(PointCard.getName()+"  "+PointCard.getGiftIndex());
-        System.out.println(Mascot.getName()+"    "+Mascot.getGiftIndex());
+        System.out.println(moneyCard.getName()+"    "+moneyCard.getGiftIndex());
+        System.out.println(pointCard.getName()+"  "+pointCard.getGiftIndex());
+        System.out.println(mascot.getName()+"    "+mascot.getGiftIndex());
     }
 }

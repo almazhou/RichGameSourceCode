@@ -33,7 +33,7 @@ public class TestPlayersPassing {
 
     @Test
     public void should_players_pay_for_100_when_passing_a_bareLand_of_others_in_3(){
-        rich.buyLand(map, player,3);
+        player.buyLand(map,3);
         int money0=player1.getMoney();
         map.displayMap();
         player1.forward(map,3, rich);
@@ -45,7 +45,7 @@ public class TestPlayersPassing {
     }
     @Test
     public void should_owner_of_land_3_will_receive_100_if_other_player_passing_in_3(){
-        rich.buyLand(map, player,3);
+        player.buyLand(map, 3);
         int money0=player.getMoney();
         player1.forward(map,3, rich);
         int money=player.getMoney();
@@ -55,7 +55,7 @@ public class TestPlayersPassing {
     }
     @Test
     public void should_players_pay_for_200_when_passing_a_cottage_of_others_in_3(){
-        rich.buyLand(map, player,3);
+        player.buyLand(map,3);
         rich.upGradeLand(map, player, 3);
         int money0=player1.getMoney();
         player1.forward(map,3, rich);
@@ -65,7 +65,7 @@ public class TestPlayersPassing {
     }
     @Test
     public void should_owner_of_land_3_will_receive_200_if_other_player_passing_a_cottage(){
-        rich.buyLand(map, player,3);
+        player.buyLand(map, 3);
         rich.upGradeLand(map, player, 3);
         int money0=player.getMoney();
         player1.forward(map,3, rich);
@@ -75,7 +75,7 @@ public class TestPlayersPassing {
     }
     @Test
     public void should_players_pay_for_400_when_passing_a_House_of_others_in_3(){
-        rich.buyLand(map, player,3);
+        player.buyLand(map, 3);
         rich.upGradeLand(map, player, 3);
         rich.upGradeLand(map, player, 3);
         int money0=player1.getMoney();
@@ -86,7 +86,7 @@ public class TestPlayersPassing {
     }
     @Test
     public void should_owner_of_land_3_will_receive_400_if_other_player_passing_a_House(){
-        rich.buyLand(map, player,3);
+        player.buyLand(map, 3);
         rich.upGradeLand(map, player, 3);
         rich.upGradeLand(map, player, 3);
         int money0=player.getMoney();
@@ -97,7 +97,7 @@ public class TestPlayersPassing {
     }
     @Test
     public void should_players_pay_for_800_when_passing_a_cottage_of_others_in_3(){
-        rich.buyLand(map, player,3);
+        player.buyLand(map, 3);
         rich.upGradeLand(map, player, 3);
         rich.upGradeLand(map, player, 3);
         rich.upGradeLand(map, player, 3);
@@ -109,7 +109,7 @@ public class TestPlayersPassing {
     }
     @Test
     public void should_owner_of_land_3_will_receive_800_if_other_player_passing_a_skyscraper(){
-        rich.buyLand(map, player,3);
+        player.buyLand(map, 3);
         rich.upGradeLand(map, player, 3);
         rich.upGradeLand(map, player, 3);
         rich.upGradeLand(map, player, 3);
@@ -123,7 +123,7 @@ public class TestPlayersPassing {
     public void should_not_pay_passingFee_when_owner_is_in_hospital_3(){
         //when
         rich.setPlayerLocation(0);
-        rich.buyLand(map, player1,10);
+        player1.buyLand(map, 10);
         rich.buyBomb(player);
         boolean flag=player.setBomb(map,7, rich);
         assertThat(flag,is(true));
@@ -142,7 +142,7 @@ public class TestPlayersPassing {
         rich.setPlayerLocation(0);
         player.forward(map,35, rich);
         player.chooseGift("3");
-        rich.buyLand(map, player1,40);
+        player1.buyLand(map, 40);
         int money0=player.getMoney();
         player.forward(map,5, rich);
         int money=player.getMoney();

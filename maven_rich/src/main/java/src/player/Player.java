@@ -2,14 +2,13 @@ package src.player;
 
 import src.Administration.ABHL;
 import src.Game.Game;
-import src.Gift.Mascot;
-import src.Gift.MoneyCard;
-import src.Gift.PointCard;
+import src.Gift.Gift;
 import src.map.*;
 import src.tools.OwnedTools;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -39,7 +38,7 @@ public class Player {
     private String name;
 
     private Color color=Color.WHITE;
-    private List giftList;
+    private List<Gift> giftList;
     private int timeInHospital=0;
     private int timeInPrison=0;
     private String abbreviation=null;
@@ -48,6 +47,10 @@ public class Player {
     private OwnedTools block=OwnedTools.Blockade;
     private OwnedTools bomb=OwnedTools.Bomb;
     private OwnedTools robot=OwnedTools.Robot;
+    private Gift moneyCard= Gift.MoneyCard;
+    private Gift pointCard=Gift.PointCard;
+    private Gift mascot=Gift.Mascot;
+    private int freePassNum=0;
 
 
     public Player(int playerIndex){
@@ -78,6 +81,13 @@ public class Player {
         }
 
         }
+
+    public void buyLand(RichGameMap map, int landIndex) {
+        if(!ABHL.checkIfSold(map, landIndex)) {
+            BareLand tempBareLand=(BareLand)map.landList.get(landIndex);
+            ABHL.sellLandToPlayer(this,tempBareLand);
+        }
+    }
 
     public void forward(RichGameMap map, int rollingSteps, Game rich) {
         int preIndex=currentIndex;
@@ -128,7 +138,8 @@ public class Player {
         }
         if(currentIndex==GIFT_HOUSE_INDEX){
             System.out.println(this.name+">欢迎光临礼品屋，请选择一件您喜欢的礼品：");
-            GiftHouse.displayGifts();
+            GiftHouse giftHouse=new GiftHouse();
+            giftHouse.displayGifts();
             String giftIndexInString=Game.getPlayerCommand(this);
             chooseGift(giftIndexInString);
             return;
@@ -158,7 +169,7 @@ public class Player {
                     buyLandOrNot=Game.getPlayerCommand(this);
                 }
                 if(buyLandOrNot.equalsIgnoreCase("Y")) {
-                Game.buyLand(map,this,currentIndex);
+                buyLand(map, 3);
                 }
                 else if(buyLandOrNot.equalsIgnoreCase("N")) {
 
@@ -201,11 +212,11 @@ public class Player {
         if(toolNumberExceed10()){
             return;
         }
-        if(toolIndex==1){
+        if(toolIndex==block.getToolIndex()){
             buyBlock();
-        } else if(toolIndex==2){
+        } else if(toolIndex==robot.getToolIndex()){
             buyRobot();
-        } else if(toolIndex==3){
+        } else if(toolIndex==bomb.getToolIndex()){
             buyBomb();
         }
     }
@@ -385,14 +396,15 @@ public class Player {
     public void chooseGift(String giftIndexInString) {
         try{
             int giftIndex=Integer.parseInt(giftIndexInString);
-            if(giftIndex==MoneyCard.getGiftIndex()){
-                giftList.add(new MoneyCard(giftIndex));
-                addMoney(MoneyCard.getMoney());
-            }else if(giftIndex==PointCard.getGiftIndex()) {
-                giftList.add(new PointCard(giftIndex));
-                addPoint(PointCard.getPoint());
-            } else if(giftIndex==Mascot.getGiftIndex()){
-                giftList.add(new Mascot(giftIndex));
+            if(giftIndex==moneyCard.getGiftIndex()){
+                giftList.add(moneyCard);
+                addMoney(moneyCard.getValue());
+            }else if(giftIndex==pointCard.getGiftIndex()) {
+                giftList.add(pointCard);
+                addPoint(pointCard.getValue());
+            } else if(giftIndex==mascot.getGiftIndex()){
+                giftList.add(mascot);
+                freePassNum=mascot.getValue();
             }
         }
         catch (NumberFormatException e){
@@ -540,5 +552,20 @@ public class Player {
 
     public void setPoint(int amount) {
         totalPoint=amount;
+    }
+    public void useMascot() {
+        for(Iterator it=giftList.iterator();it.hasNext();){
+            Gift tempGift= (Gift) it.next();
+            if(tempGift==Gift.Mascot){
+                freePassNum--;
+                if(freePassNum==0){
+                    giftList.remove(tempGift);
+                }
+            }
+        }
+    }
+
+    public int getFreePassingNum() {
+        return freePassNum;
     }
 }

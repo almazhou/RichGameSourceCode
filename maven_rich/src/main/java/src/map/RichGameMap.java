@@ -38,7 +38,7 @@ public class RichGameMap {
                 toolHouse=new ToolHouse(i);
                 landList.add(toolHouse);
             } else if(i== GIFT_HOUSE_INDEX){
-                giftHouse=new GiftHouse(i);
+                giftHouse=new GiftHouse();
                 landList.add(giftHouse);
 
             }else if(i== PRISON_INDEX){

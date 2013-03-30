@@ -2,7 +2,6 @@ package src.Game;
 
 import src.Administration.ABHL;
 import src.Gift.Gift;
-import src.Gift.Mascot;
 import src.map.BareLand;
 import src.map.LandForm;
 import src.map.Mine;
@@ -34,6 +33,9 @@ public class Game {
     private OwnedTools block=OwnedTools.Blockade;
     private OwnedTools bomb=OwnedTools.Bomb;
     private OwnedTools robot=OwnedTools.Robot;
+    private Gift moneyCard= Gift.MoneyCard;
+    private Gift pointCard=Gift.PointCard;
+    private Gift mascot=Gift.Mascot;
 
     public Game(int playerNum) {
         player=new Player[playerNum];
@@ -292,7 +294,7 @@ public class Game {
                 int ownerIndex=passingLand.getOwnerIndex();
                 if(inHospital(ownerIndex, map)|| isInPrison(ownerIndex, map)){
                     if(hasMascot(player)){
-                        useMascot(player);
+                        player.useMascot();
                     }
                     return;
 
@@ -302,7 +304,7 @@ public class Game {
                     payFeeTo(player.getPlayerIndex(), ownerIndex, (int)passingFee);
 
                 }else {
-                    useMascot(player);
+                    player.useMascot();
                     System.out.println("福神附身，可免过路费");
 
                 }
@@ -312,25 +314,13 @@ public class Game {
 
     }
 
-    private static void useMascot(Player player) {
-        List tempGiftList=player.getGiftList();
-        for(int i=0;i<tempGiftList.size();i++){
-            Gift tempGift=(Gift)tempGiftList.get(i);
-            if(tempGift.getClass()==Mascot.class){
-                Mascot tempMascot=(Mascot)tempGiftList.get(i);
-                tempMascot.deduct();
-                if(tempMascot.getFreePassNum()==0){
-                    tempGiftList.remove(i);
-                }
-            }
-        }
-    }
+
 
     private static boolean hasMascot(Player player) {
         List tempGiftList=player.getGiftList();
         for(Iterator it=tempGiftList.iterator();it.hasNext();){
             Gift tempGift=(Gift)it.next();
-            if(tempGift.getClass()==Mascot.class){
+            if(tempGift==Gift.Mascot){
                 return true;
             }
         }
@@ -385,13 +375,6 @@ public class Game {
     public static boolean isOwner(Player player, int landIndex) {
 
         return ABHL.isOwner(player,landIndex);
-    }
-
-    public static void buyLand(RichGameMap map, Player player, int landIndex) {
-        if(!ABHL.checkIfSold(map, landIndex)) {
-            BareLand tempBareLand=(BareLand)map.landList.get(landIndex);
-            ABHL.sellLandToPlayer(player,tempBareLand, null);
-        }
     }
 
     public void deductMoney(int playerIndex, int deductMoney) {

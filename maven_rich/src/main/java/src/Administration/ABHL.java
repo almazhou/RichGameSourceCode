@@ -49,7 +49,7 @@ public class ABHL {
     }
 
 
-    public static void sellLandToPlayer(Player player, BareLand tempBareLand, Player rich) {
+    public static void sellLandToPlayer(Player player, BareLand tempBareLand) {
         if(player.getMoney()>=tempBareLand.getPrice()){
         landTable.put(tempBareLand.getLandIndex(),player.getPlayerIndex());
         tempBareLand.setColor(player.getColor());
