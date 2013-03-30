@@ -1,7 +1,7 @@
 package src.map;
 
 import src.Game.Game;
-import src.tools.OwnedTools;
+import src.tools.Tool;
 
 import java.awt.*;
 
@@ -12,9 +12,6 @@ public abstract class LandForm {
     protected boolean bombFlag=false;
     protected boolean blockFlag=false;
     protected Color color=Color.WHITE;
-    private OwnedTools block=OwnedTools.Blockade;
-    private OwnedTools bomb=OwnedTools.Bomb;
-    private OwnedTools robot=OwnedTools.Robot;
 
 
     public LandForm(String name, int index) {
@@ -25,12 +22,12 @@ public abstract class LandForm {
 
     public  void setBomb(){
         bombFlag=true;
-        displayName= bomb.getDisplayName();
+        displayName= Tool.Bomb.getDisplayName();
     }
 
     public void setBlock(){
         blockFlag=true;
-        displayName= block.getDisplayName();
+        displayName= Tool.Blockade.getDisplayName();
     }
 
     public void clearBomb(RichGameMap map, Game rich){
@@ -57,7 +54,6 @@ public abstract class LandForm {
         }
         return bombFlag;
     }
-    public abstract int getPrice();
     public String getName(){
         return name;
     }

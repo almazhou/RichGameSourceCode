@@ -1,7 +1,164 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d3aa92f7-d30d-4e39-9e83-615c3852c7bb" name="Default" comment="" />
+    <list default="true" id="d3aa92f7-d30d-4e39-9e83-615c3852c7bb" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/src/NUMS/SpecialHouseIndex.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/src/NUMS/SpecialNum.java" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\console\Console.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\console\DefaultConsoleImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\console\TextAttributes.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\console\TextWindow.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\console\TextWindowNotAvailableException.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\console\java2d\Java2DTextWindow.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\console\java2d\package.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\console\package.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\console\remote\RemoteConsoleClient.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\console\remote\RemoteConsoleServer.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\console\remote\RemoteProxyLauncher.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\console\remote\package.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\console\terminal\AnsiOutputStream.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\console\terminal\package.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\core\Enigma.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\core\Environment.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\core\VirtualMachine.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\core\VirtualMachineConfiguration.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\core\VirtualMachineInstantiationException.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\core\package.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\core\resources\properties\defaults.properties" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\core\windows\WindowsEnvironmentImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\event\TextMouseAdapter.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\event\TextMouseEvent.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\event\TextMouseListener.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\event\TextMouseMotionListener.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\event\TextWindowEvent.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\event\TextWindowListener.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\event\package.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\loaders\ConsoleProxyLoader.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\loaders\JavaProgramLoader.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\loaders\package.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\shells\commandline\CommandLineShell.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\shells\commandline\Launcher.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\shells\commandline\commands\Addpath.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\shells\commandline\commands\Ansi.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\shells\commandline\commands\Cd.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\shells\commandline\commands\Exec.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\shells\commandline\commands\Exit.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\shells\commandline\commands\Help.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\shells\commandline\commands\List.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\shells\commandline\commands\Mkdir.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\shells\commandline\commands\Set.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\shells\commandline\commands\Start.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\shells\commandline\commands\Type.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\shells\commandline\commands\package.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\shells\commandline\package.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\util\Util.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\util\package.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\src\Gift\Mascot.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\src\Gift\MoneyCard.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\src\Gift\PointCard.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\src\tools\Blockade.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\src\tools\Bomb.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\src\tools\Robot.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\Console.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\DefaultConsoleImpl$1.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\DefaultConsoleImpl$2.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\DefaultConsoleImpl$3.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\DefaultConsoleImpl$4.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\DefaultConsoleImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\TextAttributes.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\TextWindow.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\TextWindowNotAvailableException.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\java2d\Java2DTextWindow$1.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\java2d\Java2DTextWindow$2.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\java2d\Java2DTextWindow.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\java2d\package.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\package.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\remote\RemoteConsoleClient$1.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\remote\RemoteConsoleClient.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\remote\RemoteConsoleServer$1.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\remote\RemoteConsoleServer$2.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\remote\RemoteConsoleServer$3$1.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\remote\RemoteConsoleServer$3$2.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\remote\RemoteConsoleServer$3$3.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\remote\RemoteConsoleServer$3.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\remote\RemoteConsoleServer.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\remote\RemoteProxyLauncher.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\remote\package.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\terminal\AnsiOutputStream.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\console\terminal\package.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\core\Enigma$1$1.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\core\Enigma$1.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\core\Enigma$2.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\core\Enigma$3.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\core\Enigma$Java14Utilities.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\core\Enigma.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\core\Environment.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\core\VirtualMachine.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\core\VirtualMachineConfiguration.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\core\VirtualMachineInstantiationException.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\core\package.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\core\resources\properties\defaults.properties" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\core\windows\WindowsEnvironmentImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\event\TextMouseAdapter.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\event\TextMouseEvent.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\event\TextMouseListener.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\event\TextMouseMotionListener.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\event\TextWindowEvent.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\event\TextWindowListener.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\event\package.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\loaders\ConsoleProxyLoader.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\loaders\JavaProgramLoader$1.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\loaders\JavaProgramLoader.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\loaders\package.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\shells\commandline\CommandLineShell$1.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\shells\commandline\CommandLineShell$2.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\shells\commandline\CommandLineShell$3.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\shells\commandline\CommandLineShell.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\shells\commandline\Launcher.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\shells\commandline\commands\Addpath.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\shells\commandline\commands\Ansi.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\shells\commandline\commands\Cd.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\shells\commandline\commands\Exec$1.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\shells\commandline\commands\Exec$2.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\shells\commandline\commands\Exec$3.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\shells\commandline\commands\Exec.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\shells\commandline\commands\Exit.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\shells\commandline\commands\Help.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\shells\commandline\commands\List$1.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\shells\commandline\commands\List.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\shells\commandline\commands\Mkdir.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\shells\commandline\commands\Set.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\shells\commandline\commands\Start$1.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\shells\commandline\commands\Start.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\shells\commandline\commands\Type.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\shells\commandline\commands\package.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\shells\commandline\package.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\util\Util.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\enigma\util\package.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\src\Gift\Mascot.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\src\Gift\MoneyCard.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\src\Gift\PointCard.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\src\tools\Blockade.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\src\tools\Bomb.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\src\tools\OwnedTools.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\src\tools\Robot.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/Administration/ABHL.java" afterPath="$PROJECT_DIR$/src/main/java/src/Administration/ABHL.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/Game/Game.java" afterPath="$PROJECT_DIR$/src/main/java/src/Game/Game.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/map/BareLand.java" afterPath="$PROJECT_DIR$/src/main/java/src/map/BareLand.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/map/GiftHouse.java" afterPath="$PROJECT_DIR$/src/main/java/src/map/GiftHouse.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/map/Hospital.java" afterPath="$PROJECT_DIR$/src/main/java/src/map/Hospital.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/map/LandForm.java" afterPath="$PROJECT_DIR$/src/main/java/src/map/LandForm.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/map/MagicHouse.java" afterPath="$PROJECT_DIR$/src/main/java/src/map/MagicHouse.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/map/Mine.java" afterPath="$PROJECT_DIR$/src/main/java/src/map/Mine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/map/Prison.java" afterPath="$PROJECT_DIR$/src/main/java/src/map/Prison.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/map/RichGameMap.java" afterPath="$PROJECT_DIR$/src/main/java/src/map/RichGameMap.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/map/StartPoint.java" afterPath="$PROJECT_DIR$/src/main/java/src/map/StartPoint.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/map/ToolHouse.java" afterPath="$PROJECT_DIR$/src/main/java/src/map/ToolHouse.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/player/Player.java" afterPath="$PROJECT_DIR$/src/main/java/src/player/Player.java" />
+      <change type="MOVED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\src\tools\OwnedTools.java" afterPath="$PROJECT_DIR$/src/main/java/src/tools/Tool.java" />
+    </list>
     <ignored path="maven_rich.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -73,73 +230,73 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="OwnedTools.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/src/tools/OwnedTools.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="68" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Gift.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/src/Gift/Gift.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="69" selection-start="664" selection-end="664" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Player.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/src/player/Player.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="400" column="68" selection-start="12274" selection-end="12274" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestPlayersPassing.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/TestPlayersPassing.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="145" column="50" selection-start="4556" selection-end="4556" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ABHL.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/src/Administration/ABHL.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="23" selection-start="1276" selection-end="1276" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestTools.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/TestTools.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="173" column="41" selection-start="5012" selection-end="5012" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestLands.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/TestLands.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="224" column="8" selection-start="6726" selection-end="6726" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="LandForm.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/src/map/LandForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="47" selection-start="1659" selection-end="1659" vertical-scroll-proportion="0.0">
+            <state line="56" column="0" selection-start="1276" selection-end="1276" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BareLand.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/src/map/BareLand.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="60" selection-start="586" selection-end="586" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Hospital.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/src/map/Hospital.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="0" selection-start="277" selection-end="277" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MagicHouse.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/src/map/MagicHouse.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="0" selection-start="282" selection-end="282" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Mine.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/src/map/Mine.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="0" selection-start="268" selection-end="268" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Prison.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/src/map/Prison.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="0" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RichGameMap.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/src/map/RichGameMap.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="193" column="45" selection-start="6613" selection-end="6613" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StartPoint.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/src/map/StartPoint.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="5" selection-start="261" selection-end="261" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -148,16 +305,18 @@
       <file leaf-file-name="Game.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/src/Game/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="379" column="84" selection-start="13457" selection-end="13457" vertical-scroll-proportion="13.847826">
-              <folding />
+            <state line="403" column="106" selection-start="14250" selection-end="14250" vertical-scroll-proportion="0.054249547">
+              <folding>
+                <element signature="e#511#519#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GiftHouse.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/src/map/GiftHouse.java">
+      <file leaf-file-name="ToolHouse.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/src/map/ToolHouse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="25" selection-start="388" selection-end="388" vertical-scroll-proportion="0.0">
+            <state line="10" column="53" selection-start="193" selection-end="193" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -170,25 +329,28 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/test/java/TestPlayer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/src/map/ToolHouse.java" />
-        <option value="$PROJECT_DIR$/src/main/java/src/map/LandForm.java" />
-        <option value="$PROJECT_DIR$/src/main/java/src/tools/OwnedTools.java" />
-        <option value="$PROJECT_DIR$/src/main/java/src/Gift/Mascot.java" />
-        <option value="$PROJECT_DIR$/src/main/java/src/Gift/PointCard.java" />
-        <option value="$PROJECT_DIR$/src/main/java/src/Gift/MoneyCard.java" />
-        <option value="$PROJECT_DIR$/src/main/java/src/Gift/Gift.java" />
-        <option value="$PROJECT_DIR$/src/main/java/src/map/GiftHouse.java" />
-        <option value="$PROJECT_DIR$/src/main/java/src/map/RichGameMap.java" />
-        <option value="$PROJECT_DIR$/src/main/java/src/Game/Game.java" />
-        <option value="$PROJECT_DIR$/src/main/java/src/Administration/ABHL.java" />
-        <option value="$PROJECT_DIR$/src/test/java/TestPlayersPassing.java" />
-        <option value="$PROJECT_DIR$/src/test/java/TestTools.java" />
-        <option value="$PROJECT_DIR$/src/test/java/TestLands.java" />
         <option value="$PROJECT_DIR$/src/main/java/src/player/Player.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/Administration/ABHL.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/Game/Game.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/tools/OwnedTools.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/tools/Tools.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/tools/Tool.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/map/LandForm.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/map/GiftHouse.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/map/Hospital.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/map/MagicHouse.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/map/Mine.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/map/Prison.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/map/RichGameMap.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/map/StartPoint.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/map/BareLand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/map/ToolHouse.java" />
       </list>
     </option>
   </component>
@@ -215,7 +377,7 @@
     <option name="width" value="1608" />
     <option name="height" value="874" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -241,6 +403,20 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="maven_rich" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="maven_rich" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -251,7 +427,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -365,6 +540,40 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="player" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="maven_rich" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="maven_rich" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NUMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -456,6 +665,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="maven_rich" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="maven_rich" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -464,15 +699,15 @@
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="options.lastSelected" value="preferences.externalResources" />
+    <property name="recentsLimit" value="5" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -670,24 +905,6 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -713,6 +930,24 @@
       <envs />
       <properties />
       <listeners />
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -809,7 +1044,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1608" height="874" extended-state="6" />
+    <frame x="-4" y="-4" width="1608" height="874" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -825,8 +1060,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32946485" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26821405" sideWeight="0.6779661" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3220339" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26821405" sideWeight="0.8742938" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12570621" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909605" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -865,7 +1100,7 @@
     <option name="SHORT_DIFF_EXTRA_LINES" value="2" />
     <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
     <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
-    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <option name="INCLUDE_TEXT_INTO_SHELF" value="true" />
     <option name="CREATE_PATCH_EXPAND_DETAILS_DEFAULT" value="true" />
     <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
@@ -893,99 +1128,117 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.10.jar!/org/junit/runners/model/FrameworkMethod.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/NUMS/SpecialHouseIndex.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="28" selection-start="511" selection-end="511" vertical-scroll-proportion="0.3156733" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/ToolHouse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="133" selection-start="867" selection-end="867" vertical-scroll-proportion="0.0">
+        <state line="9" column="12" selection-start="182" selection-end="182" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/TestPlayer.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/NUMS/SpecialNum.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="138" column="16" selection-start="4069" selection-end="4069" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/RichGameMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="26" selection-start="1452" selection-end="1452" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/GiftHouse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="25" selection-start="388" selection-end="388" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/LandForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="47" selection-start="1659" selection-end="1659" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/src/tools/OwnedTools.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="68" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/src/Gift/Gift.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="69" selection-start="664" selection-end="664" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/src/Administration/ABHL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="23" selection-start="1276" selection-end="1276" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/TestPlayersPassing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="145" column="50" selection-start="4556" selection-end="4556" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/TestTools.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="173" column="41" selection-start="5012" selection-end="5012" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/TestLands.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="224" column="8" selection-start="6726" selection-end="6726" vertical-scroll-proportion="0.0">
+        <state line="18" column="19" selection-start="422" selection-end="422" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/src/player/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="400" column="68" selection-start="12274" selection-end="12274" vertical-scroll-proportion="0.0">
+        <state line="315" column="62" selection-start="10399" selection-end="10399" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/Administration/ABHL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="50" selection-start="639" selection-end="639" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/tools/Tool.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="50" selection-start="433" selection-end="433" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/GiftHouse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="0" selection-start="396" selection-end="396" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/Hospital.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="277" selection-end="277" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/LandForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="0" selection-start="1276" selection-end="1276" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/MagicHouse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="0" selection-start="282" selection-end="282" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/Mine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="268" selection-end="268" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/Prison.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="0" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/RichGameMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="193" column="45" selection-start="6613" selection-end="6613" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/BareLand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="60" selection-start="586" selection-end="586" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/ToolHouse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="53" selection-start="193" selection-end="193" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/StartPoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="5" selection-start="261" selection-end="261" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/src/Game/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="379" column="84" selection-start="13457" selection-end="13457" vertical-scroll-proportion="13.847826">
-          <folding />
+        <state line="403" column="106" selection-start="14250" selection-end="14250" vertical-scroll-proportion="0.054249547">
+          <folding>
+            <element signature="e#511#519#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -13,8 +13,4 @@ public class Prison extends LandForm{
     }
 
 
-    @Override
-    public int getPrice() {
-        return 0;
-    }
 }

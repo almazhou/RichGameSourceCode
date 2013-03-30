@@ -20,7 +20,6 @@ public class BareLand extends LandForm{
 
     }
 
-    @Override
     public  int getPrice() {
         if(landIndex >0&& landIndex <29){
             return PRICE_ONE;

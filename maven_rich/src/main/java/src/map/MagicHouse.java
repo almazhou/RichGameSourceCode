@@ -12,8 +12,5 @@ public class MagicHouse extends LandForm {
         super("M",index);
     }
 
-    @Override
-    public int getPrice() {
-        return 0;
-    }
+
 }

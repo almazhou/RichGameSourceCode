@@ -2,12 +2,11 @@ package src.Game;
 
 import src.Administration.ABHL;
 import src.Gift.Gift;
-import src.map.BareLand;
-import src.map.LandForm;
-import src.map.Mine;
-import src.map.RichGameMap;
+import src.NUMS.SpecialHouseIndex;
+import src.NUMS.SpecialNum;
+import src.map.*;
 import src.player.Player;
-import src.tools.OwnedTools;
+import src.tools.Tool;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,25 +17,10 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 
-
 public class Game {
     private  Player []player;
     private  List<Player> playerList=new ArrayList<Player>();
     public static boolean debugFlag=false;
-    private static final int TOOL_HOUSE_INDEX = 28;
-    private static final int GIFT_HOUSE_INDEX = 35;
-    private static final int MAGIC_HOUSE_INDEX = 63;
-    private static final int HOSPITAL_INDEX = 14;
-    private static final int PRISON_INDEX = 49;
-    private static final int LAST_INDEX = 69;
-    private static final int MAX_TOOL_NUM = 10;
-    private OwnedTools block=OwnedTools.Blockade;
-    private OwnedTools bomb=OwnedTools.Bomb;
-    private OwnedTools robot=OwnedTools.Robot;
-    private Gift moneyCard= Gift.MoneyCard;
-    private Gift pointCard=Gift.PointCard;
-    private Gift mascot=Gift.Mascot;
-
     public Game(int playerNum) {
         player=new Player[playerNum];
         for(int i=0;i<playerNum;i++){
@@ -165,7 +149,7 @@ public class Game {
     private  void useRobot(Player player, RichGameMap map) {
         if(player.getRobotNum()>0){
             player.useRobot(map, null);
-            System.out.println("成功使用"+robot.getName());
+            System.out.println("成功使用"+ Tool.Robot.getName());
         }else{
             System.out.println("机器娃娃的个数为0，无法设置！");
         }
@@ -417,20 +401,20 @@ public class Game {
     }
 
     private static boolean tooManyTools(Player player) {
-        if(player.getBlockNum()+player.getBombNum()+player.getRobotNum()<MAX_TOOL_NUM){
+        if(player.getBlockNum()+player.getBombNum()+player.getRobotNum()< SpecialNum.MAX_TOOL_NUM.getNum()){
             return true;
         }
         return false;
     }
 
     private  boolean moneyIsEnough(Player player, int toolIndex) {
-        if(player.getPoint() - block.getPoint() >=0&&toolIndex==block.getToolIndex()){
+        if(player.getPoint() - Tool.Blockade.getPoint() >=0&&toolIndex== Tool.Blockade.getToolIndex()){
             return true;
         }
-        if(player.getPoint() - robot.getPoint() >=0&&toolIndex==robot.getToolIndex()){
+        if(player.getPoint() - Tool.Robot.getPoint() >=0&&toolIndex== Tool.Robot.getToolIndex()){
             return true;
         }
-        if(player.getPoint() - bomb.getPoint() >=0&&toolIndex==bomb.getToolIndex()){
+        if(player.getPoint() - Tool.Bomb.getPoint() >=0&&toolIndex== Tool.Bomb.getToolIndex()){
             return true;
         }
         System.out.println("您当前剩余的点数为" + player.getPoint() + ",不足以购买编号为" + toolIndex + "的道具");
@@ -439,11 +423,11 @@ public class Game {
 
 
     public  void sellTools(Player player, int toolIndex) {
-        if(toolIndex==block.getToolIndex()){
+        if(toolIndex== Tool.Blockade.getToolIndex()){
             player.sellBlock();
-        }else if(toolIndex==robot.getToolIndex()){
+        }else if(toolIndex== Tool.Robot.getToolIndex()){
             player.sellRobot();
-        } else if(toolIndex==bomb.getToolIndex()){
+        } else if(toolIndex== Tool.Bomb.getToolIndex()){
             player.sellBomb();
         }else{
             System.out.println("输入出错，道具编号为1-3！");
@@ -451,21 +435,21 @@ public class Game {
     }
 
     public boolean isInToolHouse(int playerIndex, RichGameMap map) {
-        if(player[playerIndex-1].getLandIndex()== TOOL_HOUSE_INDEX){
+        if(player[playerIndex-1].getLandIndex()== SpecialHouseIndex.TOOL_HOUSE_INDEX.getHouseIndex()){
             setDisplayName(playerIndex,map);
             return true;
         }
         return false;
     }
     public boolean isInGiftHouse(int playerIndex, RichGameMap map) {
-        if(player[playerIndex-1].getLandIndex()== GIFT_HOUSE_INDEX){
+        if(player[playerIndex-1].getLandIndex()== SpecialHouseIndex.GIFT_HOUSE_INDEX.getHouseIndex()){
             setDisplayName(playerIndex,map);
             return true;
         }
         return false;
     }
     public boolean isInMagicHouse(int playerIndex, RichGameMap map) {
-        if(player[playerIndex-1].getLandIndex()== MAGIC_HOUSE_INDEX){
+        if(player[playerIndex-1].getLandIndex()== SpecialHouseIndex.MAGIC_HOUSE_INDEX.getHouseIndex()){
             setDisplayName(playerIndex,map);
             return true;
         }
@@ -473,7 +457,7 @@ public class Game {
     }
 
     public boolean inHospital(int playerIndex, RichGameMap map) {
-        if(player[playerIndex-1].getLandIndex()== HOSPITAL_INDEX){
+        if(player[playerIndex-1].getLandIndex()== SpecialHouseIndex.HOSPITAL_INDEX.getHouseIndex()){
             setDisplayName(playerIndex, map);
             return true;
         }
@@ -486,7 +470,7 @@ public class Game {
     }
 
     public boolean isInPrison(int playerIndex, RichGameMap map) {
-        if(player[playerIndex-1].getLandIndex()== PRISON_INDEX){
+        if(player[playerIndex-1].getLandIndex()== SpecialHouseIndex.PRISON_INDEX.getHouseIndex()){
             setDisplayName(playerIndex, map);
             return true;
         }
@@ -503,7 +487,7 @@ public class Game {
     }
 
     public boolean isInMine(int playerIndex, RichGameMap map) {
-        if(player[playerIndex-1].getLandIndex()>MAGIC_HOUSE_INDEX&&player[playerIndex-1].getLandIndex()<= LAST_INDEX){
+        if(player[playerIndex-1].getLandIndex()> SpecialHouseIndex.MAGIC_HOUSE_INDEX.getHouseIndex()&&player[playerIndex-1].getLandIndex()<= SpecialHouseIndex.LAST_INDEX.getHouseIndex()){
             setDisplayName(playerIndex,map);
             return true;
         }

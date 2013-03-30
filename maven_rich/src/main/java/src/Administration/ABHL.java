@@ -3,6 +3,7 @@ package src.Administration;
 import src.map.BareLand;
 import src.map.LandForm;
 import src.map.RichGameMap;
+import src.NUMS.SpecialNum;
 import src.player.Player;
 
 import java.util.Hashtable;
@@ -23,7 +24,7 @@ public class ABHL {
     public ABHL(RichGameMap map){
         name="Administration Bureau of House and Land";
         landTable=new Hashtable();
-        for(int i=0;i<map.getLandNum();i++)
+        for(int i=0;i< SpecialNum.LANDNUM.getNum();i++)
         {
             LandForm tempBareLand=(LandForm)map.landList.get(i);
             if(tempBareLand.getName().equals("0")) {

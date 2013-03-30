@@ -1,50 +1,41 @@
 package src.map;
 
 import src.Game.Game;
+import src.NUMS.SpecialHouseIndex;
+import src.NUMS.SpecialNum;
 import src.player.Player;
-import src.tools.OwnedTools;
+import src.tools.Tool;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 public class RichGameMap {
-    public static final int BARELAND_NUM = 58;
-    public static final int MINE_NUM = 6;
-    public static final int MAGIC_HOUSE_INDEX = 63;
-    public static final int HOSPITAL_INDEX = 14;
-    public static final int TOOL_HOUSE_INDEX = 28;
-    public static final int GIFT_HOUSE_INDEX = 35;
-    public static final int PRISON_INDEX = 49;
+
     public  List landList=new ArrayList();
     LandForm startPoint,toolHouse,magicHouse,giftHouse,hospital,prison;
     LandForm []bareLands;
     LandForm  []mines;
-    private static final int LANDNUM = 70;
-    private OwnedTools block=OwnedTools.Blockade;
-    private OwnedTools bomb=OwnedTools.Bomb;
-    private OwnedTools robot=OwnedTools.Robot;
-
     public RichGameMap(){
         startPoint=new StartPoint();
         landList.add(startPoint);
-        bareLands=new BareLand[BARELAND_NUM];
-        mines=new Mine[MINE_NUM];
+        bareLands=new BareLand[SpecialNum.BARELAND_NUM.getNum()];
+        mines=new Mine[SpecialNum.MINE_NUM.getNum()];
         int k=0;
-        for(int i=1;i<= MAGIC_HOUSE_INDEX;i++) {
-            if(i== HOSPITAL_INDEX) {
+        for(int i=1;i<= SpecialHouseIndex.MAGIC_HOUSE_INDEX.getHouseIndex();i++) {
+            if(i== SpecialHouseIndex.HOSPITAL_INDEX.getHouseIndex()) {
                 hospital=new Hospital(i);
                 landList.add(hospital);
-            }else if(i== TOOL_HOUSE_INDEX){
+            }else if(i== SpecialHouseIndex.TOOL_HOUSE_INDEX.getHouseIndex()){
                 toolHouse=new ToolHouse(i);
                 landList.add(toolHouse);
-            } else if(i== GIFT_HOUSE_INDEX){
+            } else if(i== SpecialHouseIndex.GIFT_HOUSE_INDEX.getHouseIndex()){
                 giftHouse=new GiftHouse();
                 landList.add(giftHouse);
 
-            }else if(i== PRISON_INDEX){
+            }else if(i== SpecialHouseIndex.PRISON_INDEX.getHouseIndex()){
                 prison=new Prison(i);
                 landList.add(prison);
-            } else if(i==MAGIC_HOUSE_INDEX){
+            } else if(i== SpecialHouseIndex.MAGIC_HOUSE_INDEX.getHouseIndex()){
                 magicHouse=new MagicHouse(i);
                 landList.add(magicHouse);
             }  else {
@@ -53,8 +44,8 @@ public class RichGameMap {
                 k++;
             }
         }
-        for(int i=0;i<MINE_NUM;i++){
-            mines[i]=new Mine(MAGIC_HOUSE_INDEX+i+1);
+        for(int i=0;i<SpecialNum.MINE_NUM.getNum();i++){
+            mines[i]=new Mine(SpecialHouseIndex.MAGIC_HOUSE_INDEX.getHouseIndex()+i+1);
             landList.add(mines[i]);
 
         }
@@ -66,13 +57,13 @@ public class RichGameMap {
             LandForm tempLandForm=(LandForm)landList.get(i);
             print(i, tempLandForm);
             }else if(j==7){
-            LandForm tempLandForm=(LandForm)landList.get(MAGIC_HOUSE_INDEX-i);
-            print(MAGIC_HOUSE_INDEX-i, tempLandForm);
+            LandForm tempLandForm=(LandForm)landList.get(SpecialHouseIndex.MAGIC_HOUSE_INDEX.getHouseIndex()-i);
+            print(SpecialHouseIndex.MAGIC_HOUSE_INDEX.getHouseIndex()-i, tempLandForm);
             } else{
             if(i==0){
-            LandForm tempLandForm=(LandForm)landList.get(LANDNUM-j);
-            print(LANDNUM-j, tempLandForm);
-            }else if(i==TOOL_HOUSE_INDEX){
+            LandForm tempLandForm=(LandForm)landList.get(SpecialNum.LANDNUM.getNum()-j);
+            print(SpecialNum.LANDNUM.getNum()-j, tempLandForm);
+            }else if(i== SpecialHouseIndex.TOOL_HOUSE_INDEX.getHouseIndex()){
             LandForm tempLandForm=(LandForm)landList.get(i+j);
             print(i+j, tempLandForm);
             }else{
@@ -100,9 +91,6 @@ public class RichGameMap {
 
     }
 
-    public int getLandNum() {
-        return LANDNUM;
-    }
 
     public void clearBlock(int blockIndex) {
         LandForm tempLandForm=(LandForm)landList.get(blockIndex);
@@ -135,7 +123,7 @@ public class RichGameMap {
     public boolean isWithinRange(int targetIndex, int currentIndex) {
         if(Math.abs(targetIndex-currentIndex)<11){
             return true;
-        }  else if(LANDNUM-Math.abs(targetIndex-currentIndex)<11){
+        }  else if(SpecialNum.LANDNUM.getNum()-Math.abs(targetIndex-currentIndex)<11){
             return true;
         }
         System.out.print("超出范围");
@@ -145,8 +133,8 @@ public class RichGameMap {
     public int getBlockIndex(int startIndex, int offSet) {
         for(int i=startIndex;i<=startIndex+offSet;i++) {
             int k=i;
-            if(i>=LANDNUM){
-                k=i%LANDNUM;
+            if(i>=SpecialNum.LANDNUM.getNum()){
+                k=i%SpecialNum.LANDNUM.getNum();
             }
             LandForm tempLandForm=(LandForm)landList.get(k);
             if(tempLandForm.isBlocked()){
@@ -159,8 +147,8 @@ public class RichGameMap {
     public int getBombIndex(int startIndex, int offSet) {
         for(int i=startIndex;i<=startIndex+offSet;i++) {
             int k=i;
-            if(i>=LANDNUM){
-                k=i%LANDNUM;
+            if(i>=SpecialNum.LANDNUM.getNum()){
+                k=i%SpecialNum.LANDNUM.getNum();
             }
             LandForm tempLandForm=(LandForm)landList.get(k);
             if(tempLandForm.isBombed()){
@@ -173,8 +161,8 @@ public class RichGameMap {
     public boolean checkBlock(int startIndex, int offSet) {
         for(int i=startIndex;i<=startIndex+offSet;i++) {
             int k=i;
-            if(i>=LANDNUM){
-                k=i%LANDNUM;
+            if(i>=SpecialNum.LANDNUM.getNum()){
+                k=i%SpecialNum.LANDNUM.getNum();
             }
             LandForm tempLandForm=(LandForm)landList.get(k);
             if(tempLandForm.isBlocked()){
@@ -201,9 +189,9 @@ public class RichGameMap {
             Player tempPlayer=map.getPlayer(landIndex, rich);
             tempLand.setDisplayName(tempPlayer.getAbbreviation());
         }else if(tempLand.isBlocked()){
-            tempLand.setDisplayName(block.getDisplayName());
+            tempLand.setDisplayName(Tool.Blockade.getDisplayName());
         }else if(tempLand.isBombed()){
-            tempLand.setDisplayName(bomb.getDisplayName());
+            tempLand.setDisplayName(Tool.Bomb.getDisplayName());
         }else if(isBareLand(tempLand)){
             BareLand bareLand=(BareLand)map.landList.get(landIndex);
             bareLand.setDisplayName(String.valueOf(bareLand.getHouseLevel()));

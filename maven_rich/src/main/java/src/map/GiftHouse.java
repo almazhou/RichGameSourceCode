@@ -17,10 +17,7 @@ public class GiftHouse extends LandForm{
         super("G",35);
     }
 
-    @Override
-    public int getPrice() {
-        return 0;
-    }
+
 
     public void displayGifts() {
         System.out.println("礼品    编号");

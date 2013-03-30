@@ -1,6 +1,6 @@
 package src.map;
 
-import src.tools.OwnedTools;
+import src.tools.Tool;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,22 +10,14 @@ import src.tools.OwnedTools;
  * To change this template use File | Settings | File Templates.
  */
 public class ToolHouse extends LandForm{
-    OwnedTools block=OwnedTools.Blockade;
-    OwnedTools bomb=OwnedTools.Bomb;
-    OwnedTools robot=OwnedTools.Robot;
     public ToolHouse(int index){
         super("T",index);
     }
 
-    @Override
-    public int getPrice() {
-        return 0;
-    }
-
     public  void displayTools() {
         System.out.println("道具      编号  价值（点数）  显示方式");
-        System.out.println(block.getName() + "      " + block.getToolIndex() + "      " + block.getPoint() + "             " + block.getDisplayName());
-        System.out.println(robot.getName() + "  " + robot.getToolIndex() + "      " + robot.getPoint() + "    " +robot.getDisplayName());
-       System.out.println(bomb.getName() + "      " + bomb.getToolIndex() + "      " + bomb.getPoint() + "             " + bomb.getDisplayName());
+        System.out.println(Tool.Blockade.getName() + "      " + Tool.Blockade.getToolIndex() + "      " + Tool.Blockade.getPoint() + "             " + Tool.Blockade.getDisplayName());
+        System.out.println(Tool.Robot.getName() + "  " + Tool.Robot.getToolIndex() + "      " + Tool.Robot.getPoint() + "    " +Tool.Robot.getDisplayName());
+       System.out.println(Tool.Bomb.getName() + "      " +Tool.Bomb.getToolIndex() + "      " + Tool.Bomb.getPoint() + "             " + Tool.Bomb.getDisplayName());
     }
 }

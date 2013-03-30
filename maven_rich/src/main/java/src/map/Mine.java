@@ -12,10 +12,6 @@ public class Mine extends LandForm{
         super("$",index);
     }
 
-    @Override
-    public int getPrice() {
-        return 0;
-    }
 
     public static int getPoint(int landIndex) {
         if(landIndex==64){

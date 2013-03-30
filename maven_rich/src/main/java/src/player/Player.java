@@ -3,8 +3,10 @@ package src.player;
 import src.Administration.ABHL;
 import src.Game.Game;
 import src.Gift.Gift;
+import src.NUMS.SpecialHouseIndex;
+import src.NUMS.SpecialNum;
 import src.map.*;
-import src.tools.OwnedTools;
+import src.tools.Tool;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -19,14 +21,8 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class Player {
-    public static final int TIME_IN_HOSPITAL = 3;
-    public static final int TIME_IN_PRISON = 2;
-    private static final int LANDNUM = 70;
-    public static final int TOOL_HOUSE_INDEX = 28;
-    public static final int GIFT_HOUSE_INDEX = 35;
-    public static final int MAGIC_HOUSE_INDEX = 63;
-    public static final int HOSPITAL_INDEX = 14;
-    public static final int PRISON_INDEX = 49;
+
+
 
     private int currentIndex=0;
     private int totalPoint =0;
@@ -44,12 +40,7 @@ public class Player {
     private String abbreviation=null;
     public  String commandWord=null;
     private static final int SEARCHSTEP = 10;
-    private OwnedTools block=OwnedTools.Blockade;
-    private OwnedTools bomb=OwnedTools.Bomb;
-    private OwnedTools robot=OwnedTools.Robot;
-    private Gift moneyCard= Gift.MoneyCard;
-    private Gift pointCard=Gift.PointCard;
-    private Gift mascot=Gift.Mascot;
+
     private int freePassNum=0;
 
 
@@ -91,12 +82,12 @@ public class Player {
 
     public void forward(RichGameMap map, int rollingSteps, Game rich) {
         int preIndex=currentIndex;
-        if(currentIndex==HOSPITAL_INDEX&&timeInHospital>0){
+        if(currentIndex== SpecialHouseIndex.HOSPITAL_INDEX.getHouseIndex()&&timeInHospital>0){
            timeInHospital--;
            System.out.println(this.name+">玩家仍然在医院养病！还有"+timeInHospital+"天出院！");
            return;
        }
-        if(currentIndex==PRISON_INDEX&&timeInPrison>0){
+        if(currentIndex== SpecialHouseIndex.PRISON_INDEX.getHouseIndex()&&timeInPrison>0){
             timeInPrison--;
             System.out.println(this.name+">玩家在监狱中！还有"+timeInPrison+"天出狱！");
             return;
@@ -109,25 +100,25 @@ public class Player {
             int bombIndex=map.getBombIndex(currentIndex, rollingSteps);
            assert(bombIndex>=0);
             map.clearBomb(bombIndex);
-            currentIndex=HOSPITAL_INDEX;
-            timeInHospital= TIME_IN_HOSPITAL;
+            currentIndex= SpecialHouseIndex.HOSPITAL_INDEX.getHouseIndex();
+            timeInHospital= SpecialNum.TIME_IN_HOSPITAL.getNum();
            System.out.println(this.name+">玩家被炸弹炸伤，送进医院！将住院"+timeInHospital+"天!");
             return;
      }  else {
            currentIndex+= rollingSteps;
             }
-        if(currentIndex>=LANDNUM){
-            currentIndex%=LANDNUM;
+        if(currentIndex>=SpecialNum.LANDNUM.getNum()){
+            currentIndex%=SpecialNum.LANDNUM.getNum();
         }
         map.clearDisplayName(map,currentIndex,rich);
         rich.setDisplayName(playerIndex,map);
         if(rich.isInPrison(playerIndex, map)&&timeInPrison==0){
-            timeInPrison= TIME_IN_PRISON;
+            timeInPrison= SpecialNum.TIME_IN_PRISON.getNum();
             System.out.println(this.name+">玩家步入监狱！将被监禁"+timeInPrison+"天!");
             return;
         }
         System.out.println("到达编号为"+currentIndex+"的地！");
-        if(currentIndex==TOOL_HOUSE_INDEX){
+        if(currentIndex== SpecialHouseIndex.TOOL_HOUSE_INDEX.getHouseIndex()){
             System.out.println(this.name+">欢迎光临道具屋，请选择您所需要的道具(1-3)：");
             ToolHouse toolHouse=(ToolHouse)map.landList.get(currentIndex);
             toolHouse.displayTools();
@@ -136,7 +127,7 @@ public class Player {
             chooseTools(toolIndexInString);
             return;
         }
-        if(currentIndex==GIFT_HOUSE_INDEX){
+        if(currentIndex== SpecialHouseIndex.GIFT_HOUSE_INDEX.getHouseIndex()){
             System.out.println(this.name+">欢迎光临礼品屋，请选择一件您喜欢的礼品：");
             GiftHouse giftHouse=new GiftHouse();
             giftHouse.displayGifts();
@@ -144,7 +135,7 @@ public class Player {
             chooseGift(giftIndexInString);
             return;
         }
-        if(currentIndex==MAGIC_HOUSE_INDEX){
+        if(currentIndex== SpecialHouseIndex.MAGIC_HOUSE_INDEX.getHouseIndex()){
             return;
         }
         if(rich.isInBareLand(playerIndex, map)) {
@@ -181,7 +172,7 @@ public class Player {
 
         return;
         }
-        if(currentIndex==MAGIC_HOUSE_INDEX){
+        if(currentIndex== SpecialHouseIndex.MAGIC_HOUSE_INDEX.getHouseIndex()){
             rich.doMining(playerIndex);
 
 
@@ -212,11 +203,11 @@ public class Player {
         if(toolNumberExceed10()){
             return;
         }
-        if(toolIndex==block.getToolIndex()){
+        if(toolIndex== Tool.Blockade.getToolIndex()){
             buyBlock();
-        } else if(toolIndex==robot.getToolIndex()){
+        } else if(toolIndex== Tool.Robot.getToolIndex()){
             buyRobot();
-        } else if(toolIndex==bomb.getToolIndex()){
+        } else if(toolIndex== Tool.Bomb.getToolIndex()){
             buyBomb();
         }
     }
@@ -236,8 +227,8 @@ public class Player {
     public boolean checkBomb(RichGameMap map,int rollingSteps) {
         for(int i=this.currentIndex;i<=this.currentIndex+rollingSteps;i++) {
             int k=i;
-            if(i>=LANDNUM) {
-                k=i%LANDNUM;
+            if(i>=SpecialNum.LANDNUM.getNum()) {
+                k=i%SpecialNum.LANDNUM.getNum();
             }
             LandForm tempLandForm=(LandForm)map.landList.get(k);
             if(tempLandForm.isBombed()){
@@ -263,11 +254,11 @@ public class Player {
 
     private int getLandIndexWithOffSet(int offset) {
         int landIndex=currentIndex+offset;
-        if(landIndex>=LANDNUM){
-            landIndex%=LANDNUM;
+        if(landIndex>=SpecialNum.LANDNUM.getNum()){
+            landIndex%=SpecialNum.LANDNUM.getNum();
         }
         if(landIndex<0){
-            landIndex=LANDNUM+landIndex;
+            landIndex=SpecialNum.LANDNUM.getNum()+landIndex;
         }
         return landIndex;
     }
@@ -312,17 +303,17 @@ public class Player {
     }
 
     public void useRobot(RichGameMap map, Game rich) {
-        OwnedTools robot=(OwnedTools) robotList.get(0);
+        Tool robot=(Tool) robotList.get(0);
         clearBombAndBlock(map, rich);
         robotList.remove(0);
         robotNum--;
     }
 
     public void clearBombAndBlock(RichGameMap map, Game rich) {
-        int startIndex=(currentIndex-SEARCHSTEP+LANDNUM)%LANDNUM;
-        int stopIndex=(currentIndex+SEARCHSTEP+LANDNUM)%LANDNUM;
+        int startIndex=(currentIndex-SEARCHSTEP+SpecialNum.LANDNUM.getNum())%SpecialNum.LANDNUM.getNum();
+        int stopIndex=(currentIndex+SEARCHSTEP+SpecialNum.LANDNUM.getNum())%SpecialNum.LANDNUM.getNum();
         if(startIndex>stopIndex){
-            for(int i=startIndex;i<LANDNUM;i++){
+            for(int i=startIndex;i<SpecialNum.LANDNUM.getNum();i++){
                 LandForm tempLandForm=(LandForm)map.landList.get(i);
                 tempLandForm.clearBomb(map, rich);
                 tempLandForm.clearBlock(map, rich);
@@ -396,15 +387,15 @@ public class Player {
     public void chooseGift(String giftIndexInString) {
         try{
             int giftIndex=Integer.parseInt(giftIndexInString);
-            if(giftIndex==moneyCard.getGiftIndex()){
-                giftList.add(moneyCard);
-                addMoney(moneyCard.getValue());
-            }else if(giftIndex==pointCard.getGiftIndex()) {
-                giftList.add(pointCard);
-                addPoint(pointCard.getValue());
-            } else if(giftIndex==mascot.getGiftIndex()){
-                giftList.add(mascot);
-                freePassNum=mascot.getValue();
+            if(giftIndex==Gift.MoneyCard.getGiftIndex()){
+                giftList.add(Gift.MoneyCard);
+                addMoney(Gift.MoneyCard.getValue());
+            }else if(giftIndex==Gift.PointCard.getGiftIndex()) {
+                giftList.add(Gift.PointCard);
+                addPoint(Gift.PointCard.getValue());
+            } else if(giftIndex==Gift.Mascot.getGiftIndex()){
+                giftList.add(Gift.Mascot);
+                freePassNum=Gift.Mascot.getValue();
             }
         }
         catch (NumberFormatException e){
@@ -432,9 +423,9 @@ public class Player {
     }
 
     public void buyBlock() {
-        if(pointIsEnough(block.getPoint())&&!toolNumberExceed10()) {
-        deductPoint(block.getPoint());
-        blockList.add(block);
+        if(pointIsEnough(Tool.Blockade.getPoint())&&!toolNumberExceed10()) {
+        deductPoint(Tool.Blockade.getPoint());
+        blockList.add(Tool.Blockade);
         blockNum++;
         }
     }
@@ -444,17 +435,17 @@ public class Player {
     }
 
     public void buyBomb() {
-        if(pointIsEnough(bomb.getPoint())&&!toolNumberExceed10()){
-        deductPoint(bomb.getPoint());
-        bombList.add(bomb);
+        if(pointIsEnough(Tool.Bomb.getPoint())&&!toolNumberExceed10()){
+        deductPoint(Tool.Bomb.getPoint());
+        bombList.add(Tool.Bomb);
         bombNum++;
         }
     }
 
     public void buyRobot() {
-        if(pointIsEnough(robot.getPoint())&&!toolNumberExceed10()) {
-        deductPoint(robot.getPoint());
-        robotList.add(robot);
+        if(pointIsEnough(Tool.Robot.getPoint())&&!toolNumberExceed10()) {
+        deductPoint(Tool.Robot.getPoint());
+        robotList.add(Tool.Robot);
         robotNum++;
         }
     }
@@ -473,35 +464,35 @@ public class Player {
 
     public void sellBomb() {
         if(bombNum>0){
-        addPoint(bomb.getPoint());
+        addPoint(Tool.Bomb.getPoint());
         bombList.remove(0);
         bombNum--;
-        System.out.println(this.name+">"+bomb.getName()+"出售成功！售价为"+bomb.getPoint()+"点！");
+        System.out.println(this.name+">"+ Tool.Bomb.getName()+"出售成功！售价为"+ Tool.Bomb.getPoint()+"点！");
         }else {
-            System.out.println(this.name+">"+bomb.getName()+"的个数为0，无法出售！");
+            System.out.println(this.name+">"+ Tool.Bomb.getName()+"的个数为0，无法出售！");
         }
 
     }
 
     public void sellRobot() {
        if(robotNum>0){
-        addPoint(robot.getPoint());
+        addPoint(Tool.Robot.getPoint());
         robotList.remove(0);
         robotNum--;
-        System.out.println(this.name+">"+robot.getName()+"出售成功！售价为"+robot.getPoint()+"点！");
+        System.out.println(this.name+">"+ Tool.Robot.getName()+"出售成功！售价为"+ Tool.Robot.getPoint()+"点！");
        } else {
-           System.out.println(this.name+">"+robot.getName()+"的个数为0，无法出售！");
+           System.out.println(this.name+">"+ Tool.Robot.getName()+"的个数为0，无法出售！");
        }
     }
 
     public void sellBlock() {
         if(blockNum>0){
-        addPoint(block.getPoint());
+        addPoint(Tool.Blockade.getPoint());
         blockList.remove(0);
         blockNum--;
-        System.out.println(this.name+">"+block.getName()+"出售成功！售价为"+block.getPoint()+"点！");
+        System.out.println(this.name+">"+ Tool.Blockade.getName()+"出售成功！售价为"+ Tool.Blockade.getPoint()+"点！");
         }else {
-            System.out.println(this.name+">"+block.getName()+"的个数为0，无法出售！");
+            System.out.println(this.name+">"+ Tool.Blockade.getName()+"的个数为0，无法出售！");
         }
     }
 

@@ -1,7 +1,5 @@
 package src.map;
 
-import src.map.LandForm;
-
 /**
  * Created with IntelliJ IDEA.
  * User: Administrator
@@ -14,8 +12,4 @@ public class Hospital extends LandForm {
         super("H",index);
     }
 
-    @Override
-    public int getPrice() {
-        return 0;
-    }
 }

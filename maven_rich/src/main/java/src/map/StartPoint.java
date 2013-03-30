@@ -14,8 +14,4 @@ public class StartPoint extends LandForm {
     }
 
 
-    @Override
-    public int getPrice() {
-        return 0;
-    }
 }
