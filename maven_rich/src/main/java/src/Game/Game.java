@@ -8,9 +8,7 @@ import src.map.LandForm;
 import src.map.Mine;
 import src.map.RichGameMap;
 import src.player.Player;
-import src.tools.Blockade;
-import src.tools.Bomb;
-import src.tools.Robot;
+import src.tools.OwnedTools;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -33,6 +31,9 @@ public class Game {
     private static final int PRISON_INDEX = 49;
     private static final int LAST_INDEX = 69;
     private static final int MAX_TOOL_NUM = 10;
+    private OwnedTools block=OwnedTools.Blockade;
+    private OwnedTools bomb=OwnedTools.Bomb;
+    private OwnedTools robot=OwnedTools.Robot;
 
     public Game(int playerNum) {
         player=new Player[playerNum];
@@ -159,10 +160,10 @@ public class Game {
         System.out.println("道具：路障"+player.getBlockNum()+"个；炸弹"+player.getBombNum()+"个；机器娃娃"+player.getRobotNum()+"个");
     }
 
-    private static void useRobot(Player player, RichGameMap map) {
+    private  void useRobot(Player player, RichGameMap map) {
         if(player.getRobotNum()>0){
             player.useRobot(map, null);
-            System.out.println("成功使用"+Robot.getName());
+            System.out.println("成功使用"+robot.getName());
         }else{
             System.out.println("机器娃娃的个数为0，无法设置！");
         }
@@ -427,7 +428,7 @@ public class Game {
     }
 
 
-    private static boolean canBuyTools(Player player, int toolIndex) {
+    private boolean canBuyTools(Player player, int toolIndex) {
         return moneyIsEnough(player,toolIndex)&&tooManyTools(player);
 
     }
@@ -439,14 +440,14 @@ public class Game {
         return false;
     }
 
-    private static boolean moneyIsEnough(Player player, int toolIndex) {
-        if(player.getPoint() - Blockade.getPoint() >=0&&toolIndex==Blockade.getToolIndex()){
+    private  boolean moneyIsEnough(Player player, int toolIndex) {
+        if(player.getPoint() - block.getPoint() >=0&&toolIndex==block.getToolIndex()){
             return true;
         }
-        if(player.getPoint() - Robot.getPoint() >=0&&toolIndex==Robot.getToolIndex()){
+        if(player.getPoint() - robot.getPoint() >=0&&toolIndex==robot.getToolIndex()){
             return true;
         }
-        if(player.getPoint() - Bomb.getPoint() >=0&&toolIndex==Bomb.getToolIndex()){
+        if(player.getPoint() - bomb.getPoint() >=0&&toolIndex==bomb.getToolIndex()){
             return true;
         }
         System.out.println("您当前剩余的点数为" + player.getPoint() + ",不足以购买编号为" + toolIndex + "的道具");
@@ -454,12 +455,12 @@ public class Game {
     }
 
 
-    public static void sellTools(Player player, int toolIndex) {
-        if(toolIndex==Blockade.getToolIndex()){
+    public  void sellTools(Player player, int toolIndex) {
+        if(toolIndex==block.getToolIndex()){
             player.sellBlock();
-        }else if(toolIndex==Robot.getToolIndex()){
+        }else if(toolIndex==robot.getToolIndex()){
             player.sellRobot();
-        } else if(toolIndex==Bomb.getToolIndex()){
+        } else if(toolIndex==bomb.getToolIndex()){
             player.sellBomb();
         }else{
             System.out.println("输入出错，道具编号为1-3！");
@@ -571,22 +572,6 @@ public class Game {
     }
 
 
-    public void clearDisplayName(RichGameMap map, int landIndex) {
-        LandForm tempLand=(LandForm)map.landList.get(landIndex);
-        if(map.hasPlayer(landIndex, this)){
-            Player tempPlayer=map.getPlayer(landIndex, this);
-            tempLand.setDisplayName(tempPlayer.getAbbreviation());
-        }else if(tempLand.isBlocked()){
-            tempLand.setDisplayName(Blockade.getDisplayName());
-        }else if(tempLand.isBombed()){
-            tempLand.setDisplayName(Bomb.getDisplayName());
-        }else if(isBareLand(tempLand)){
-            BareLand bareLand=(BareLand)map.landList.get(landIndex);
-            bareLand.setDisplayName(String.valueOf(bareLand.getHouseLevel()));
-        }else {
-        tempLand.setDisplayName(tempLand.getName());
-        }
-    }
 
     public  void setPlayerLocation(int landIndex) {
           for (int i=0;i<playerList.size();i++) {

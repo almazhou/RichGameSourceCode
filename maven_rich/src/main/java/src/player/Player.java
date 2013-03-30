@@ -6,9 +6,7 @@ import src.Gift.Mascot;
 import src.Gift.MoneyCard;
 import src.Gift.PointCard;
 import src.map.*;
-import src.tools.Blockade;
-import src.tools.Bomb;
-import src.tools.Robot;
+import src.tools.OwnedTools;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -46,7 +44,10 @@ public class Player {
     private int timeInPrison=0;
     private String abbreviation=null;
     public  String commandWord=null;
-
+    private static final int SEARCHSTEP = 10;
+    private OwnedTools block=OwnedTools.Blockade;
+    private OwnedTools bomb=OwnedTools.Bomb;
+    private OwnedTools robot=OwnedTools.Robot;
 
 
     public Player(int playerIndex){
@@ -108,7 +109,7 @@ public class Player {
         if(currentIndex>=LANDNUM){
             currentIndex%=LANDNUM;
         }
-        rich.clearDisplayName(map,preIndex);
+        map.clearDisplayName(map,currentIndex,rich);
         rich.setDisplayName(playerIndex,map);
         if(rich.isInPrison(playerIndex, map)&&timeInPrison==0){
             timeInPrison= TIME_IN_PRISON;
@@ -200,11 +201,11 @@ public class Player {
         if(toolNumberExceed10()){
             return;
         }
-        if(toolIndex==Blockade.getToolIndex()){
+        if(toolIndex==1){
             buyBlock();
-        } else if(toolIndex==Robot.getToolIndex()){
+        } else if(toolIndex==2){
             buyRobot();
-        } else if(toolIndex==Bomb.getToolIndex()){
+        } else if(toolIndex==3){
             buyBomb();
         }
     }
@@ -242,7 +243,7 @@ public class Player {
         tempLandForm.setBomb();
         bombNum--;
         bombList.remove(0);
-        System.out.println(Bomb.getName()+"设置成功");
+        System.out.println("炸弹设置成功");
         return true ;
         }
         System.out.println("，无法放置炸弹");
@@ -300,11 +301,38 @@ public class Player {
     }
 
     public void useRobot(RichGameMap map, Game rich) {
-        Robot robot=(Robot) robotList.get(0);
-        robot.clearBombAndBlock(map, currentIndex, rich);
+        OwnedTools robot=(OwnedTools) robotList.get(0);
+        clearBombAndBlock(map, rich);
         robotList.remove(0);
         robotNum--;
     }
+
+    public void clearBombAndBlock(RichGameMap map, Game rich) {
+        int startIndex=(currentIndex-SEARCHSTEP+LANDNUM)%LANDNUM;
+        int stopIndex=(currentIndex+SEARCHSTEP+LANDNUM)%LANDNUM;
+        if(startIndex>stopIndex){
+            for(int i=startIndex;i<LANDNUM;i++){
+                LandForm tempLandForm=(LandForm)map.landList.get(i);
+                tempLandForm.clearBomb(map, rich);
+                tempLandForm.clearBlock(map, rich);
+            }
+            for(int i=0;i<stopIndex;i++){
+                LandForm tempLandForm=(LandForm)map.landList.get(i);
+                tempLandForm.clearBomb(map, rich);
+                tempLandForm.clearBlock(map, rich);
+            }
+
+        }
+        else{
+            for(int i=startIndex;i<stopIndex;i++){
+                LandForm tempLandForm=(LandForm)map.landList.get(i);
+                tempLandForm.clearBomb(map, null);
+                tempLandForm.clearBlock(map, null);
+            }
+        }
+
+    }
+
 
     public int getMoney() {
         return totalMoney;
@@ -392,9 +420,9 @@ public class Player {
     }
 
     public void buyBlock() {
-        if(pointIsEnough(Blockade.getPoint())&&!toolNumberExceed10()) {
-        deductPoint(Blockade.getPoint());
-        blockList.add(new Blockade());
+        if(pointIsEnough(block.getPoint())&&!toolNumberExceed10()) {
+        deductPoint(block.getPoint());
+        blockList.add(block);
         blockNum++;
         }
     }
@@ -404,17 +432,17 @@ public class Player {
     }
 
     public void buyBomb() {
-        if(pointIsEnough(Bomb.getPoint())&&!toolNumberExceed10()){
-        deductPoint(Bomb.getPoint());
-        bombList.add(new Bomb());
+        if(pointIsEnough(bomb.getPoint())&&!toolNumberExceed10()){
+        deductPoint(bomb.getPoint());
+        bombList.add(bomb);
         bombNum++;
         }
     }
 
     public void buyRobot() {
-        if(pointIsEnough(Robot.getPoint())&&!toolNumberExceed10()) {
-        deductPoint(Robot.getPoint());
-        robotList.add(new Robot());
+        if(pointIsEnough(robot.getPoint())&&!toolNumberExceed10()) {
+        deductPoint(robot.getPoint());
+        robotList.add(robot);
         robotNum++;
         }
     }
@@ -427,41 +455,41 @@ public class Player {
         totalMoney+=addAmount;
     }
 
-    public void sellTools(int toolIndex) {
-          Game.sellTools(this,toolIndex);
+    public void sellTools(int toolIndex, Game rich) {
+          rich.sellTools(this,toolIndex);
     }
 
     public void sellBomb() {
         if(bombNum>0){
-        addPoint(Bomb.getPoint());
+        addPoint(bomb.getPoint());
         bombList.remove(0);
         bombNum--;
-        System.out.println(this.name+">"+Bomb.getName()+"出售成功！售价为"+Bomb.getPoint()+"点！");
+        System.out.println(this.name+">"+bomb.getName()+"出售成功！售价为"+bomb.getPoint()+"点！");
         }else {
-            System.out.println(this.name+">"+Bomb.getName()+"的个数为0，无法出售！");
+            System.out.println(this.name+">"+bomb.getName()+"的个数为0，无法出售！");
         }
 
     }
 
     public void sellRobot() {
        if(robotNum>0){
-        addPoint(Robot.getPoint());
+        addPoint(robot.getPoint());
         robotList.remove(0);
         robotNum--;
-        System.out.println(this.name+">"+Robot.getName()+"出售成功！售价为"+Robot.getPoint()+"点！");
+        System.out.println(this.name+">"+robot.getName()+"出售成功！售价为"+robot.getPoint()+"点！");
        } else {
-           System.out.println(this.name+">"+Robot.getName()+"的个数为0，无法出售！");
+           System.out.println(this.name+">"+robot.getName()+"的个数为0，无法出售！");
        }
     }
 
     public void sellBlock() {
         if(blockNum>0){
-        addPoint(Blockade.getPoint());
+        addPoint(block.getPoint());
         blockList.remove(0);
         blockNum--;
-        System.out.println(this.name+">"+Blockade.getName()+"出售成功！售价为"+Blockade.getPoint()+"点！");
+        System.out.println(this.name+">"+block.getName()+"出售成功！售价为"+block.getPoint()+"点！");
         }else {
-            System.out.println(this.name+">"+Blockade.getName()+"的个数为0，无法出售！");
+            System.out.println(this.name+">"+block.getName()+"的个数为0，无法出售！");
         }
     }
 

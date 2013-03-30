@@ -1,8 +1,7 @@
 package src.map;
 
 import src.Game.Game;
-import src.tools.Blockade;
-import src.tools.Bomb;
+import src.tools.OwnedTools;
 
 import java.awt.*;
 
@@ -13,6 +12,9 @@ public abstract class LandForm {
     protected boolean bombFlag=false;
     protected boolean blockFlag=false;
     protected Color color=Color.WHITE;
+    private OwnedTools block=OwnedTools.Blockade;
+    private OwnedTools bomb=OwnedTools.Bomb;
+    private OwnedTools robot=OwnedTools.Robot;
 
 
     public LandForm(String name, int index) {
@@ -23,21 +25,21 @@ public abstract class LandForm {
 
     public  void setBomb(){
         bombFlag=true;
-        displayName= Bomb.getDisplayName();
+        displayName= bomb.getDisplayName();
     }
 
     public void setBlock(){
         blockFlag=true;
-        displayName= Blockade.getDisplayName();
+        displayName= block.getDisplayName();
     }
 
     public void clearBomb(RichGameMap map, Game rich){
         bombFlag=false;
-        rich.clearDisplayName(map, landIndex);
+        map.clearDisplayName(map, landIndex, rich);
     }
     public void clearBlock(RichGameMap map, Game rich){
         blockFlag=false;
-        rich.clearDisplayName(map,landIndex);
+        map.clearDisplayName(map,landIndex,rich);
     }
     public boolean isBlocked(){
         if(blockFlag) {

@@ -4,9 +4,6 @@ import src.Gift.Gift;
 import src.Gift.Mascot;
 import src.Gift.MoneyCard;
 import src.Gift.PointCard;
-import src.tools.Blockade;
-import src.tools.Bomb;
-import src.tools.Robot;
 
 /**
  * Created with IntelliJ IDEA.

@@ -2,6 +2,7 @@ package src.map;
 
 import src.Game.Game;
 import src.player.Player;
+import src.tools.OwnedTools;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -19,6 +20,9 @@ public class RichGameMap {
     LandForm []bareLands;
     LandForm  []mines;
     private static final int LANDNUM = 70;
+    private OwnedTools block=OwnedTools.Blockade;
+    private OwnedTools bomb=OwnedTools.Bomb;
+    private OwnedTools robot=OwnedTools.Robot;
 
     public RichGameMap(){
         startPoint=new StartPoint();
@@ -190,4 +194,22 @@ public class RichGameMap {
         }
         return null;
     }
+
+    public void clearDisplayName(RichGameMap map, int landIndex, Game rich) {
+        LandForm tempLand=(LandForm)map.landList.get(landIndex);
+        if(map.hasPlayer(landIndex, rich)){
+            Player tempPlayer=map.getPlayer(landIndex, rich);
+            tempLand.setDisplayName(tempPlayer.getAbbreviation());
+        }else if(tempLand.isBlocked()){
+            tempLand.setDisplayName(block.getDisplayName());
+        }else if(tempLand.isBombed()){
+            tempLand.setDisplayName(bomb.getDisplayName());
+        }else if(isBareLand(tempLand)){
+            BareLand bareLand=(BareLand)map.landList.get(landIndex);
+            bareLand.setDisplayName(String.valueOf(bareLand.getHouseLevel()));
+        }else {
+            tempLand.setDisplayName(tempLand.getName());
+        }
+    }
+
 }
