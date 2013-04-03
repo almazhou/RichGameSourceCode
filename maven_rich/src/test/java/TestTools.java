@@ -168,7 +168,7 @@ public class TestTools {
     @Test
     public void should_players_free_Pass_be_4_when_used_one(){
         player.chooseGift("3");
-        player1.buyLand(map,3);
+        player1.buyLand(3);
         player.forward(map,3,rich);
         int result=player.getFreePassingNum() ;
         assertThat(result,is(4));

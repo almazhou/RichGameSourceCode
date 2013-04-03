@@ -5,15 +5,13 @@ import src.tools.Tool;
 
 import java.awt.*;
 
-public abstract class LandForm {
+public abstract class LandForm implements BehaviorToPlayer{
     String name;
     String displayName;
     protected int landIndex;
     protected boolean bombFlag=false;
     protected boolean blockFlag=false;
     protected Color color=Color.WHITE;
-
-
     public LandForm(String name, int index) {
             this.name=name;
             this.displayName=name;

@@ -1,5 +1,7 @@
 package src.map;
 
+import src.player.Player;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Administrator
@@ -7,13 +9,13 @@ package src.map;
  * Time: 上午10:39
  * To change this template use File | Settings | File Templates.
  */
-public class Mine extends LandForm{
+public class Mine extends LandForm {
     Mine(int index){
         super("$",index);
     }
 
 
-    public static int getPoint(int landIndex) {
+    public  int getPoint(int landIndex) {
         if(landIndex==64){
             return 20;
         }else if(landIndex==65){
@@ -28,5 +30,12 @@ public class Mine extends LandForm{
             return 60;
         }
         return 0;
+    }
+
+    @Override
+    public void PassByImpact(Player player) {
+        int point=getPoint(this.landIndex);
+        System.out.println("进入矿地，收获"+point+"点");
+        player.addPoint(point);
     }
 }

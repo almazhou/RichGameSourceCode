@@ -1,5 +1,7 @@
 package src.map;
 
+import src.player.Player;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Administrator
@@ -7,10 +9,14 @@ package src.map;
  * Time: 上午10:30
  * To change this template use File | Settings | File Templates.
  */
-public class MagicHouse extends LandForm {
+public class MagicHouse extends LandForm  {
     MagicHouse(int index){
         super("M",index);
     }
 
 
+    @Override
+    public void PassByImpact(Player player) {
+
+    }
 }

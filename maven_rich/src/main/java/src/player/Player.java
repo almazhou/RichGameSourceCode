@@ -5,7 +5,9 @@ import src.Game.Game;
 import src.Gift.Gift;
 import src.NUMS.SpecialHouseIndex;
 import src.NUMS.SpecialNum;
-import src.map.*;
+import src.map.BareLand;
+import src.map.LandForm;
+import src.map.RichGameMap;
 import src.tools.Tool;
 
 import java.awt.*;
@@ -73,25 +75,18 @@ public class Player {
 
         }
 
-    public void buyLand(RichGameMap map, int landIndex) {
-        if(!ABHL.checkIfSold(map, landIndex)) {
-            BareLand tempBareLand=(BareLand)map.landList.get(landIndex);
-            ABHL.sellLandToPlayer(this,tempBareLand);
+    public void buyLand(int landIndex) {
+        if(!ABHL.checkIfSold(landIndex)) {
+            ABHL.sellLandToPlayer(this,landIndex);
         }
     }
 
     public void forward(RichGameMap map, int rollingSteps, Game rich) {
-        int preIndex=currentIndex;
-        if(currentIndex== SpecialHouseIndex.HOSPITAL_INDEX.getHouseIndex()&&timeInHospital>0){
-           timeInHospital--;
-           System.out.println(this.name+">玩家仍然在医院养病！还有"+timeInHospital+"天出院！");
-           return;
-       }
-        if(currentIndex== SpecialHouseIndex.PRISON_INDEX.getHouseIndex()&&timeInPrison>0){
-            timeInPrison--;
-            System.out.println(this.name+">玩家在监狱中！还有"+timeInPrison+"天出狱！");
-            return;
-        }
+        currentIndex=currentIndex+rollingSteps;
+        LandForm tempLand=(LandForm)map.landList.get(currentIndex);
+        tempLand.PassByImpact(this);
+
+
        if(map.checkBlock(currentIndex, rollingSteps)){
             currentIndex=map.getBlockIndex(currentIndex, rollingSteps);
            System.out.print(this.name+">前方编号为"+currentIndex+"的土地上有路障!");
@@ -118,70 +113,19 @@ public class Player {
             return;
         }
         System.out.println("到达编号为"+currentIndex+"的地！");
-        if(currentIndex== SpecialHouseIndex.TOOL_HOUSE_INDEX.getHouseIndex()){
-            System.out.println(this.name+">欢迎光临道具屋，请选择您所需要的道具(1-3)：");
-            ToolHouse toolHouse=(ToolHouse)map.landList.get(currentIndex);
-            toolHouse.displayTools();
-            String toolIndexInString=Game.getPlayerCommand(this);
 
-            chooseTools(toolIndexInString);
-            return;
-        }
-        if(currentIndex== SpecialHouseIndex.GIFT_HOUSE_INDEX.getHouseIndex()){
-            System.out.println(this.name+">欢迎光临礼品屋，请选择一件您喜欢的礼品：");
-            GiftHouse giftHouse=new GiftHouse();
-            giftHouse.displayGifts();
-            String giftIndexInString=Game.getPlayerCommand(this);
-            chooseGift(giftIndexInString);
-            return;
-        }
-        if(currentIndex== SpecialHouseIndex.MAGIC_HOUSE_INDEX.getHouseIndex()){
-            return;
-        }
+
+
         if(rich.isInBareLand(playerIndex, map)) {
-        if(rich.isOwner(this,currentIndex)){
-            System.out.println(this.name+">是否升级该处地产"+ABHL.getPrice(currentIndex,map)+"元（Y/N）？");
-            String upGradeLandOrNot=Game.getPlayerCommand(this);
-            if(upGradeLandOrNot.equalsIgnoreCase("Y")) {
-            rich.upGradeLand(map, this, currentIndex);
-            } else {
-                return;
-            }
-        }
-        else{
-            if(ABHL.checkIfSold(map,currentIndex)){
-            rich.payPassingFee(map, currentIndex, this);
-            }
-            else {
-                System.out.println(this.name+">是否购买该处空地"+ABHL.getPrice(currentIndex,map)+"元（Y/N）？");
-                String buyLandOrNot=Game.getPlayerCommand(this);
-                while (!(buyLandOrNot.equalsIgnoreCase("Y")||buyLandOrNot.equalsIgnoreCase("N"))){
-                    System.out.println(this.name+">请输入正确的命令（Y/N）");
-                    buyLandOrNot=Game.getPlayerCommand(this);
-                }
-                if(buyLandOrNot.equalsIgnoreCase("Y")) {
-                buyLand(map, 3);
-                }
-                else if(buyLandOrNot.equalsIgnoreCase("N")) {
-
-                }
-
-            }
-
-        }
 
         return;
         }
-        if(currentIndex== SpecialHouseIndex.MAGIC_HOUSE_INDEX.getHouseIndex()){
-            rich.doMining(playerIndex);
 
-
-        }
 
 
     }
 
-    private void chooseTools(String toolIndexInString) {
+    public void chooseTools(String toolIndexInString) {
         try{
         int toolIndex=Integer.parseInt(toolIndexInString);
         if(toolIndex>0&&toolIndex<4){
@@ -545,6 +489,7 @@ public class Player {
         totalPoint=amount;
     }
     public void useMascot() {
+        System.out.println("福神护身，免费通过！");
         for(Iterator it=giftList.iterator();it.hasNext();){
             Gift tempGift= (Gift) it.next();
             if(tempGift==Gift.Mascot){
@@ -558,5 +503,53 @@ public class Player {
 
     public int getFreePassingNum() {
         return freePassNum;
+    }
+
+    public int getTimeInPrison() {
+        return timeInPrison;
+    }
+
+    public void deductTimeInPrison() {
+        timeInPrison--;
+    }
+
+    public int getTimeInHospital() {
+        return timeInHospital;
+    }
+
+    public void deductTimeInHospital() {
+        timeInHospital--;
+    }
+
+
+    public void payPassingFee(BareLand passingLand,Player owner ) {
+        double passingFee;
+        if(!hasMascot()){
+            passingFee=Math.pow(2,passingLand.getHouseLevel())*passingLand.getPrice()*1/2;
+            payFeeTo(owner, (int)passingFee);
+
+        }
+        }
+
+    public boolean hasMascot() {
+        return freePassNum>0;
+    }
+    public  void payFeeTo(Player toPlayer, int paidMoney) {
+        int money= getMoney();
+        if(money-paidMoney<0){
+            System.out.print("玩家"+getName()+"钱不够过路费，只有"+money+"钱,退出游戏");
+            Game.playerBankrupt(this);
+            return;
+        }
+        System.out.print("玩家"+getName()+"向玩家"+toPlayer.getName()+"支付"+money+"过路费!");
+        deductMoney(paidMoney);
+        toPlayer.addMoney(paidMoney);
+
+    }
+
+
+    public void upGradeLand(RichGameMap map, int landIndex) {
+          BareLand tempBareLand=(BareLand)map.landList.get(landIndex);
+          tempBareLand.upGrade();
     }
 }

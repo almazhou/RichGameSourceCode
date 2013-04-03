@@ -1,10 +1,10 @@
 package src.Game;
 
 import src.Administration.ABHL;
-import src.Gift.Gift;
 import src.NUMS.SpecialHouseIndex;
-import src.NUMS.SpecialNum;
-import src.map.*;
+import src.map.BareLand;
+import src.map.LandForm;
+import src.map.RichGameMap;
 import src.player.Player;
 import src.tools.Tool;
 
@@ -19,7 +19,7 @@ import java.util.StringTokenizer;
 
 public class Game {
     private  Player []player;
-    private  List<Player> playerList=new ArrayList<Player>();
+    private static List<Player> playerList=new ArrayList<Player>();
     public static boolean debugFlag=false;
     public Game(int playerNum) {
         player=new Player[playerNum];
@@ -252,73 +252,17 @@ public class Game {
             player[i].setMoney(money);
         }
     }
-    public  void payFeeTo(int fromPlayer, int toPlayer, int paidMoney) {
-        int money= player[fromPlayer-1].getMoney();
-        if(money-paidMoney<0){
-            System.out.print("玩家"+fromPlayer+"钱不够过路费，只有"+money+"钱,退出游戏");
-            playerBankrupt(player[fromPlayer - 1]);
-            return;
-        }
-        System.out.print("玩家"+player[fromPlayer-1].getName()+"向玩家"+player[toPlayer-1].getName()+"支付"+money+"过路费!");
-        deductMoney(fromPlayer,paidMoney);
-        addMoney(toPlayer,paidMoney);
-
-    }
-
-    private  void addMoney(int playerIndex, int paidMoney) {
-        player[playerIndex-1].addMoney(paidMoney);
-    }
-
-    public void payPassingFee(RichGameMap map, int currentIndex, Player player) {
-        LandForm tempLand=(LandForm)map.landList.get(player.getLandIndex());
-        double passingFee;
-        if(map.isBareLand(tempLand)){
-            BareLand passingLand=(BareLand)map.landList.get(player.getLandIndex());
-            if(ABHL.checkIfSold(map, currentIndex)){
-                int ownerIndex=passingLand.getOwnerIndex();
-                if(inHospital(ownerIndex, map)|| isInPrison(ownerIndex, map)){
-                    if(hasMascot(player)){
-                        player.useMascot();
-                    }
-                    return;
-
-                }
-                if(!hasMascot(player)){
-                    passingFee=Math.pow(2,passingLand.getHouseLevel())*passingLand.getPrice()*1/2;
-                    payFeeTo(player.getPlayerIndex(), ownerIndex, (int)passingFee);
-
-                }else {
-                    player.useMascot();
-                    System.out.println("福神附身，可免过路费");
-
-                }
-            }
-
-        }
-
-    }
 
 
-
-    private static boolean hasMascot(Player player) {
-        List tempGiftList=player.getGiftList();
-        for(Iterator it=tempGiftList.iterator();it.hasNext();){
-            Gift tempGift=(Gift)it.next();
-            if(tempGift==Gift.Mascot){
-                return true;
-            }
-        }
-        return false;
-    }
 
     public void sellLands(RichGameMap map, Player player, int landIndex) {
         LandForm tempLand=(LandForm)map.landList.get(landIndex);
         if(isBareLand(tempLand)){
         BareLand landToSell=(BareLand)map.landList.get(landIndex);
-        if(isOwner(player, landIndex)){
+        if(ABHL.isOwner(player, landIndex)){
         int paidMoney=landToSell.getPrice()*2*(landToSell.getHouseLevel()+1);
         System.out.println(player.getName()+">成功出售编号为" + tempLand.getLandIndex() + "的地产!售价为"+paidMoney);
-        addMoney(player.getPlayerIndex(),paidMoney);
+        player.addMoney(paidMoney);
         makeBareLand(landToSell);
         }else{
             System.out.println("玩家不是编号为" + tempLand.getLandIndex() + "的地产的主人!");
@@ -332,34 +276,12 @@ public class Game {
         ABHL.takeLandsFromPlayer(landToSell);
         }
 
-    public  void upGradeLand(RichGameMap map, Player player, int landIndex) {
-        LandForm tempLandToUpGrade=(LandForm)map.landList.get(landIndex);
-        if(isBareLand(tempLandToUpGrade)){
-        BareLand landToUpGrade=(BareLand)map.landList.get(landIndex);
-        if(isOwner(player, landIndex)){
-        if(landToUpGrade.getHouseLevel()<3){
-            if(player.getMoney()>= landToUpGrade.getPrice()){
-            deductMoney(player.getPlayerIndex(),landToUpGrade.getPrice());
-            player.manageLand(landToUpGrade);
-            landToUpGrade.upGrade();
-            }else {
-                System.out.println(player.getName() + ">您当前剩余的资金为" + player.getMoney() + "元，不足以进行升级！");
-            }
-        }else if(landToUpGrade.getHouseLevel()==3){
-            System.out.println(player.getName()+">编号为"+landToUpGrade.getLandIndex()+"的房产已经是摩天楼，不用进行升级");
-        }
-        }
-        }
-    }
 
     private static boolean isBareLand(LandForm land) {
         return land.getName().equals("0");
     }
 
-    public static boolean isOwner(Player player, int landIndex) {
 
-        return ABHL.isOwner(player,landIndex);
-    }
 
     public void deductMoney(int playerIndex, int deductMoney) {
         Player tempPlayer=player[playerIndex-1];
@@ -384,7 +306,7 @@ public class Game {
         }
     }
 
-    private void playerBankrupt(Player player) {
+    public static void playerBankrupt(Player player) {
         playerList.remove(player);
         List tempList=player.getLandList();
         for(int i=0;i<tempList.size();i++){
@@ -393,35 +315,6 @@ public class Game {
        }
 
     }
-
-
-    private boolean canBuyTools(Player player, int toolIndex) {
-        return moneyIsEnough(player,toolIndex)&&tooManyTools(player);
-
-    }
-
-    private static boolean tooManyTools(Player player) {
-        if(player.getBlockNum()+player.getBombNum()+player.getRobotNum()< SpecialNum.MAX_TOOL_NUM.getNum()){
-            return true;
-        }
-        return false;
-    }
-
-    private  boolean moneyIsEnough(Player player, int toolIndex) {
-        if(player.getPoint() - Tool.Blockade.getPoint() >=0&&toolIndex== Tool.Blockade.getToolIndex()){
-            return true;
-        }
-        if(player.getPoint() - Tool.Robot.getPoint() >=0&&toolIndex== Tool.Robot.getToolIndex()){
-            return true;
-        }
-        if(player.getPoint() - Tool.Bomb.getPoint() >=0&&toolIndex== Tool.Bomb.getToolIndex()){
-            return true;
-        }
-        System.out.println("您当前剩余的点数为" + player.getPoint() + ",不足以购买编号为" + toolIndex + "的道具");
-        return false;
-    }
-
-
     public  void sellTools(Player player, int toolIndex) {
         if(toolIndex== Tool.Blockade.getToolIndex()){
             player.sellBlock();
@@ -494,16 +387,6 @@ public class Game {
         return false;
     }
 
-    public  void doMining(int playerIndex) {
-         int landIndex=player[playerIndex-1].getLandIndex();
-         int point=Mine.getPoint(landIndex);
-        System.out.println("进入矿地，收获"+point+"点");
-         addPoint(playerIndex, point);
-    }
-
-    private  void addPoint(int playerIndex, int addAmount) {
-        player[playerIndex-1].addPoint(addAmount);
-    }
 
 
     public  void buyBlock(Player player) {
@@ -561,4 +444,5 @@ public class Game {
         return null;
 
     }
+
 }

@@ -1,5 +1,7 @@
 package src.map;
 
+import src.player.Player;
+
 /**
  * Created with IntelliJ IDEA.
  * User: dell
@@ -14,4 +16,9 @@ public class StartPoint extends LandForm {
     }
 
 
+    @Override
+    public void PassByImpact(Player player) {
+
+
+    }
 }

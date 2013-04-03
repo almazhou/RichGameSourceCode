@@ -29,7 +29,7 @@ public class ABHL {
             LandForm tempBareLand=(LandForm)map.landList.get(i);
             if(tempBareLand.getName().equals("0")) {
                 BareLand tempLand=(BareLand)map.landList.get(i);
-                landTable.put(i, tempLand.getOwnerIndex());
+                landTable.put(tempLand.getLandIndex(), tempLand);
 
             }
         }
@@ -38,10 +38,10 @@ public class ABHL {
 
 
 
-    public static boolean checkIfSold(RichGameMap map, int landIndex) {
-        LandForm tempBareLand=(LandForm)map.landList.get(landIndex);
-        if(landTable.containsKey(tempBareLand.getLandIndex())){
-            if(landTable.get(tempBareLand.getLandIndex()).equals(0)){
+    public static boolean checkIfSold(int landIndex) {
+        if(landTable.containsKey(landIndex)){
+            BareLand tempLand=(BareLand)landTable.get(landIndex);
+             if(tempLand.getOwnerIndex()==0){
                 return false ;
             }
 
@@ -50,11 +50,12 @@ public class ABHL {
     }
 
 
-    public static void sellLandToPlayer(Player player, BareLand tempBareLand) {
+    public static void sellLandToPlayer(Player player, int landIndex) {
+        BareLand tempBareLand=(BareLand)landTable.get(landIndex);
         if(player.getMoney()>=tempBareLand.getPrice()){
-        landTable.put(tempBareLand.getLandIndex(),player.getPlayerIndex());
+        landTable.put(tempBareLand.getLandIndex(),tempBareLand);
         tempBareLand.setColor(player.getColor());
-        tempBareLand.setOwnerIndex(player.getPlayerIndex()) ;
+        tempBareLand.setOwner(player) ;
         player.deductMoney(tempBareLand.getPrice());
         System.out.println(player.getName()+">您已经购买到编号为"+tempBareLand.getLandIndex()+"的空地");
         player.takeLands(tempBareLand);
@@ -66,7 +67,7 @@ public class ABHL {
     }
 
     public static void takeLandsFromPlayer(BareLand land) {
-        land.setOwnerIndex(0);
+        land.setOwner(null);
         land.setColor(null);
         land.setHouseLevel(0);
         land.setDisplayName("0");
@@ -74,11 +75,7 @@ public class ABHL {
     }
 
     public static boolean isOwner(Player player, int landIndex) {
-        return landTable.get(landIndex).equals(player.getPlayerIndex());
-    }
-
-    public static int getPrice(int landIndex, RichGameMap map) {
-       BareLand bareLand=(BareLand)map.landList.get(landIndex);
-       return bareLand.getPrice();
+        Player tempPlayer=(Player)landTable.get(landIndex);
+        return tempPlayer.getPlayerIndex()==player.getLandIndex();
     }
 }

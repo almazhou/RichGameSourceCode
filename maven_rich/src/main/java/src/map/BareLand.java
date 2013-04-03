@@ -1,9 +1,14 @@
 package src.map;
 
 
+import src.Administration.ABHL;
+import src.Game.Game;
+import src.NUMS.SpecialHouseIndex;
+import src.player.Player;
+
 import java.awt.*;
 
-public class BareLand extends LandForm{
+public class BareLand extends LandForm {
 
     private static final int PRICE_ONE = 200;
     private static final int PRICE_TWO = 500;
@@ -11,7 +16,7 @@ public class BareLand extends LandForm{
     private int level;
     //private Color color=Color.WHITE;
     private int ownerIndex =0;
-
+    private Player owner=null;
 
 
     BareLand(int index){
@@ -50,8 +55,9 @@ public class BareLand extends LandForm{
     }
 
 
-    public void setOwnerIndex(int playerIndex) {
-        ownerIndex =playerIndex;
+    public void setOwner(Player player) {
+        ownerIndex = player.getPlayerIndex();
+        owner=player;
     }
 
     public int getOwnerIndex() {
@@ -60,5 +66,66 @@ public class BareLand extends LandForm{
 
     public void setHouseLevel(int level) {
         this.level=level;
+    }
+
+    @Override
+    public void PassByImpact(Player player) {
+        if(IsOwner(player)){
+            System.out.println(this.name+">是否升级该处地产"+ getPrice()+"元（Y/N）？");
+            String upGradeLandOrNot= Game.getPlayerCommand(player);
+            if(upGradeLandOrNot.equalsIgnoreCase("Y")) {
+                upGradeLand(player);
+            }
+        }
+        else{
+            if(ABHL.checkIfSold(landIndex)){
+                if(player.hasMascot()) {
+                    player.useMascot();
+                    return;
+                }
+                if(owner.getLandIndex()== SpecialHouseIndex.HOSPITAL_INDEX.getHouseIndex()||owner.getLandIndex()==SpecialHouseIndex.PRISON_INDEX.getHouseIndex())
+                {
+                    return;
+                }
+               player.payPassingFee(this,owner);
+        }
+            else {
+                System.out.println(this.name+">是否购买该处空地"+getPrice()+"元（Y/N）？");
+                String buyLandOrNot=Game.getPlayerCommand(player);
+                while (!(buyLandOrNot.equalsIgnoreCase("Y")||buyLandOrNot.equalsIgnoreCase("N"))){
+                    System.out.println(this.name+">请输入正确的命令（Y/N）");
+                    buyLandOrNot=Game.getPlayerCommand(player);
+                }
+                if(buyLandOrNot.equalsIgnoreCase("Y")) {
+                    player.buyLand(landIndex);
+                }
+                else if(buyLandOrNot.equalsIgnoreCase("N")) {
+                       return;
+                }
+
+            }
+
+        }
+
+
+    }
+
+    private void upGradeLand(Player player) {
+        if(getHouseLevel()<3){
+            if(player.getMoney()>= getPrice()){
+                player.deductMoney(getPrice());
+                player.manageLand(this);
+                upGrade();
+            }else {
+                System.out.println(player.getName() + ">您当前剩余的资金为" + player.getMoney() + "元，不足以进行升级！");
+            }
+        }else if(getHouseLevel()==3){
+            System.out.println(player.getName()+">编号为"+landIndex+"的房产已经是摩天楼，不用进行升级");
+        }
+    }
+
+    private boolean IsOwner(Player player) {
+
+        return ownerIndex==player.getPlayerIndex();
     }
 }
