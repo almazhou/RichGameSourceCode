@@ -17,7 +17,6 @@ public class Hospital extends LandForm {
     @Override
     public void PassByImpact(Player player) {
         if(player.getTimeInHospital()>0) {
-            player.deductTimeInHospital();
             System.out.println(this.name+">玩家仍然在医院养病！还有"+player.getTimeInHospital()+"天出院！");
             return;
         }

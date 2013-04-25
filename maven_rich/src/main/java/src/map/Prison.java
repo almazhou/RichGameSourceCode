@@ -18,7 +18,6 @@ public class Prison extends LandForm{
     @Override
     public void PassByImpact(Player player) {
         if(player.getTimeInPrison()>0){
-            player.deductTimeInPrison();
             System.out.println(this.name+">玩家在监狱中！还有"+player.getTimeInPrison()+"天出狱！");
             return;
 

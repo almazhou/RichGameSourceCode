@@ -4,6 +4,7 @@ import src.Administration.ABHL;
 import src.Game.Game;
 import src.map.RichGameMap;
 import src.player.Player;
+import src.tools.Tool;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -36,36 +37,36 @@ public class TestTools {
     public void should_not_buying_bomb_when_player_has_10_tools(){
 
         for(int i=0;i<10;i++){
-            player.buyBomb();
+            player.buyTools(Tool.Blockade);
         }
-        player.buyBomb();
-        int toolNum=player.getRobotNum()+player.getBombNum()+player.getBlockNum();
+        player.buyTools(Tool.Bomb);
+        int toolNum=player.getTotalToolNum();
         //then
         assertThat(toolNum,is(10));
     }
     @Test
     public void should_not_buying_block_when_player_has_10_tools(){
         for(int i=0;i<10;i++){
-            player.buyBomb();
+            player.buyTools(Tool.Robot);
         }
-        player.buyBlock();
-        int toolNum=player.getRobotNum()+player.getBombNum()+player.getBlockNum();
+        player.buyTools(Tool.Blockade);
+        int toolNum=player.getTotalToolNum();
         //then
         assertThat(toolNum,is(10));
     }
     @Test
     public void should_not_buying_robot_when_player_has_10_tools(){
         for(int i=0;i<10;i++){
-            player.buyBomb();
+            player.buyTools(Tool.Robot);
         }
-        player.buyRobot();
-        int toolNum=player.getRobotNum()+player.getBombNum()+player.getBlockNum();
+        player.buyTools(Tool.Robot);;
+        int toolNum=player.getTotalToolNum();
         //then
         assertThat(toolNum,is(10));
     }
     @Test
          public void should_player_receive_50_point_by_selling_a_block(){
-        player.buyBlock();
+        player.buyTools(Tool.Blockade);
         int point=player.getPoint();
         player.sellTools(1, rich);
         int point1=player.getPoint();
@@ -75,14 +76,14 @@ public class TestTools {
     @Test
     public void should_player_pay_50_point_by_buying_a_block(){
         int point=player.getPoint();
-        player.buyBlock();
+        player.buyTools(Tool.Blockade);
         int point1=player.getPoint();
         assertThat(point-point1,is(50));
 
     }
     @Test
     public void should_player_receive_30_point_by_selling_a_Robot(){
-        player.buyRobot();
+        player.buyTools(Tool.Robot);
         int point=player.getPoint();
         player.sellTools(2, rich);
         int point1=player.getPoint();
@@ -91,7 +92,7 @@ public class TestTools {
     }
     @Test
     public void should_player_receive_50_point_by_selling_a_bomb(){
-        player.buyBomb();
+        player.buyTools(Tool.Bomb);
         int point=player.getPoint();
         player.sellTools(3, rich);
         int point1=player.getPoint();
@@ -101,31 +102,31 @@ public class TestTools {
     @Test
     public void should_not_setBomb_when_targetIndex_is_out_of_range(){
         //When
-       player.buyBomb();
+        player.buyTools(Tool.Bomb);
         boolean flag=player.setBomb(map,15, rich);
         //Then
         assertThat(flag,is(false));
     }
     @Test
     public void should_not_set_Block_when_it_already_has_block(){
-       player.buyBomb();
-        player.buyBlock();
+        player.buyTools(Tool.Blockade);
+        player.buyTools(Tool.Blockade);
         player.setBlock(map,5, rich);
         boolean flag=player.setBlock(map,5, rich);
         assertThat(flag,is(false));
     }
     @Test
     public void should_not_set_Block_when_it_already_has_bomb(){
-        player.buyBlock();
-        player.buyBomb();
+        player.buyTools(Tool.Blockade);
+        player.buyTools(Tool.Bomb);
         player.setBomb(map,5, rich);
         boolean flag=player.setBlock(map,5, rich);
         assertThat(flag,is(false));
     }
     @Test
     public void should_not_set_Bomb_when_it_already_has_bomb(){
-        player.buyBomb();
-        player.buyBomb();
+        player.buyTools(Tool.Bomb);
+        player.buyTools(Tool.Bomb);
         player.setBomb(map,5, rich);
         boolean flag=player.setBomb(map,5, rich);
         assertThat(flag,is(false));
@@ -134,8 +135,8 @@ public class TestTools {
     }
     @Test
     public void should_not_set_Bomb_when_it_already_has_block(){
-        player.buyBomb();
-        player.buyBlock();
+        player.buyTools(Tool.Bomb);
+        player.buyTools(Tool.Blockade);
         player.setBlock(map,5, rich);
         boolean flag=player.setBomb(map,5, rich);
         assertThat(flag,is(false));
@@ -144,10 +145,10 @@ public class TestTools {
     }
     @Test
     public void should_not_set_Block_when_any_player_is_in_the_destIndex(){
-       rich.setPlayerLocation(0);
+        rich.setPlayerLocation(0);
         player.forward(map,6, rich);
         player1.forward(map,3, rich);
-        player.buyBlock();
+        player.buyTools(Tool.Blockade);
         boolean flag=player.setBlock(map,-3, rich);
         assertThat(flag,is(false));
     }
@@ -156,7 +157,7 @@ public class TestTools {
         rich.setPlayerLocation(0);
         player.forward(map,6, rich);
         player1.forward(map,3, rich);
-        player.buyBomb();
+        player.buyTools(Tool.Bomb);
         boolean flag=player.setBomb(map,-3, rich);
         assertThat(flag,is(false));
     }

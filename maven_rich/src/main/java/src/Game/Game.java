@@ -19,7 +19,7 @@ import java.util.StringTokenizer;
 
 public class Game {
     private  Player []player;
-    private static List<Player> playerList=new ArrayList<Player>();
+    private  List<Player> playerList=new ArrayList<Player>();
     public static boolean debugFlag=false;
     public Game(int playerNum) {
         player=new Player[playerNum];
@@ -143,11 +143,11 @@ public class Game {
         System.out.println("资金："+player.getMoney()+"元");
         System.out.println("点数："+player.getPoint()+"点");
         System.out.println("地产：空地"+player.getBareLandNum()+"处；茅屋"+player.getCottageNum()+"处；洋房"+player.getHouseNum()+"处；摩天楼"+player.getSkyscraperNum()+"处。");
-        System.out.println("道具：路障"+player.getBlockNum()+"个；炸弹"+player.getBombNum()+"个；机器娃娃"+player.getRobotNum()+"个");
+        System.out.println("道具：路障"+player.getToolNum(Tool.Blockade)+"个；炸弹"+player.getToolNum(Tool.Bomb)+"个；机器娃娃"+player.getToolNum(Tool.Robot)+"个");
     }
 
     private  void useRobot(Player player, RichGameMap map) {
-        if(player.getRobotNum()>0){
+        if(player.getToolNum(Tool.Robot)>0){
             player.useRobot(map, null);
             System.out.println("成功使用"+ Tool.Robot.getName());
         }else{
@@ -249,7 +249,7 @@ public class Game {
 
     public  void InitMoney(int money) {
         for(int i=0;i<player.length;i++){
-            player[i].setMoney(money);
+            playerList.get(i).setMoney(money);
         }
     }
 
@@ -306,7 +306,7 @@ public class Game {
         }
     }
 
-    public static void playerBankrupt(Player player) {
+    public  void playerBankrupt(Player player) {
         playerList.remove(player);
         List tempList=player.getLandList();
         for(int i=0;i<tempList.size();i++){
@@ -390,15 +390,15 @@ public class Game {
 
 
     public  void buyBlock(Player player) {
-                 player.buyBlock();
+                 player.buyTools(Tool.Blockade);
     }
 
     public void buyBomb(Player player) {
-        player.buyBomb();
+        player.buyTools(Tool.Bomb);
     }
 
     public void buyRobot(Player player) {
-        player.buyRobot();
+        player.buyTools(Tool.Robot);
     }
 
     public static String getPlayerCommand(Player player) {
@@ -425,7 +425,7 @@ public class Game {
 
     public  void setPlayerLocation(int landIndex) {
           for (int i=0;i<playerList.size();i++) {
-              Player tempPlayer=(Player)playerList.get(i);
+              Player tempPlayer=playerList.get(i);
               tempPlayer.setLocation(landIndex);
           }
     }

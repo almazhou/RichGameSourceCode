@@ -14,8 +14,6 @@ public class BareLand extends LandForm {
     private static final int PRICE_TWO = 500;
     private static final int PRICE_THREE = 300;
     private int level;
-    //private Color color=Color.WHITE;
-    private int ownerIndex =0;
     private Player owner=null;
 
 
@@ -36,9 +34,10 @@ public class BareLand extends LandForm {
     }
 
     public void upGrade() {
+        if(level<3) {
         level=level+1;
-        assert (level<4);
         displayName=String.valueOf(level);
+        }
 
     }
 
@@ -56,12 +55,15 @@ public class BareLand extends LandForm {
 
 
     public void setOwner(Player player) {
-        ownerIndex = player.getPlayerIndex();
         owner=player;
     }
 
     public int getOwnerIndex() {
-        return ownerIndex;
+        if(owner!=null){
+        return owner.getPlayerIndex();
+        }else {
+            return 0;
+        }
     }
 
     public void setHouseLevel(int level) {
@@ -87,7 +89,7 @@ public class BareLand extends LandForm {
                 {
                     return;
                 }
-               player.payPassingFee(this,owner);
+               player.payPassingFee(this,owner, null);
         }
             else {
                 System.out.println(this.name+">是否购买该处空地"+getPrice()+"元（Y/N）？");
@@ -114,7 +116,6 @@ public class BareLand extends LandForm {
         if(getHouseLevel()<3){
             if(player.getMoney()>= getPrice()){
                 player.deductMoney(getPrice());
-                player.manageLand(this);
                 upGrade();
             }else {
                 System.out.println(player.getName() + ">您当前剩余的资金为" + player.getMoney() + "元，不足以进行升级！");
@@ -125,7 +126,9 @@ public class BareLand extends LandForm {
     }
 
     private boolean IsOwner(Player player) {
-
-        return ownerIndex==player.getPlayerIndex();
+        if(owner!=null){
+        return owner.getPlayerIndex()==player.getPlayerIndex();
+        }
+        else return false;
     }
 }

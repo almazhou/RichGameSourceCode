@@ -15,22 +15,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: dell
- * Date: 13-1-25
- * Time: 下午4:07
- * To change this template use File | Settings | File Templates.
- */
 public class Player {
-
-
-
     private int currentIndex=0;
     private int totalPoint =0;
     private int totalMoney=0;
-    private int bombNum=0,blockNum=0,robotNum=0,landNum=0,cottageNum=0,houseNum=0,skyscraperNum=0,bareLandNum=0;
-    List bombList, blockList, robotList,landList;
+    List<BareLand>landList;
+    private List<Tool> toolList;
 
     private int playerIndex;
     private String name;
@@ -46,12 +36,11 @@ public class Player {
     private int freePassNum=0;
 
 
+
     public Player(int playerIndex){
-        bombList =new ArrayList();
-        blockList = new ArrayList();
-        robotList =new ArrayList();
-        landList=new ArrayList();
-        giftList=new ArrayList();
+        toolList=new ArrayList<Tool>();
+        landList=new ArrayList<BareLand>();
+        giftList=new ArrayList<Gift>();
         this.playerIndex=playerIndex;
         totalPoint=10000;
         totalMoney=10000;
@@ -82,12 +71,25 @@ public class Player {
     }
 
     public void forward(RichGameMap map, int rollingSteps, Game rich) {
-        currentIndex=currentIndex+rollingSteps;
+        if (preCheck(map, rich)) return;
+        walk(map, rollingSteps, rich);
+        postCheck(map, rich);
+    }
+
+    private void postCheck(RichGameMap map, Game rich) {
+        if(rich.isInPrison(playerIndex, map)&&timeInPrison==0){
+            timeInPrison= SpecialNum.TIME_IN_PRISON.getNum();
+            System.out.println(this.name+">玩家步入监狱！将被监禁"+timeInPrison+"天!");
+            return;
+        }
+        System.out.println("到达编号为"+currentIndex+"的地！");
+
         LandForm tempLand=(LandForm)map.landList.get(currentIndex);
         tempLand.PassByImpact(this);
+    }
 
-
-       if(map.checkBlock(currentIndex, rollingSteps)){
+    private void walk(RichGameMap map, int rollingSteps, Game rich) {
+        if(map.checkBlock(currentIndex, rollingSteps)){
             currentIndex=map.getBlockIndex(currentIndex, rollingSteps);
            System.out.print(this.name+">前方编号为"+currentIndex+"的土地上有路障!");
             map.clearBlock(currentIndex);
@@ -98,7 +100,6 @@ public class Player {
             currentIndex= SpecialHouseIndex.HOSPITAL_INDEX.getHouseIndex();
             timeInHospital= SpecialNum.TIME_IN_HOSPITAL.getNum();
            System.out.println(this.name+">玩家被炸弹炸伤，送进医院！将住院"+timeInHospital+"天!");
-            return;
      }  else {
            currentIndex+= rollingSteps;
             }
@@ -107,29 +108,35 @@ public class Player {
         }
         map.clearDisplayName(map,currentIndex,rich);
         rich.setDisplayName(playerIndex,map);
-        if(rich.isInPrison(playerIndex, map)&&timeInPrison==0){
-            timeInPrison= SpecialNum.TIME_IN_PRISON.getNum();
+    }
+
+    private boolean preCheck(RichGameMap map, Game rich) {
+        if(rich.isInPrison(playerIndex, map)&&timeInPrison!=0){
+            timeInPrison--;
             System.out.println(this.name+">玩家步入监狱！将被监禁"+timeInPrison+"天!");
-            return;
+            return true;
         }
-        System.out.println("到达编号为"+currentIndex+"的地！");
-
-
-
-        if(rich.isInBareLand(playerIndex, map)) {
-
-        return;
+        if(currentIndex== SpecialHouseIndex.HOSPITAL_INDEX.getHouseIndex()&&timeInHospital!=0){
+            timeInHospital--;
+            System.out.println(this.name+">玩家被炸弹炸伤，送进医院！将住院"+timeInHospital+"天!");
+            return true;
         }
-
-
-
+        return false;
     }
 
     public void chooseTools(String toolIndexInString) {
         try{
         int toolIndex=Integer.parseInt(toolIndexInString);
         if(toolIndex>0&&toolIndex<4){
-             buyTools(toolIndex);
+            Tool tool=null;
+            if(toolIndex==Tool.Blockade.getToolIndex()){
+                tool=Tool.Blockade;
+            }else if(toolIndex==Tool.Bomb.getToolIndex()){
+                tool=Tool.Bomb;
+            } else if(toolIndex==Tool.Robot.getToolIndex()){
+                tool=Tool.Robot;
+            }
+             buyTools(tool);
 
         }else {
             System.out.println(this.name+">请输入正确的道具编号（1-3）");
@@ -143,21 +150,21 @@ public class Player {
         }
     }
 
-    private void buyTools(int toolIndex) {
+    public void buyTools(Tool tool) {
         if(toolNumberExceed10()){
             return;
         }
-        if(toolIndex== Tool.Blockade.getToolIndex()){
-            buyBlock();
-        } else if(toolIndex== Tool.Robot.getToolIndex()){
-            buyRobot();
-        } else if(toolIndex== Tool.Bomb.getToolIndex()){
-            buyBomb();
+        if(pointIsEnough(tool.getPoint())&&!toolNumberExceed10()) {
+            deductPoint(tool.getPoint());
+            toolList.add(tool);
         }
+
+
     }
 
+
     private boolean toolNumberExceed10() {
-        return robotNum+blockNum+bombNum>=10;
+        return toolList.size()>=10;
     }
 
     public int getLandIndex() {
@@ -187,8 +194,7 @@ public class Player {
         if(canSetBomb(map,landIndex, rich)){
         LandForm tempLandForm=(LandForm)map.landList.get(landIndex);
         tempLandForm.setBomb();
-        bombNum--;
-        bombList.remove(0);
+        toolList.remove(Tool.Bomb);
         System.out.println("炸弹设置成功");
         return true ;
         }
@@ -212,10 +218,7 @@ public class Player {
     }
 
     private boolean hasBomb() {
-        if(bombNum==0){
-        System.out.print(this.name+">炸弹个数为0");
-        }
-        return bombNum>0;
+        return toolList.contains(Tool.Bomb);
     }
 
     public boolean setBlock(RichGameMap map, int offset, Game rich) {
@@ -223,8 +226,7 @@ public class Player {
         if(canSetBlock(map,landIndex, rich)){
         LandForm tempLandForm=(LandForm)map.landList.get(landIndex);
         tempLandForm.setBlock();
-        blockNum--;
-        blockList.remove(0);
+        toolList.remove(Tool.Blockade);
         System.out.println("路障设置成功！");
             return true;
         }
@@ -237,20 +239,12 @@ public class Player {
     }
 
     private boolean hasBlock() {
-
-        if(blockNum>0){
-            return true;
-        }else {
-            System.out.print(this.name+">路障个数为0");
-            return false;
-        }
+        return toolList.contains(Tool.Blockade);
     }
 
     public void useRobot(RichGameMap map, Game rich) {
-        Tool robot=(Tool) robotList.get(0);
         clearBombAndBlock(map, rich);
-        robotList.remove(0);
-        robotNum--;
+        toolList.remove(Tool.Robot);
     }
 
     public void clearBombAndBlock(RichGameMap map, Game rich) {
@@ -272,8 +266,8 @@ public class Player {
         else{
             for(int i=startIndex;i<stopIndex;i++){
                 LandForm tempLandForm=(LandForm)map.landList.get(i);
-                tempLandForm.clearBomb(map, null);
-                tempLandForm.clearBlock(map, null);
+                tempLandForm.clearBomb(map, rich);
+                tempLandForm.clearBlock(map, rich);
             }
         }
 
@@ -304,25 +298,22 @@ public class Player {
     }
 
     public void takeLands(BareLand tempBareLand) {
-        manageLand(tempBareLand);
         landList.add(tempBareLand);
-        landNum++;
     }
 
     public List getLandList() {
           return landList;
     }
 
-    public int getRobotNum() {
-        return robotNum;
-    }
-
-    public int getBombNum() {
-        return bombNum;
-    }
-
-    public int getBlockNum() {
-        return blockNum;
+    public int getToolNum(Tool tool) {
+        int num=0;
+        Iterator<Tool> it=toolList.iterator();
+        while (it.hasNext()){
+            if(it.next().getToolIndex()==tool.getToolIndex()){
+               num++;
+            }
+        }
+        return num;
     }
    public String  getAbbreviation() {
        return abbreviation;
@@ -350,49 +341,19 @@ public class Player {
 
 
     }
-
-    public List getGiftList() {
-        return giftList;
-    }
-
     public void sellLand(RichGameMap map, int landIndex, Game rich) {
         rich.sellLands(map, this, landIndex);
         for(int i=0;i<landList.size();i++){
             BareLand land=(BareLand)landList.get(i);
             if(land.getLandIndex()==landIndex){
                 landList.remove(i);
-                landNum--;
             }
         }
     }
-
-    public void buyBlock() {
-        if(pointIsEnough(Tool.Blockade.getPoint())&&!toolNumberExceed10()) {
-        deductPoint(Tool.Blockade.getPoint());
-        blockList.add(Tool.Blockade);
-        blockNum++;
-        }
-    }
-
     private boolean pointIsEnough(int point) {
         return totalPoint>=point;
     }
 
-    public void buyBomb() {
-        if(pointIsEnough(Tool.Bomb.getPoint())&&!toolNumberExceed10()){
-        deductPoint(Tool.Bomb.getPoint());
-        bombList.add(Tool.Bomb);
-        bombNum++;
-        }
-    }
-
-    public void buyRobot() {
-        if(pointIsEnough(Tool.Robot.getPoint())&&!toolNumberExceed10()) {
-        deductPoint(Tool.Robot.getPoint());
-        robotList.add(Tool.Robot);
-        robotNum++;
-        }
-    }
 
     public void deductMoney(int deductMoney){
         totalMoney-=deductMoney;
@@ -407,37 +368,29 @@ public class Player {
     }
 
     public void sellBomb() {
-        if(bombNum>0){
-        addPoint(Tool.Bomb.getPoint());
-        bombList.remove(0);
-        bombNum--;
-        System.out.println(this.name+">"+ Tool.Bomb.getName()+"出售成功！售价为"+ Tool.Bomb.getPoint()+"点！");
-        }else {
-            System.out.println(this.name+">"+ Tool.Bomb.getName()+"的个数为0，无法出售！");
-        }
+        Tool tool=Tool.Bomb;
+        sellTool(tool);
 
+    }
+
+    private void sellTool(Tool tool) {
+        if(getToolNum(tool)>0){
+        addPoint(tool.getPoint());
+        toolList.remove(tool);
+        System.out.println(this.name+">"+ tool.getName()+"出售成功！售价为"+ tool.getPoint()+"点！");
+        }else {
+            System.out.println(this.name+">"+ tool.getName()+"的个数为0，无法出售！");
+        }
     }
 
     public void sellRobot() {
-       if(robotNum>0){
-        addPoint(Tool.Robot.getPoint());
-        robotList.remove(0);
-        robotNum--;
-        System.out.println(this.name+">"+ Tool.Robot.getName()+"出售成功！售价为"+ Tool.Robot.getPoint()+"点！");
-       } else {
-           System.out.println(this.name+">"+ Tool.Robot.getName()+"的个数为0，无法出售！");
-       }
+        Tool tool=Tool.Robot;
+        sellTool(tool);
     }
 
     public void sellBlock() {
-        if(blockNum>0){
-        addPoint(Tool.Blockade.getPoint());
-        blockList.remove(0);
-        blockNum--;
-        System.out.println(this.name+">"+ Tool.Blockade.getName()+"出售成功！售价为"+ Tool.Blockade.getPoint()+"点！");
-        }else {
-            System.out.println(this.name+">"+ Tool.Blockade.getName()+"的个数为0，无法出售！");
-        }
+        Tool tool=Tool.Blockade;
+        sellTool(tool);
     }
 
     public void addPoint(int addAmount) {
@@ -450,34 +403,48 @@ public class Player {
     public String getName() {
         return name;
     }
-    public void manageLand(BareLand land) {
-        if(land.getHouseLevel()==0) {
-            bareLandNum++;
-        }else if(land.getHouseLevel()==1){
-            cottageNum++;
-            bareLandNum--;
-        }else if(land.getHouseLevel()==2){
-            houseNum++;
-            cottageNum--;
-        } else if(land.getHouseLevel()==3){
-            skyscraperNum++;
-            houseNum--;
-        }
-    }
 
     public int getBareLandNum() {
+        int bareLandNum=0;
+        for(int i=0;i<landList.size();i++) {
+            BareLand tempLand=landList.get(i);
+            if(tempLand.getHouseLevel()==0){
+                bareLandNum++;
+            }
+        }
         return bareLandNum;
     }
 
     public int getCottageNum() {
+        int cottageNum=0;
+        for(int i=0;i<landList.size();i++) {
+            BareLand tempLand=landList.get(i);
+            if(tempLand.getHouseLevel()==1){
+                cottageNum++;
+            }
+        }
         return cottageNum;
     }
 
     public int getHouseNum() {
+        int houseNum=0;
+        for(int i=0;i<landList.size();i++) {
+            BareLand tempLand=landList.get(i);
+            if(tempLand.getHouseLevel()==2){
+                houseNum++;
+            }
+        }
         return houseNum;
     }
 
     public int getSkyscraperNum() {
+        int skyscraperNum=0;
+        for(int i=0;i<landList.size();i++) {
+            BareLand tempLand=landList.get(i);
+            if(tempLand.getHouseLevel()==3){
+                skyscraperNum++;
+            }
+        }
         return skyscraperNum;
     }
 
@@ -522,11 +489,11 @@ public class Player {
     }
 
 
-    public void payPassingFee(BareLand passingLand,Player owner ) {
+    public void payPassingFee(BareLand passingLand, Player owner, Game rich) {
         double passingFee;
         if(!hasMascot()){
             passingFee=Math.pow(2,passingLand.getHouseLevel())*passingLand.getPrice()*1/2;
-            payFeeTo(owner, (int)passingFee);
+            payFeeTo(owner, (int)passingFee, rich);
 
         }
         }
@@ -534,11 +501,11 @@ public class Player {
     public boolean hasMascot() {
         return freePassNum>0;
     }
-    public  void payFeeTo(Player toPlayer, int paidMoney) {
+    public  void payFeeTo(Player toPlayer, int paidMoney, Game rich) {
         int money= getMoney();
         if(money-paidMoney<0){
             System.out.print("玩家"+getName()+"钱不够过路费，只有"+money+"钱,退出游戏");
-            Game.playerBankrupt(this);
+            rich.playerBankrupt(this);
             return;
         }
         System.out.print("玩家"+getName()+"向玩家"+toPlayer.getName()+"支付"+money+"过路费!");
@@ -550,6 +517,14 @@ public class Player {
 
     public void upGradeLand(RichGameMap map, int landIndex) {
           BareLand tempBareLand=(BareLand)map.landList.get(landIndex);
+          if(totalMoney>tempBareLand.getPrice()){
+          deductMoney(tempBareLand.getPrice());
           tempBareLand.upGrade();
+          }
     }
+
+    public int getTotalToolNum() {
+        return toolList.size();
+    }
+
 }

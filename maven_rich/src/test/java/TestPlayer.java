@@ -99,7 +99,7 @@ public class TestPlayer {
         assertThat(player.getLandIndex(),is(14));
     }
     @Test
-    public void should_not_forward_for_2_times_when_in_hospital(){
+    public void should_not_forward_for_2_times_when_in_prison(){
         rich.buyBomb(player);
         player.setBomb(map,5, rich);
         //boolean flag=player.checkBomb(map,10);
@@ -123,7 +123,8 @@ public class TestPlayer {
     public void should_not_forward_for_2_times_in_prison(){
         //boolean flag=player.checkBomb(map,10);
         player.forward(map,49, rich);
-        player.forward(map,49, rich);
+        player.forward(map,3, rich);
+        player.forward(map,3, rich);
         assertThat(player.getLandIndex(),is(49));
     }
 
@@ -136,7 +137,7 @@ public class TestPlayer {
         assertThat(player.getLandIndex(),is(10));
     }
     @Test
-    public void should_be_in_destIndex_when_player_has_a_block_when_there_is_a_block_within_10_steps(){
+    public void should_be_in_destIndex_when_player_has_a_robot_when_there_is_a_block_within_10_steps(){
         //when
         player.setBlock(map,5, rich);
         rich.buyRobot(player);

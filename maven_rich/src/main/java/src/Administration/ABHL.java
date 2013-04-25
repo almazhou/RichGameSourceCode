@@ -75,7 +75,7 @@ public class ABHL {
     }
 
     public static boolean isOwner(Player player, int landIndex) {
-        Player tempPlayer=(Player)landTable.get(landIndex);
-        return tempPlayer.getPlayerIndex()==player.getLandIndex();
+        BareLand tempLand=(BareLand)landTable.get(landIndex);
+        return tempLand.getOwnerIndex()==player.getPlayerIndex();
     }
 }

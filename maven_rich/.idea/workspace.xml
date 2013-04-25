@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3aa92f7-d30d-4e39-9e83-615c3852c7bb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/src/map/BehaviorToPlayer.java" />
       <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\console\Console.java" afterPath="" />
       <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\console\DefaultConsoleImpl.java" afterPath="" />
       <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\src\main\java\enigma\console\TextAttributes.java" afterPath="" />
@@ -145,17 +144,10 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/Administration/ABHL.java" afterPath="$PROJECT_DIR$/src/main/java/src/Administration/ABHL.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/Game/Game.java" afterPath="$PROJECT_DIR$/src/main/java/src/Game/Game.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/map/BareLand.java" afterPath="$PROJECT_DIR$/src/main/java/src/map/BareLand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/map/GiftHouse.java" afterPath="$PROJECT_DIR$/src/main/java/src/map/GiftHouse.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/map/Hospital.java" afterPath="$PROJECT_DIR$/src/main/java/src/map/Hospital.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/map/LandForm.java" afterPath="$PROJECT_DIR$/src/main/java/src/map/LandForm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/map/MagicHouse.java" afterPath="$PROJECT_DIR$/src/main/java/src/map/MagicHouse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/map/Mine.java" afterPath="$PROJECT_DIR$/src/main/java/src/map/Mine.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/map/Prison.java" afterPath="$PROJECT_DIR$/src/main/java/src/map/Prison.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/map/StartPoint.java" afterPath="$PROJECT_DIR$/src/main/java/src/map/StartPoint.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/map/ToolHouse.java" afterPath="$PROJECT_DIR$/src/main/java/src/map/ToolHouse.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/player/Player.java" afterPath="$PROJECT_DIR$/src/main/java/src/player/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/TestLands.java" afterPath="$PROJECT_DIR$/src/test/java/TestLands.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/TestPlayersPassing.java" afterPath="$PROJECT_DIR$/src/test/java/TestPlayersPassing.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/TestPlayer.java" afterPath="$PROJECT_DIR$/src/test/java/TestPlayer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/TestTools.java" afterPath="$PROJECT_DIR$/src/test/java/TestTools.java" />
     </list>
     <ignored path="maven_rich.iws" />
@@ -175,7 +167,33 @@
   </component>
   <component name="DebuggerManager">
     <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/src/test/java/TestTools.java" line="170" class="TestTools" package="">
+      <breakpoint url="file://$PROJECT_DIR$/src/test/java/TestPlayer.java" line="144" class="TestPlayer" package="">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/test/java/TestLands.java" line="154" class="TestLands" package="">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/test/java/TestLands.java" line="141" class="TestLands" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -202,8 +220,8 @@
         <option name="CONDITION_ENABLED" value="false" />
         <option name="CLASS_FILTERS_ENABLED" value="false" />
         <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
+        <option name="CONDITION" value="&#13;&#13;JAVA" />
+        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
       </breakpoint>
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -217,40 +235,57 @@
         <option name="CONDITION_ENABLED" value="false" />
         <option name="CLASS_FILTERS_ENABLED" value="false" />
         <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
+        <option name="CONDITION" value="&#13;&#13;JAVA" />
+        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
       </breakpoint>
     </breakpoint_any>
     <breakpoint_rules />
-    <ui_properties />
+    <ui_properties>
+      <property name="line_breakpoints_groupByMethods" value="false" />
+      <property name="line_breakpoints_viewId" value="TABLE" />
+      <property name="exception_breakpoints_flattenPackages" value="true" />
+      <property name="method_breakpoints_flattenPackages" value="true" />
+      <property name="field_breakpoints_flattenPackages" value="true" />
+      <property name="exception_breakpoints_groupByMethods" value="false" />
+      <property name="line_breakpoints_groupByClasses" value="true" />
+      <property name="method_breakpoints_viewId" value="TABLE" />
+      <property name="field_breakpoints_groupByMethods" value="false" />
+      <property name="line_breakpoints_flattenPackages" value="true" />
+      <property name="field_breakpoints_groupByClasses" value="true" />
+      <property name="method_breakpoints_groupByClasses" value="true" />
+      <property name="exception_breakpoints_viewId" value="TABLE" />
+      <property name="field_breakpoints_viewId" value="TABLE" />
+      <property name="exception_breakpoints_groupByClasses" value="true" />
+      <property name="method_breakpoints_groupByMethods" value="false" />
+    </ui_properties>
   </component>
   <component name="FavoritesManager">
     <favorites_list name="maven_rich" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ToolHouse.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/src/map/ToolHouse.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="46" selection-start="1244" selection-end="1244" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Player.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Player.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/src/player/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="118" column="49" selection-start="3619" selection-end="3619" vertical-scroll-proportion="0.6137072">
+            <state line="87" column="24" selection-start="2405" selection-end="2405" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SpecialHouseIndex.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/src/NUMS/SpecialHouseIndex.java">
+      <file leaf-file-name="Prison.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/src/map/Prison.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="34" selection-start="525" selection-end="525" vertical-scroll-proportion="0.0">
+            <state line="19" column="39" selection-start="400" selection-end="400" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Hospital.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/src/map/Hospital.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="32" selection-start="44" selection-end="44" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -265,10 +300,46 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Tool.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/src/tools/Tool.java">
+      <file leaf-file-name="ABHL.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/src/Administration/ABHL.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="53" selection-start="518" selection-end="518" vertical-scroll-proportion="0.0">
+            <state line="66" column="0" selection-start="1916" selection-end="1916" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestPlayer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/TestPlayer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="101" column="75" selection-start="2794" selection-end="2794" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BareLand.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/src/map/BareLand.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="29" selection-start="740" selection-end="740" vertical-scroll-proportion="0.25072888">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestTools.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/TestTools.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="148" column="0" selection-start="4222" selection-end="4222" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestLands.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/TestLands.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="74" column="0" selection-start="1866" selection-end="1866" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -277,43 +348,7 @@
       <file leaf-file-name="Game.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/src/Game/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="153" column="53" selection-start="5870" selection-end="5870" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BehaviorToPlayer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/src/map/BehaviorToPlayer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="60" selection-start="280" selection-end="280" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BareLand.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/src/map/BareLand.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="92" column="0" selection-start="2212" selection-end="2212" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LandForm.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/src/map/LandForm.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="69" selection-start="480" selection-end="480" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Gift.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/src/Gift/Gift.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="56" selection-start="395" selection-end="395" vertical-scroll-proportion="0.0">
+            <state line="58" column="30" selection-start="2035" selection-end="2035" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -332,22 +367,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/src/map/PassByLand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/src/map/BehaviorToPlayer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/src/map/Prison.java" />
-        <option value="$PROJECT_DIR$/src/main/java/src/map/Hospital.java" />
         <option value="$PROJECT_DIR$/src/main/java/src/map/ToolHouse.java" />
         <option value="$PROJECT_DIR$/src/main/java/src/map/GiftHouse.java" />
         <option value="$PROJECT_DIR$/src/main/java/src/map/MagicHouse.java" />
         <option value="$PROJECT_DIR$/src/main/java/src/map/Mine.java" />
         <option value="$PROJECT_DIR$/src/main/java/src/map/StartPoint.java" />
-        <option value="$PROJECT_DIR$/src/main/java/src/Game/Game.java" />
         <option value="$PROJECT_DIR$/src/test/java/TestPlayersPassing.java" />
         <option value="$PROJECT_DIR$/src/test/java/TestLands.java" />
-        <option value="$PROJECT_DIR$/src/main/java/src/map/BareLand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/src/Administration/ABHL.java" />
         <option value="$PROJECT_DIR$/src/main/java/src/map/LandForm.java" />
+        <option value="$PROJECT_DIR$/src/test/java/TestTools.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/Administration/ABHL.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/Game/Game.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/map/BareLand.java" />
         <option value="$PROJECT_DIR$/src/main/java/src/player/Player.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/map/Hospital.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/map/Prison.java" />
+        <option value="$PROJECT_DIR$/src/test/java/TestPlayer.java" />
       </list>
     </option>
   </component>
@@ -400,6 +435,16 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -410,16 +455,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="maven_rich" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -597,10 +632,6 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="map" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -730,6 +761,28 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.TestTools">
+    <configuration default="false" name="TestLands.player_can_buy_bareLand_2_when_it_is_not_sold" type="JUnit" factoryName="JUnit" temporary="true">
+      <module name="maven_rich" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestLands" />
+      <option name="METHOD_NAME" value="player_can_buy_bareLand_2_when_it_is_not_sold" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
     <configuration default="false" name="TestLands" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="maven_rich" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -776,7 +829,13 @@
       </option>
       <envs />
       <patterns />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -798,13 +857,7 @@
       </option>
       <envs />
       <patterns />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -826,28 +879,6 @@
       </option>
       <envs />
       <patterns />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Debug" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Game" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="src.Game.Game" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="maven_rich" />
-      <envs />
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="" />
         <option name="TRANSPORT" value="0" />
@@ -907,6 +938,24 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -932,24 +981,6 @@
       <envs />
       <properties />
       <listeners />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -1002,11 +1033,11 @@
       </method>
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.TestLands" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.TestPlayer" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.TestPlayersPassing" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.TestTools" />
-      <item index="4" class="java.lang.String" itemvalue="Application.Game" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.TestLands.player_can_buy_bareLand_2_when_it_is_not_sold" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.TestLands" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.TestPlayer" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.TestPlayersPassing" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.TestTools" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -1046,27 +1077,27 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1608" height="874" extended-state="6" />
-    <editor active="false" />
+    <frame x="-4" y="-4" width="1608" height="874" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4618644" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44915253" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12429378" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32768363" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32946485" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22501612" sideWeight="0.5381356" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5141243" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22501612" sideWeight="0.5776836" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.42231637" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909605" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32768363" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24951644" sideWeight="0.54378533" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1130,98 +1161,100 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.10.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/Gift/Gift.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="40" selection-start="397" selection-end="397" vertical-scroll-proportion="0.36226416" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/src/Administration/ABHL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="0" selection-start="1916" selection-end="1916" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/TestTools.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="171" column="0" selection-start="4891" selection-end="4891" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/RichGameMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="0" selection-start="1954" selection-end="1954" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/TestPlayersPassing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="114" column="34" selection-start="3427" selection-end="3427" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/TestLands.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="227" column="34" selection-start="6626" selection-end="6626" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/ToolHouse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="46" selection-start="1244" selection-end="1244" vertical-scroll-proportion="0.0" />
+        <state line="14" column="56" selection-start="395" selection-end="395" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/src/tools/Tool.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="53" selection-start="518" selection-end="518" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="17" column="53" selection-start="518" selection-end="518" vertical-scroll-proportion="-1.195122" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/src/Gift/Gift.java">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.10.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="56" selection-start="395" selection-end="395" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="11" column="40" selection-start="397" selection-end="397" vertical-scroll-proportion="-6.84" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/BareLand.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_09/src.zip!/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="0" selection-start="2212" selection-end="2212" vertical-scroll-proportion="0.0" />
+        <state line="381" column="0" selection-start="14078" selection-end="14078" vertical-scroll-proportion="0.33128834" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/RichGameMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="114" column="0" selection-start="3828" selection-end="3828" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/TestTools.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="148" column="0" selection-start="4222" selection-end="4222" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/src/NUMS/SpecialHouseIndex.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="34" selection-start="525" selection-end="525" vertical-scroll-proportion="0.0">
+        <state line="17" column="34" selection-start="525" selection-end="525" vertical-scroll-proportion="0.5581015">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/src/NUMS/SpecialNum.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/Administration/ABHL.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="60" selection-start="402" selection-end="402" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/BehaviorToPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="60" selection-start="280" selection-end="280" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/LandForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="69" selection-start="480" selection-end="480" vertical-scroll-proportion="0.0">
+        <state line="66" column="0" selection-start="1916" selection-end="1916" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/src/Game/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="153" column="53" selection-start="5870" selection-end="5870" vertical-scroll-proportion="0.0">
+        <state line="58" column="30" selection-start="2035" selection-end="2035" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/TestLands.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="0" selection-start="1866" selection-end="1866" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/NUMS/SpecialNum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="60" selection-start="402" selection-end="402" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/src/player/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="118" column="49" selection-start="3619" selection-end="3619" vertical-scroll-proportion="0.6137072">
+        <state line="87" column="24" selection-start="2405" selection-end="2405" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/Prison.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="39" selection-start="400" selection-end="400" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/TestPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="101" column="75" selection-start="2794" selection-end="2794" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/Hospital.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="32" selection-start="44" selection-end="44" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/BareLand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="29" selection-start="740" selection-end="740" vertical-scroll-proportion="0.25072888">
           <folding />
         </state>
       </provider>
