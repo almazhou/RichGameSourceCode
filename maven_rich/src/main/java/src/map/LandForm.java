@@ -1,6 +1,5 @@
 package src.map;
 
-import src.Game.Game;
 import src.tools.Tool;
 
 import java.awt.*;
@@ -28,14 +27,11 @@ public abstract class LandForm implements BehaviorToPlayer{
         displayName= Tool.Blockade.getDisplayName();
     }
 
-    public void clearBomb(RichGameMap map, Game rich){
+    public void clearBombAndBlock(){
         bombFlag=false;
-        map.clearDisplayName(map, landIndex, rich);
-    }
-    public void clearBlock(RichGameMap map, Game rich){
         blockFlag=false;
-        map.clearDisplayName(map,landIndex,rich);
     }
+
     public boolean isBlocked(){
         if(blockFlag) {
         System.out.print("该处有路障");

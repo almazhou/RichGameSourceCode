@@ -29,4 +29,14 @@ public enum Gift {
     }
 
 
+    public static Gift getGiftByIndex(int giftIndex) {
+        if(giftIndex==MoneyCard.getGiftIndex()){
+            return MoneyCard;
+        }else if(giftIndex==PointCard.getGiftIndex()) {
+            return PointCard;
+        } else if(giftIndex==Mascot.getGiftIndex()){
+            return Mascot;
+        }
+        return null;
+    }
 }

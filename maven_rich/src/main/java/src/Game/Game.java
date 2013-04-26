@@ -56,12 +56,11 @@ public class Game {
             if(commandString.equalsIgnoreCase("roll")) {
                 int rollingStep=Game.roll();
                 System.out.print("向前前进" + rollingStep + "步，");
-                gamePlayer.forward(map,rollingStep, null);
+                gamePlayer.forward(map,rollingStep, rich);
                 map.displayMap();
             }
         }
     }
-
 
     private void setPlayerMoney(String amount) {
         try{
@@ -97,12 +96,12 @@ public class Game {
         while (!commandString.equalsIgnoreCase(roll)){
         if(commandString.matches(blockN)){
             int n=getN(commandString, "block");
-            setBlock(gamePlayer, map, n);
+            gamePlayer.setBlock(map,n ,this);
         } else if(commandString.matches(bombN)){
             int n= getN(commandString, "bomb");
-            setBomb(gamePlayer, map, n);
+            gamePlayer.setBomb(map,n ,this);
         }else if(commandString.equalsIgnoreCase(robot)){
-            useRobot(gamePlayer, map);
+            useRobot(gamePlayer,map);
         }else if(commandString.matches(sellN)) {
             int n= getN(commandString, "sell");
             sellLands(map, gamePlayer, n);
@@ -148,21 +147,14 @@ public class Game {
 
     private  void useRobot(Player player, RichGameMap map) {
         if(player.getToolNum(Tool.Robot)>0){
-            player.useRobot(map, null);
+            player.useRobot(map, this);
             System.out.println("成功使用"+ Tool.Robot.getName());
         }else{
             System.out.println("机器娃娃的个数为0，无法设置！");
         }
     }
 
-    private static void setBomb(Player player, RichGameMap map, int offset) {
-            player.setBomb(map,offset, null);
-    }
 
-    private static void setBlock(Player player, RichGameMap map, int offset) {
-        player.setBlock(map,offset, null);
-
-    }
 
     private static int getN(String command, String inputWord) {
         StringTokenizer analyzeWord=new StringTokenizer(command," ");
@@ -316,15 +308,8 @@ public class Game {
 
     }
     public  void sellTools(Player player, int toolIndex) {
-        if(toolIndex== Tool.Blockade.getToolIndex()){
-            player.sellBlock();
-        }else if(toolIndex== Tool.Robot.getToolIndex()){
-            player.sellRobot();
-        } else if(toolIndex== Tool.Bomb.getToolIndex()){
-            player.sellBomb();
-        }else{
-            System.out.println("输入出错，道具编号为1-3！");
-        }
+        player.sellTools(toolIndex);
+
     }
 
     public boolean isInToolHouse(int playerIndex, RichGameMap map) {

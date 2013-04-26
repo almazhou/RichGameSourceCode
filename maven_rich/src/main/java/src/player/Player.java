@@ -21,12 +21,13 @@ public class Player {
     private int totalMoney=0;
     List<BareLand>landList;
     private List<Tool> toolList;
+    private List<Gift> giftList;
 
     private int playerIndex;
     private String name;
 
     private Color color=Color.WHITE;
-    private List<Gift> giftList;
+
     private int timeInHospital=0;
     private int timeInPrison=0;
     private String abbreviation=null;
@@ -202,6 +203,19 @@ public class Player {
         return false ;
     }
 
+    public boolean setBlock(RichGameMap map, int offset, Game rich) {
+        int landIndex = getLandIndexWithOffSet(offset);
+        if(canSetBlock(map,landIndex, rich)){
+            LandForm tempLandForm=(LandForm)map.landList.get(landIndex);
+            tempLandForm.setBlock();
+            toolList.remove(Tool.Blockade);
+            System.out.println("路障设置成功！");
+            return true;
+        }
+        System.out.println("，无法放置路障");
+        return false;
+    }
+
     private int getLandIndexWithOffSet(int offset) {
         int landIndex=currentIndex+offset;
         if(landIndex>=SpecialNum.LANDNUM.getNum()){
@@ -221,19 +235,6 @@ public class Player {
         return toolList.contains(Tool.Bomb);
     }
 
-    public boolean setBlock(RichGameMap map, int offset, Game rich) {
-        int landIndex = getLandIndexWithOffSet(offset);
-        if(canSetBlock(map,landIndex, rich)){
-        LandForm tempLandForm=(LandForm)map.landList.get(landIndex);
-        tempLandForm.setBlock();
-        toolList.remove(Tool.Blockade);
-        System.out.println("路障设置成功！");
-            return true;
-        }
-        System.out.println("，无法放置路障");
-        return false;
-    }
-
     public boolean canSetBlock(RichGameMap map, int index, Game rich) {
         return map.isWithinRange(index, currentIndex)&& !map.hasOtherTools(index)&&!map.hasPlayer(index, rich)&& hasBlock();
     }
@@ -248,31 +249,14 @@ public class Player {
     }
 
     public void clearBombAndBlock(RichGameMap map, Game rich) {
-        int startIndex=(currentIndex-SEARCHSTEP+SpecialNum.LANDNUM.getNum())%SpecialNum.LANDNUM.getNum();
-        int stopIndex=(currentIndex+SEARCHSTEP+SpecialNum.LANDNUM.getNum())%SpecialNum.LANDNUM.getNum();
-        if(startIndex>stopIndex){
-            for(int i=startIndex;i<SpecialNum.LANDNUM.getNum();i++){
-                LandForm tempLandForm=(LandForm)map.landList.get(i);
-                tempLandForm.clearBomb(map, rich);
-                tempLandForm.clearBlock(map, rich);
-            }
-            for(int i=0;i<stopIndex;i++){
-                LandForm tempLandForm=(LandForm)map.landList.get(i);
-                tempLandForm.clearBomb(map, rich);
-                tempLandForm.clearBlock(map, rich);
-            }
-
+        int startIndex=getLandIndexWithOffSet(-SEARCHSTEP);
+        for(int i=startIndex;i<startIndex+2*SEARCHSTEP;i++) {
+            int tempIndex=i%SpecialNum.LANDNUM.getNum();
+            LandForm tempLandForm=(LandForm)map.landList.get(tempIndex);
+            tempLandForm.clearBombAndBlock();
+            map.clearDisplayName(map, tempLandForm.getLandIndex(), rich);
         }
-        else{
-            for(int i=startIndex;i<stopIndex;i++){
-                LandForm tempLandForm=(LandForm)map.landList.get(i);
-                tempLandForm.clearBomb(map, rich);
-                tempLandForm.clearBlock(map, rich);
-            }
-        }
-
     }
-
 
     public int getMoney() {
         return totalMoney;
@@ -280,12 +264,11 @@ public class Player {
 
     public void setMoney(int money) {
         if(money>=0){
-        totalMoney=money;
+            totalMoney=money;
         }
     }
 
     public void setColor(Color color) {
-
         this.color=color;
     }
 
@@ -322,15 +305,10 @@ public class Player {
     public void chooseGift(String giftIndexInString) {
         try{
             int giftIndex=Integer.parseInt(giftIndexInString);
-            if(giftIndex==Gift.MoneyCard.getGiftIndex()){
-                giftList.add(Gift.MoneyCard);
-                addMoney(Gift.MoneyCard.getValue());
-            }else if(giftIndex==Gift.PointCard.getGiftIndex()) {
-                giftList.add(Gift.PointCard);
-                addPoint(Gift.PointCard.getValue());
-            } else if(giftIndex==Gift.Mascot.getGiftIndex()){
-                giftList.add(Gift.Mascot);
-                freePassNum=Gift.Mascot.getValue();
+            Gift gift=Gift.getGiftByIndex(giftIndex);
+            if(gift !=null) {
+                giftList.add(gift);
+                takeGift(gift);
             }
         }
         catch (NumberFormatException e){
@@ -341,10 +319,20 @@ public class Player {
 
 
     }
+
+    private void takeGift(Gift gift) {
+        if(gift==Gift.MoneyCard){
+            addMoney(gift.getValue());
+        }else if(gift==Gift.PointCard){
+            addPoint(gift.getValue());
+        }else if(gift==Gift.Mascot)
+            freePassNum=gift.getValue();
+    }
+
     public void sellLand(RichGameMap map, int landIndex, Game rich) {
         rich.sellLands(map, this, landIndex);
         for(int i=0;i<landList.size();i++){
-            BareLand land=(BareLand)landList.get(i);
+            BareLand land=landList.get(i);
             if(land.getLandIndex()==landIndex){
                 landList.remove(i);
             }
@@ -363,17 +351,23 @@ public class Player {
         totalMoney+=addAmount;
     }
 
-    public void sellTools(int toolIndex, Game rich) {
-          rich.sellTools(this,toolIndex);
-    }
-
-    public void sellBomb() {
-        Tool tool=Tool.Bomb;
+    public void sellTools(int toolIndex) {
+        Tool tool=null;
+        if(toolIndex== Tool.Blockade.getToolIndex()){
+            tool=Tool.Blockade;
+        }else if(toolIndex== Tool.Robot.getToolIndex()){
+            tool=Tool.Robot;
+        } else if(toolIndex== Tool.Bomb.getToolIndex()){
+            tool=Tool.Bomb;
+        }else{
+            System.out.println("输入出错，道具编号为1-3！");
+            return;
+        }
+        if(tool!=null){
         sellTool(tool);
-
+        }
     }
-
-    private void sellTool(Tool tool) {
+    public void sellTool(Tool tool) {
         if(getToolNum(tool)>0){
         addPoint(tool.getPoint());
         toolList.remove(tool);
@@ -381,16 +375,6 @@ public class Player {
         }else {
             System.out.println(this.name+">"+ tool.getName()+"的个数为0，无法出售！");
         }
-    }
-
-    public void sellRobot() {
-        Tool tool=Tool.Robot;
-        sellTool(tool);
-    }
-
-    public void sellBlock() {
-        Tool tool=Tool.Blockade;
-        sellTool(tool);
     }
 
     public void addPoint(int addAmount) {
@@ -476,25 +460,14 @@ public class Player {
         return timeInPrison;
     }
 
-    public void deductTimeInPrison() {
-        timeInPrison--;
-    }
-
     public int getTimeInHospital() {
         return timeInHospital;
     }
-
-    public void deductTimeInHospital() {
-        timeInHospital--;
-    }
-
-
     public void payPassingFee(BareLand passingLand, Player owner, Game rich) {
         double passingFee;
         if(!hasMascot()){
             passingFee=Math.pow(2,passingLand.getHouseLevel())*passingLand.getPrice()*1/2;
             payFeeTo(owner, (int)passingFee, rich);
-
         }
         }
 

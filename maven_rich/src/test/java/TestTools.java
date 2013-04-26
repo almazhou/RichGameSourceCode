@@ -68,7 +68,7 @@ public class TestTools {
          public void should_player_receive_50_point_by_selling_a_block(){
         player.buyTools(Tool.Blockade);
         int point=player.getPoint();
-        player.sellTools(1, rich);
+        player.sellTools(1);
         int point1=player.getPoint();
         assertThat(point1-point,is(50));
 
@@ -85,7 +85,7 @@ public class TestTools {
     public void should_player_receive_30_point_by_selling_a_Robot(){
         player.buyTools(Tool.Robot);
         int point=player.getPoint();
-        player.sellTools(2, rich);
+        player.sellTools(2);
         int point1=player.getPoint();
         assertThat(point1-point,is(30));
 
@@ -94,7 +94,7 @@ public class TestTools {
     public void should_player_receive_50_point_by_selling_a_bomb(){
         player.buyTools(Tool.Bomb);
         int point=player.getPoint();
-        player.sellTools(3, rich);
+        player.sellTools(3);
         int point1=player.getPoint();
         assertThat(point1-point,is(50));
 

@@ -140,14 +140,11 @@
       <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\src\tools\Bomb.class" afterPath="" />
       <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\src\tools\OwnedTools.class" afterPath="" />
       <change type="DELETED" beforePath="E:\thoughtworks projects\source code of rich\maven_rich\target\classes\src\tools\Robot.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/Administration/ABHL.java" afterPath="$PROJECT_DIR$/src/main/java/src/Administration/ABHL.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/Game/Game.java" afterPath="$PROJECT_DIR$/src/main/java/src/Game/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/map/BareLand.java" afterPath="$PROJECT_DIR$/src/main/java/src/map/BareLand.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/Gift/Gift.java" afterPath="$PROJECT_DIR$/src/main/java/src/Gift/Gift.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/map/Hospital.java" afterPath="$PROJECT_DIR$/src/main/java/src/map/Hospital.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/map/Prison.java" afterPath="$PROJECT_DIR$/src/main/java/src/map/Prison.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/map/LandForm.java" afterPath="$PROJECT_DIR$/src/main/java/src/map/LandForm.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/src/player/Player.java" afterPath="$PROJECT_DIR$/src/main/java/src/player/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/TestPlayer.java" afterPath="$PROJECT_DIR$/src/test/java/TestPlayer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/TestTools.java" afterPath="$PROJECT_DIR$/src/test/java/TestTools.java" />
     </list>
     <ignored path="maven_rich.iws" />
@@ -267,16 +264,18 @@
       <file leaf-file-name="Player.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/src/player/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="87" column="24" selection-start="2405" selection-end="2405" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="497" column="59" selection-start="14401" selection-end="14401" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Prison.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/src/map/Prison.java">
+      <file leaf-file-name="Game.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/src/Game/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="39" selection-start="400" selection-end="400" vertical-scroll-proportion="0.0">
+            <state line="24" column="70" selection-start="646" selection-end="646" vertical-scroll-proportion="-0.610687">
               <folding />
             </state>
           </provider>
@@ -285,70 +284,25 @@
       <file leaf-file-name="Hospital.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/src/map/Hospital.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="32" selection-start="44" selection-end="44" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SpecialNum.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/src/NUMS/SpecialNum.java">
+      <file leaf-file-name="RichGameMap.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/src/map/RichGameMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="60" selection-start="402" selection-end="402" vertical-scroll-proportion="0.0">
+            <state line="188" column="71" selection-start="6352" selection-end="6352" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ABHL.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/src/Administration/ABHL.java">
+      <file leaf-file-name="LandForm.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/src/map/LandForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="0" selection-start="1916" selection-end="1916" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestPlayer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/TestPlayer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="101" column="75" selection-start="2794" selection-end="2794" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BareLand.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/src/map/BareLand.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="29" selection-start="740" selection-end="740" vertical-scroll-proportion="0.25072888">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestTools.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/TestTools.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="148" column="0" selection-start="4222" selection-end="4222" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestLands.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/TestLands.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="0" selection-start="1866" selection-end="1866" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Game.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/src/Game/Game.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="30" selection-start="2035" selection-end="2035" vertical-scroll-proportion="0.0">
+            <state line="32" column="6" selection-start="769" selection-end="769" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -367,22 +321,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/src/map/ToolHouse.java" />
         <option value="$PROJECT_DIR$/src/main/java/src/map/GiftHouse.java" />
         <option value="$PROJECT_DIR$/src/main/java/src/map/MagicHouse.java" />
         <option value="$PROJECT_DIR$/src/main/java/src/map/Mine.java" />
         <option value="$PROJECT_DIR$/src/main/java/src/map/StartPoint.java" />
         <option value="$PROJECT_DIR$/src/test/java/TestPlayersPassing.java" />
         <option value="$PROJECT_DIR$/src/test/java/TestLands.java" />
-        <option value="$PROJECT_DIR$/src/main/java/src/map/LandForm.java" />
-        <option value="$PROJECT_DIR$/src/test/java/TestTools.java" />
         <option value="$PROJECT_DIR$/src/main/java/src/Administration/ABHL.java" />
-        <option value="$PROJECT_DIR$/src/main/java/src/Game/Game.java" />
         <option value="$PROJECT_DIR$/src/main/java/src/map/BareLand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/src/player/Player.java" />
-        <option value="$PROJECT_DIR$/src/main/java/src/map/Hospital.java" />
         <option value="$PROJECT_DIR$/src/main/java/src/map/Prison.java" />
         <option value="$PROJECT_DIR$/src/test/java/TestPlayer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/Gift/Gift.java" />
+        <option value="$PROJECT_DIR$/src/test/java/TestTools.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/map/LandForm.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/map/Hospital.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/Game/Game.java" />
+        <option value="$PROJECT_DIR$/src/main/java/src/player/Player.java" />
       </list>
     </option>
   </component>
@@ -760,29 +714,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestTools">
-    <configuration default="false" name="TestLands.player_can_buy_bareLand_2_when_it_is_not_sold" type="JUnit" factoryName="JUnit" temporary="true">
-      <module name="maven_rich" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestLands" />
-      <option name="METHOD_NAME" value="player_can_buy_bareLand_2_when_it_is_not_sold" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Application.Game">
     <configuration default="false" name="TestLands" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="maven_rich" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -886,6 +818,22 @@
       </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Game" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="src.Game.Game" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="maven_rich" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -1033,11 +981,11 @@
       </method>
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.TestLands.player_can_buy_bareLand_2_when_it_is_not_sold" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.TestLands" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.TestPlayer" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.TestPlayersPassing" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.TestTools" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.TestLands" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.TestPlayer" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.TestPlayersPassing" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.TestTools" />
+      <item index="4" class="java.lang.String" itemvalue="Application.Game" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -1093,8 +1041,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32946485" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22501612" sideWeight="0.5776836" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.42231637" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22501612" sideWeight="0.61440676" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3855932" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909605" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1161,16 +1109,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/src/Gift/Gift.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="56" selection-start="395" selection-end="395" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/src/tools/Tool.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="53" selection-start="518" selection-end="518" vertical-scroll-proportion="-1.195122" />
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.10.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="40" selection-start="397" selection-end="397" vertical-scroll-proportion="-6.84" />
@@ -1181,33 +1119,9 @@
         <state line="381" column="0" selection-start="14078" selection-end="14078" vertical-scroll-proportion="0.33128834" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/RichGameMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="114" column="0" selection-start="3828" selection-end="3828" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/TestTools.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="148" column="0" selection-start="4222" selection-end="4222" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/src/NUMS/SpecialHouseIndex.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="34" selection-start="525" selection-end="525" vertical-scroll-proportion="0.5581015">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/src/Administration/ABHL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="0" selection-start="1916" selection-end="1916" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/src/Game/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="30" selection-start="2035" selection-end="2035" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1219,42 +1133,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/src/NUMS/SpecialNum.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/BareLand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="60" selection-start="402" selection-end="402" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/src/player/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="24" selection-start="2405" selection-end="2405" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/Prison.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="39" selection-start="400" selection-end="400" vertical-scroll-proportion="0.0">
+        <state line="35" column="29" selection-start="740" selection-end="740" vertical-scroll-proportion="1.0756013">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/TestPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="101" column="75" selection-start="2794" selection-end="2794" vertical-scroll-proportion="0.0">
+        <state line="101" column="75" selection-start="2794" selection-end="2794" vertical-scroll-proportion="-0.5546219">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/Administration/ABHL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="0" selection-start="1916" selection-end="1916" vertical-scroll-proportion="0.19141914">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/NUMS/SpecialNum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="60" selection-start="402" selection-end="402" vertical-scroll-proportion="0.51534736">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/Prison.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="39" selection-start="400" selection-end="400" vertical-scroll-proportion="0.23909532">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/TestTools.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="173" column="36" selection-start="5102" selection-end="5102" vertical-scroll-proportion="0.44334975">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/Gift/Gift.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="20" selection-start="997" selection-end="997" vertical-scroll-proportion="0.7118227">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/LandForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="6" selection-start="769" selection-end="769" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/RichGameMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="188" column="71" selection-start="6352" selection-end="6352" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/src/map/Hospital.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="32" selection-start="44" selection-end="44" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/src/map/BareLand.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/player/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="29" selection-start="740" selection-end="740" vertical-scroll-proportion="0.25072888">
+        <state line="497" column="59" selection-start="14401" selection-end="14401" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/src/Game/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="70" selection-start="646" selection-end="646" vertical-scroll-proportion="-0.610687">
           <folding />
         </state>
       </provider>
