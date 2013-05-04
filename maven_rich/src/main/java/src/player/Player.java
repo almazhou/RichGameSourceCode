@@ -11,14 +11,12 @@ import src.map.RichGameMap;
 import src.tools.Tool;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
 import java.util.List;
 
 public class Player {
     private int currentIndex=0;
-    private int totalPoint =0;
-    private int totalMoney=0;
+    Map <String,Integer>capital = new HashMap();
     List<BareLand>landList;
     private List<Tool> toolList;
     private List<Gift> giftList;
@@ -34,8 +32,6 @@ public class Player {
     public  String commandWord=null;
     private static final int SEARCHSTEP = 10;
 
-    private int freePassNum=0;
-
 
 
     public Player(int playerIndex){
@@ -43,8 +39,9 @@ public class Player {
         landList=new ArrayList<BareLand>();
         giftList=new ArrayList<Gift>();
         this.playerIndex=playerIndex;
-        totalPoint=10000;
-        totalMoney=10000;
+        capital.put("money",10000);
+        capital.put("point",10000);
+        capital.put("freePassNum",0);
         if(playerIndex==1){
             name="钱夫人";
             color=Color.YELLOW;
@@ -173,7 +170,7 @@ public class Player {
     }
 
     public int getPoint(){
-        return totalPoint;
+        return capital.get("point");
     }
 
     public boolean checkBomb(RichGameMap map,int rollingSteps) {
@@ -259,13 +256,11 @@ public class Player {
     }
 
     public int getMoney() {
-        return totalMoney;
+        return capital.get("money");
     }
 
     public void setMoney(int money) {
-        if(money>=0){
-            totalMoney=money;
-        }
+        capital.put("money",money);
     }
 
     public void setColor(Color color) {
@@ -321,12 +316,7 @@ public class Player {
     }
 
     private void takeGift(Gift gift) {
-        if(gift==Gift.MoneyCard){
-            addMoney(gift.getValue());
-        }else if(gift==Gift.PointCard){
-            addPoint(gift.getValue());
-        }else if(gift==Gift.Mascot)
-            freePassNum=gift.getValue();
+        capital.put(gift.getName(),capital.get(gift.getName())+gift.getValue());
     }
 
     public void sellLand(RichGameMap map, int landIndex, Game rich) {
@@ -339,16 +329,18 @@ public class Player {
         }
     }
     private boolean pointIsEnough(int point) {
-        return totalPoint>=point;
+        return capital.get("point")>=point;
     }
 
 
     public void deductMoney(int deductMoney){
-        totalMoney-=deductMoney;
+        int totalMoney = capital.get("money");
+        capital.put("money",totalMoney-deductMoney);
     }
 
     public void addMoney(int addAmount) {
-        totalMoney+=addAmount;
+        int totalMoney = capital.get("money");
+        capital.put("money",totalMoney+addAmount);
     }
 
     public void sellTools(int toolIndex) {
@@ -378,10 +370,12 @@ public class Player {
     }
 
     public void addPoint(int addAmount) {
-        totalPoint+=addAmount;
+        int total = capital.get("point");
+        capital.put("point",total+addAmount);
     }
     private void deductPoint(int deductAmount){
-        totalPoint-=deductAmount;
+        int total = capital.get("point");
+        capital.put("point",total-deductAmount);
     }
 
     public String getName() {
@@ -437,15 +431,15 @@ public class Player {
     }
 
     public void setPoint(int amount) {
-        totalPoint=amount;
+        capital.put("point",amount);
     }
     public void useMascot() {
         System.out.println("福神护身，免费通过！");
         for(Iterator it=giftList.iterator();it.hasNext();){
             Gift tempGift= (Gift) it.next();
             if(tempGift==Gift.Mascot){
-                freePassNum--;
-                if(freePassNum==0){
+                capital.put("freePassNum",capital.get("freePassNum")-1);
+                if(getFreePassingNum()==0){
                     giftList.remove(tempGift);
                 }
             }
@@ -453,7 +447,7 @@ public class Player {
     }
 
     public int getFreePassingNum() {
-        return freePassNum;
+        return capital.get("freePassNum");
     }
 
     public int getTimeInPrison() {
@@ -472,7 +466,7 @@ public class Player {
         }
 
     public boolean hasMascot() {
-        return freePassNum>0;
+        return getFreePassingNum()>0;
     }
     public  void payFeeTo(Player toPlayer, int paidMoney, Game rich) {
         int money= getMoney();
@@ -490,7 +484,7 @@ public class Player {
 
     public void upGradeLand(RichGameMap map, int landIndex) {
           BareLand tempBareLand=(BareLand)map.landList.get(landIndex);
-          if(totalMoney>tempBareLand.getPrice()){
+          if(getMoney()>tempBareLand.getPrice()){
           deductMoney(tempBareLand.getPrice());
           tempBareLand.upGrade();
           }

@@ -8,7 +8,7 @@ package src.Gift;
  * To change this template use File | Settings | File Templates.
  */
 public enum Gift {
-    MoneyCard("奖金",1,2000),PointCard("点卡",2,200),Mascot("福神",3,5);
+    MoneyCard("money",1,2000),PointCard("point",2,200),Mascot("freePassNum",3,5);
     private  int giftIndex;
     private String name;
     private int value;
