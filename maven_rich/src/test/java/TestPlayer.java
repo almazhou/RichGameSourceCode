@@ -40,7 +40,7 @@ public class TestPlayer {
           //when
         rich.buyBlock(player) ;
         rich.buyBlock(player);
-        boolean flag=player.setBlock(map,3, rich);
+        boolean flag=player.setBlock(map,3);
         assertThat(flag,is(true));
         player.forward(map, 6, rich);
         int index=player.getLandIndex();
@@ -51,7 +51,7 @@ public class TestPlayer {
    @Test
     public void should_not_set_block_when_targetIndex_is_out_of_range(){
         //when
-        player.setBlock(map,15, rich);
+        player.setBlock(map,15);
         player.forward(map,17, rich);
         //then
         assertThat(player.getLandIndex(),is(17));
@@ -59,7 +59,7 @@ public class TestPlayer {
     @Test
     public void should_not_set_bomb_when_targetIndex_is_out_of_range(){
         //when
-        player.setBomb(map,15, rich);
+        player.setBomb(map,15);
         player.forward(map,17, rich);
         //then
         assertThat(player.getLandIndex(),is(17));
@@ -68,7 +68,7 @@ public class TestPlayer {
     @Test
     public void should_checkout_a_bomb_when_there_is_a_bomb(){
         rich.buyBomb(player);
-        player.setBomb(map,5, rich);
+        player.setBomb(map,5);
         boolean flag=player.checkBomb(map,10);
         assertThat(flag,is(true));
 
@@ -76,7 +76,7 @@ public class TestPlayer {
     @Test
     public void should_checkout_a_block_when_there_is_a_block(){
         rich.buyBlock(player);
-        player.setBlock(map,5, rich);
+        player.setBlock(map,5);
         boolean flag=map.checkBlock(0,5);
         assertThat(flag,is(true));
 
@@ -84,7 +84,7 @@ public class TestPlayer {
     @Test
     public void should_be_in_hospital_when_there_is_bomb_in_the_way(){
         rich.buyBomb(player);
-        player.setBomb(map,5, rich);
+        player.setBomb(map,5);
         //boolean flag=player.checkBomb(map,10);
         player.forward(map,10, rich);
         assertThat(player.getLandIndex(),is(14));
@@ -92,7 +92,7 @@ public class TestPlayer {
     @Test
     public void should_not_forward_again_when_in_hospital(){
         rich.buyBomb(player);
-        player.setBomb(map,5, rich);
+        player.setBomb(map,5);
         //boolean flag=player.checkBomb(map,10);
         player.forward(map,10, rich);
         player.forward(map,5, rich);
@@ -101,7 +101,7 @@ public class TestPlayer {
     @Test
     public void should_not_forward_for_2_times_when_in_prison(){
         rich.buyBomb(player);
-        player.setBomb(map,5, rich);
+        player.setBomb(map,5);
         //boolean flag=player.checkBomb(map,10);
         player.forward(map,10, rich);
         player.forward(map,5, rich);
@@ -111,7 +111,7 @@ public class TestPlayer {
     @Test
     public void should_not_forward_for_3_times_when_in_hospital(){
         rich.buyBomb(player);
-        player.setBomb(map,5, rich);
+        player.setBomb(map,5);
         //boolean flag=player.checkBomb(map,10);
         player.forward(map,10, rich);
         player.forward(map,5, rich);
@@ -130,18 +130,18 @@ public class TestPlayer {
 
     @Test
     public void should_be_in_destIndex_when_player_has_a_robot_when_there_is_a_bomb_within_10_steps(){
-        player.setBomb(map,5, rich);
+        player.setBomb(map,5);
         rich.buyRobot(player);
-        player.useRobot(map, rich) ;
+        player.useRobot(map) ;
         player.forward(map,10, rich);
         assertThat(player.getLandIndex(),is(10));
     }
     @Test
     public void should_be_in_destIndex_when_player_has_a_robot_when_there_is_a_block_within_10_steps(){
         //when
-        player.setBlock(map,5, rich);
+        player.setBlock(map,5);
         rich.buyRobot(player);
-        player.useRobot(map, rich);
+        player.useRobot(map);
         player.forward(map,10, rich);
         //then
         assertThat(player.getLandIndex(),is(10));
@@ -150,10 +150,10 @@ public class TestPlayer {
     public void should_be_in_the_destIndex_when_there_is_bomb_and_block_in_the_way_but_player_has_robot(){
         //when
         rich.buyBomb(player);
-        player.setBlock(map,6, rich);
-        player.setBomb(map,8, rich);
+        player.setBlock(map,6);
+        player.setBomb(map,8);
         rich.buyRobot(player);
-        player.useRobot(map, rich);
+        player.useRobot(map);
         player.forward(map,10, rich);
         //then
         assertThat(player.getLandIndex(),is(10));

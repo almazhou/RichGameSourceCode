@@ -1,52 +1,39 @@
 package src.map;
 
+import src.player.Player;
 import src.tools.Tool;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class LandForm implements BehaviorToPlayer{
     String name;
     String displayName;
     protected int landIndex;
-    protected boolean bombFlag=false;
-    protected boolean blockFlag=false;
     protected Color color=Color.WHITE;
+    private List<Player> playerOnThisLand=new ArrayList<Player>();
+    private List<Tool> toolList = new ArrayList<Tool>();
+
     public LandForm(String name, int index) {
             this.name=name;
             this.displayName=name;
             this.landIndex =index;
     }
 
-    public  void setBomb(){
-        bombFlag=true;
-        displayName= Tool.Bomb.getDisplayName();
-    }
-
-    public void setBlock(){
-        blockFlag=true;
-        displayName= Tool.Blockade.getDisplayName();
-    }
-
-    public void clearBombAndBlock(){
-        bombFlag=false;
-        blockFlag=false;
+    public  void setTool(Tool tool){
+        toolList.add(tool);
+        displayName= tool.getDisplayName();
     }
 
     public boolean isBlocked(){
-        if(blockFlag) {
-        System.out.print("该处有路障");
-        }
-        return blockFlag;
-
+        return toolList.contains(Tool.Blockade);
     }
     public int getLandIndex(){
         return landIndex;
     }
     public  boolean isBombed(){
-        if(bombFlag){
-        System.out.print("该处有炸弹");
-        }
-        return bombFlag;
+        return toolList.contains(Tool.Bomb);
     }
     public String getName(){
         return name;
@@ -54,13 +41,23 @@ public abstract class LandForm implements BehaviorToPlayer{
     public void setDisplayName(String name) {
         this.displayName=name;
     }
-
-
-    public String getDisplayName() {
-        return displayName;
+    public void addPlayer(Player player){
+        playerOnThisLand.add(player);
     }
 
-    public Color getColor(){
-        return this.color;
+    public List getPlayerOnLand(){
+        return playerOnThisLand;
+    }
+
+    public  void clearBomb(){
+        if(isBombed()){
+        toolList.remove(Tool.Bomb);
+        }
+    }
+
+    public void clearBlock(){
+        if(isBlocked()){
+        toolList.remove(Tool.Blockade);
+        }
     }
 }

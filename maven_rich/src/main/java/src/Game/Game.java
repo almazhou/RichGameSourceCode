@@ -96,10 +96,10 @@ public class Game {
         while (!commandString.equalsIgnoreCase(roll)){
         if(commandString.matches(blockN)){
             int n=getN(commandString, "block");
-            gamePlayer.setBlock(map,n ,this);
+            gamePlayer.setBlock(map,n);
         } else if(commandString.matches(bombN)){
             int n= getN(commandString, "bomb");
-            gamePlayer.setBomb(map,n ,this);
+            gamePlayer.setBomb(map,n );
         }else if(commandString.equalsIgnoreCase(robot)){
             useRobot(gamePlayer,map);
         }else if(commandString.matches(sellN)) {
@@ -147,7 +147,7 @@ public class Game {
 
     private  void useRobot(Player player, RichGameMap map) {
         if(player.getToolNum(Tool.Robot)>0){
-            player.useRobot(map, this);
+            player.useRobot(map);
             System.out.println("成功使用"+ Tool.Robot.getName());
         }else{
             System.out.println("机器娃娃的个数为0，无法设置！");

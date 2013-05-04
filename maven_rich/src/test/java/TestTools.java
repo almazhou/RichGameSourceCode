@@ -103,7 +103,7 @@ public class TestTools {
     public void should_not_setBomb_when_targetIndex_is_out_of_range(){
         //When
         player.buyTools(Tool.Bomb);
-        boolean flag=player.setBomb(map,15, rich);
+        boolean flag=player.setBomb(map,15);
         //Then
         assertThat(flag,is(false));
     }
@@ -111,24 +111,24 @@ public class TestTools {
     public void should_not_set_Block_when_it_already_has_block(){
         player.buyTools(Tool.Blockade);
         player.buyTools(Tool.Blockade);
-        player.setBlock(map,5, rich);
-        boolean flag=player.setBlock(map,5, rich);
+        player.setBlock(map,5);
+        boolean flag=player.setBlock(map,5);
         assertThat(flag,is(false));
     }
     @Test
     public void should_not_set_Block_when_it_already_has_bomb(){
         player.buyTools(Tool.Blockade);
         player.buyTools(Tool.Bomb);
-        player.setBomb(map,5, rich);
-        boolean flag=player.setBlock(map,5, rich);
+        player.setBomb(map,5);
+        boolean flag=player.setBlock(map,5);
         assertThat(flag,is(false));
     }
     @Test
     public void should_not_set_Bomb_when_it_already_has_bomb(){
         player.buyTools(Tool.Bomb);
         player.buyTools(Tool.Bomb);
-        player.setBomb(map,5, rich);
-        boolean flag=player.setBomb(map,5, rich);
+        player.setBomb(map,5);
+        boolean flag=player.setBomb(map,5);
         assertThat(flag,is(false));
 
 
@@ -137,8 +137,8 @@ public class TestTools {
     public void should_not_set_Bomb_when_it_already_has_block(){
         player.buyTools(Tool.Bomb);
         player.buyTools(Tool.Blockade);
-        player.setBlock(map,5, rich);
-        boolean flag=player.setBomb(map,5, rich);
+        player.setBlock(map,5);
+        boolean flag=player.setBomb(map,5);
         assertThat(flag,is(false));
 
 
@@ -149,7 +149,7 @@ public class TestTools {
         player.forward(map,6, rich);
         player1.forward(map,3, rich);
         player.buyTools(Tool.Blockade);
-        boolean flag=player.setBlock(map,-3, rich);
+        boolean flag=player.setBlock(map,-3);
         assertThat(flag,is(false));
     }
     @Test
@@ -158,7 +158,7 @@ public class TestTools {
         player.forward(map,6, rich);
         player1.forward(map,3, rich);
         player.buyTools(Tool.Bomb);
-        boolean flag=player.setBomb(map,-3, rich);
+        boolean flag=player.setBomb(map,-3);
         assertThat(flag,is(false));
     }
     @Test

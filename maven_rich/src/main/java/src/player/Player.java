@@ -19,8 +19,6 @@ public class Player {
     Map <String,Integer>capital = new HashMap();
     List<BareLand>landList;
     private List<Tool> toolList;
-    private List<Gift> giftList;
-
     private int playerIndex;
     private String name;
 
@@ -37,7 +35,6 @@ public class Player {
     public Player(int playerIndex){
         toolList=new ArrayList<Tool>();
         landList=new ArrayList<BareLand>();
-        giftList=new ArrayList<Gift>();
         this.playerIndex=playerIndex;
         capital.put("money",10000);
         capital.put("point",10000);
@@ -83,6 +80,7 @@ public class Player {
         System.out.println("到达编号为"+currentIndex+"的地！");
 
         LandForm tempLand=(LandForm)map.landList.get(currentIndex);
+        tempLand.addPlayer(this);
         tempLand.PassByImpact(this);
     }
 
@@ -104,7 +102,7 @@ public class Player {
         if(currentIndex>=SpecialNum.LANDNUM.getNum()){
             currentIndex%=SpecialNum.LANDNUM.getNum();
         }
-        map.clearDisplayName(map,currentIndex,rich);
+        map.clearDisplayName(map,currentIndex);
         rich.setDisplayName(playerIndex,map);
     }
 
@@ -187,30 +185,28 @@ public class Player {
         return false;
     }
 
-    public boolean setBomb(RichGameMap map, int offset, Game rich) {
+    public boolean setBomb(RichGameMap map, int offset) {
+        return setTools(map, offset,Tool.Bomb);
+    }
+
+    private boolean setTools(RichGameMap map, int offset, Tool tool) {
         int landIndex = getLandIndexWithOffSet(offset);
-        if(canSetBomb(map,landIndex, rich)){
+        if(canSetTools(map, landIndex)){
         LandForm tempLandForm=(LandForm)map.landList.get(landIndex);
-        tempLandForm.setBomb();
-        toolList.remove(Tool.Bomb);
-        System.out.println("炸弹设置成功");
-        return true ;
+        if(!toolList.isEmpty()) {
+            tempLandForm.setTool(tool);
+            toolList.remove(tool);
+            System.out.println("炸弹设置成功");
+            return true ;
+        }
+
         }
         System.out.println("，无法放置炸弹");
         return false ;
     }
 
-    public boolean setBlock(RichGameMap map, int offset, Game rich) {
-        int landIndex = getLandIndexWithOffSet(offset);
-        if(canSetBlock(map,landIndex, rich)){
-            LandForm tempLandForm=(LandForm)map.landList.get(landIndex);
-            tempLandForm.setBlock();
-            toolList.remove(Tool.Blockade);
-            System.out.println("路障设置成功！");
-            return true;
-        }
-        System.out.println("，无法放置路障");
-        return false;
+    public boolean setBlock(RichGameMap map, int offset) {
+        return setTools(map,offset,Tool.Blockade);
     }
 
     private int getLandIndexWithOffSet(int offset) {
@@ -224,34 +220,23 @@ public class Player {
         return landIndex;
     }
 
-    private boolean canSetBomb(RichGameMap map, int landIndex, Game rich) {
-        return map.isWithinRange(landIndex, currentIndex)&&!map.hasOtherTools(landIndex)&&!map.hasPlayer(landIndex, rich)&& hasBomb();
+    private boolean canSetTools(RichGameMap map, int landIndex) {
+        return map.isWithinRange(landIndex, currentIndex) && !map.hasOtherTools(landIndex) && !map.hasPlayer(landIndex);
     }
 
-    private boolean hasBomb() {
-        return toolList.contains(Tool.Bomb);
-    }
-
-    public boolean canSetBlock(RichGameMap map, int index, Game rich) {
-        return map.isWithinRange(index, currentIndex)&& !map.hasOtherTools(index)&&!map.hasPlayer(index, rich)&& hasBlock();
-    }
-
-    private boolean hasBlock() {
-        return toolList.contains(Tool.Blockade);
-    }
-
-    public void useRobot(RichGameMap map, Game rich) {
-        clearBombAndBlock(map, rich);
+    public void useRobot(RichGameMap map) {
+        clearBombAndBlock(map);
         toolList.remove(Tool.Robot);
     }
 
-    public void clearBombAndBlock(RichGameMap map, Game rich) {
+    public void clearBombAndBlock(RichGameMap map) {
         int startIndex=getLandIndexWithOffSet(-SEARCHSTEP);
         for(int i=startIndex;i<startIndex+2*SEARCHSTEP;i++) {
             int tempIndex=i%SpecialNum.LANDNUM.getNum();
             LandForm tempLandForm=(LandForm)map.landList.get(tempIndex);
-            tempLandForm.clearBombAndBlock();
-            map.clearDisplayName(map, tempLandForm.getLandIndex(), rich);
+            tempLandForm.clearBlock();
+            tempLandForm.clearBomb();
+            map.clearDisplayName(map, tempLandForm.getLandIndex());
         }
     }
 
@@ -302,7 +287,6 @@ public class Player {
             int giftIndex=Integer.parseInt(giftIndexInString);
             Gift gift=Gift.getGiftByIndex(giftIndex);
             if(gift !=null) {
-                giftList.add(gift);
                 takeGift(gift);
             }
         }
@@ -370,12 +354,10 @@ public class Player {
     }
 
     public void addPoint(int addAmount) {
-        int total = capital.get("point");
-        capital.put("point",total+addAmount);
+        capital.put("point",capital.get("point")+addAmount);
     }
     private void deductPoint(int deductAmount){
-        int total = capital.get("point");
-        capital.put("point",total-deductAmount);
+        capital.put("point",capital.get("point")-deductAmount);
     }
 
     public String getName() {
@@ -435,15 +417,10 @@ public class Player {
     }
     public void useMascot() {
         System.out.println("福神护身，免费通过！");
-        for(Iterator it=giftList.iterator();it.hasNext();){
-            Gift tempGift= (Gift) it.next();
-            if(tempGift==Gift.Mascot){
-                capital.put("freePassNum",capital.get("freePassNum")-1);
-                if(getFreePassingNum()==0){
-                    giftList.remove(tempGift);
-                }
-            }
+        if(getFreePassingNum()!=0){
+            capital.put("freePassNum", capital.get("freePassNum") - 1);
         }
+
     }
 
     public int getFreePassingNum() {

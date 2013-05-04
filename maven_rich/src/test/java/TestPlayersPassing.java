@@ -125,7 +125,7 @@ public class TestPlayersPassing {
         rich.setPlayerLocation(0);
         player1.buyLand(10);
         rich.buyBomb(player);
-        boolean flag=player.setBomb(map,7, rich);
+        boolean flag=player.setBomb(map,7);
         assertThat(flag,is(true));
         player1.forward(map,7, rich);
         int money0=player.getMoney();

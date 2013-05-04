@@ -1,13 +1,11 @@
 package src.map;
 
-import src.Game.Game;
 import src.NUMS.SpecialHouseIndex;
 import src.NUMS.SpecialNum;
 import src.player.Player;
 import src.tools.Tool;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 public class RichGameMap {
 
@@ -86,33 +84,25 @@ public class RichGameMap {
 
     public void clearBomb(int bombIndex) {
         LandForm tempLandForm=(LandForm)landList.get(bombIndex);
-        assert(tempLandForm.bombFlag==true);
-        tempLandForm.bombFlag=false;
+        assert(tempLandForm.isBombed()==true);
+        tempLandForm.clearBomb();
 
     }
 
 
     public void clearBlock(int blockIndex) {
         LandForm tempLandForm=(LandForm)landList.get(blockIndex);
-        assert(tempLandForm.blockFlag==true);
-        tempLandForm.blockFlag=false;
+        assert(tempLandForm.isBlocked()==true);
+        tempLandForm.clearBlock();
     }
 
     public boolean isBareLand(LandForm tempLand) {
         return tempLand.getName().equals("0");
     }
 
-    public boolean hasPlayer(int targetIndex, Game rich) {
-        List<Player> tempPlayerList=rich.getPlayerList();
-        for(Iterator<Player> i=tempPlayerList.iterator();i.hasNext();)
-        {
-            Player tempPlayer= i.next();
-            if(tempPlayer.getLandIndex()==targetIndex){
-                return true;
-            }
-        }
-
-        return false;
+    public boolean hasPlayer(int targetIndex) {
+        LandForm currentLand = (LandForm)landList.get(targetIndex);
+        return !currentLand.getPlayerOnLand().isEmpty();
     }
 
     public boolean hasOtherTools(int landIndex) {
@@ -172,21 +162,10 @@ public class RichGameMap {
         return false;
     }
 
-    public Player getPlayer(int landIndex, Game rich) {
-         List<Player> tempPlayerList=rich.getPlayerList();
-        for(Iterator<Player> it=tempPlayerList.iterator();it.hasNext();)
-        {   Player tempPlayer=it.next();
-            if(tempPlayer.getLandIndex()==landIndex){
-                return tempPlayer;
-            }
-        }
-        return null;
-    }
-
-    public void clearDisplayName(RichGameMap map, int landIndex, Game rich) {
-        LandForm tempLand=(LandForm)map.landList.get(landIndex);
-        if(map.hasPlayer(landIndex, rich)){
-            Player tempPlayer=map.getPlayer(landIndex, rich);
+    public void clearDisplayName(RichGameMap map, int landIndex) {
+        LandForm tempLand = (LandForm)map.landList.get(landIndex);
+        if(!tempLand.getPlayerOnLand().isEmpty()){
+            Player tempPlayer = (Player)tempLand.getPlayerOnLand().get(tempLand.getPlayerOnLand().size()-1);
             tempLand.setDisplayName(tempPlayer.getAbbreviation());
         }else if(tempLand.isBlocked()){
             tempLand.setDisplayName(Tool.Blockade.getDisplayName());
