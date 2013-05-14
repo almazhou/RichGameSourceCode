@@ -179,4 +179,64 @@ public class RichGameMap {
         }
     }
 
+    public  void setDisplayName(Player player, int landIndex) {
+        LandForm tempLandForm=(LandForm) landList.get(landIndex);
+        tempLandForm.setDisplayName(player.getAbbreviation());
+    }
+
+    public boolean isInPrison(int landIndex, Player player) {
+        if(landIndex== SpecialHouseIndex.PRISON_INDEX.getHouseIndex()){
+            setDisplayName(player,landIndex);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean inHospital(int landIndex, Player player) {
+        if(landIndex== SpecialHouseIndex.HOSPITAL_INDEX.getHouseIndex()){
+            setDisplayName(player,landIndex);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isInMagicHouse(int landIndex, Player player) {
+        if(landIndex== SpecialHouseIndex.MAGIC_HOUSE_INDEX.getHouseIndex()){
+            setDisplayName(player,landIndex);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isInGiftHouse(int landIndex, Player player) {
+        if(landIndex== SpecialHouseIndex.GIFT_HOUSE_INDEX.getHouseIndex()){
+            setDisplayName(player,landIndex);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isInBareLand(int landIndex, Player player) {
+        if(isInGiftHouse(landIndex,player)|| inHospital(landIndex,player)|| isInMagicHouse(landIndex,player)|| isInPrison(landIndex,player)|| isInToolHouse(landIndex,player)|| isInMine(landIndex,player)){
+        return false;
+        }
+        setDisplayName(player,landIndex);
+        return true;
+    }
+
+    public boolean isInMine(int landIndex, Player player) {
+        if(landIndex> SpecialHouseIndex.MAGIC_HOUSE_INDEX.getHouseIndex()&& landIndex<= SpecialHouseIndex.LAST_INDEX.getHouseIndex()){
+            setDisplayName(player,landIndex);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isInToolHouse(int landIndex, Player player) {
+        if(landIndex== SpecialHouseIndex.TOOL_HOUSE_INDEX.getHouseIndex()){
+            setDisplayName(player,landIndex);
+            return true;
+        }
+        return false;
+    }
 }

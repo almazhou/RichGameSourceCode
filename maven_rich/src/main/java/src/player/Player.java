@@ -21,6 +21,7 @@ public class Player {
     private List<Tool> toolList;
     private int playerIndex;
     private String name;
+    RichGameMap map;
 
     private Color color=Color.WHITE;
 
@@ -32,7 +33,8 @@ public class Player {
 
 
 
-    public Player(int playerIndex){
+    public Player(int playerIndex, RichGameMap map){
+        this.map = map;
         toolList=new ArrayList<Tool>();
         landList=new ArrayList<BareLand>();
         this.playerIndex=playerIndex;
@@ -59,20 +61,28 @@ public class Player {
 
         }
 
+    public  void query() {
+            System.out.println("玩家"+getName()+"的资产信息如下");
+            System.out.println("资金："+getMoney()+"元");
+            System.out.println("点数："+getPoint()+"点");
+            System.out.println("地产：空地"+getBareLandNum()+"处；茅屋"+getCottageNum()+"处；洋房"+getHouseNum()+"处；摩天楼"+getSkyscraperNum()+"处。");
+            System.out.println("道具：路障"+getToolNum(Tool.Blockade)+"个；炸弹"+getToolNum(Tool.Bomb)+"个；机器娃娃"+getToolNum(Tool.Robot)+"个");
+        }
+
     public void buyLand(int landIndex) {
         if(!ABHL.checkIfSold(landIndex)) {
             ABHL.sellLandToPlayer(this,landIndex);
         }
     }
 
-    public void forward(RichGameMap map, int rollingSteps, Game rich) {
-        if (preCheck(map, rich)) return;
-        walk(map, rollingSteps, rich);
-        postCheck(map, rich);
+    public void forward(int rollingSteps) {
+        if (preCheck()) return;
+        walk(rollingSteps);
+        postCheck();
     }
 
-    private void postCheck(RichGameMap map, Game rich) {
-        if(rich.isInPrison(playerIndex, map)&&timeInPrison==0){
+    private void postCheck() {
+        if(map.isInPrison(currentIndex,this)&&timeInPrison==0){
             timeInPrison= SpecialNum.TIME_IN_PRISON.getNum();
             System.out.println(this.name+">玩家步入监狱！将被监禁"+timeInPrison+"天!");
             return;
@@ -84,12 +94,12 @@ public class Player {
         tempLand.PassByImpact(this);
     }
 
-    private void walk(RichGameMap map, int rollingSteps, Game rich) {
+    private void walk(int rollingSteps) {
         if(map.checkBlock(currentIndex, rollingSteps)){
             currentIndex=map.getBlockIndex(currentIndex, rollingSteps);
            System.out.print(this.name+">前方编号为"+currentIndex+"的土地上有路障!");
             map.clearBlock(currentIndex);
-        } else if(checkBomb(map, rollingSteps)) {
+        } else if(checkBomb(rollingSteps)) {
             int bombIndex=map.getBombIndex(currentIndex, rollingSteps);
            assert(bombIndex>=0);
             map.clearBomb(bombIndex);
@@ -103,11 +113,11 @@ public class Player {
             currentIndex%=SpecialNum.LANDNUM.getNum();
         }
         map.clearDisplayName(map,currentIndex);
-        rich.setDisplayName(playerIndex,map);
+        map.setDisplayName(this,currentIndex);
     }
 
-    private boolean preCheck(RichGameMap map, Game rich) {
-        if(rich.isInPrison(playerIndex, map)&&timeInPrison!=0){
+    private boolean preCheck( ) {
+        if(map.isInPrison(currentIndex, this)&&timeInPrison!=0){
             timeInPrison--;
             System.out.println(this.name+">玩家步入监狱！将被监禁"+timeInPrison+"天!");
             return true;
@@ -171,7 +181,7 @@ public class Player {
         return capital.get("point");
     }
 
-    public boolean checkBomb(RichGameMap map,int rollingSteps) {
+    public boolean checkBomb(int rollingSteps) {
         for(int i=this.currentIndex;i<=this.currentIndex+rollingSteps;i++) {
             int k=i;
             if(i>=SpecialNum.LANDNUM.getNum()) {
@@ -185,13 +195,13 @@ public class Player {
         return false;
     }
 
-    public boolean setBomb(RichGameMap map, int offset) {
-        return setTools(map, offset,Tool.Bomb);
+    public boolean bomb(int offset) {
+        return setTools(offset,Tool.Bomb);
     }
 
-    private boolean setTools(RichGameMap map, int offset, Tool tool) {
+    private boolean setTools(int offset, Tool tool) {
         int landIndex = getLandIndexWithOffSet(offset);
-        if(canSetTools(map, landIndex)){
+        if(canSetTools(landIndex)){
         LandForm tempLandForm=(LandForm)map.landList.get(landIndex);
         if(!toolList.isEmpty()) {
             tempLandForm.setTool(tool);
@@ -205,8 +215,8 @@ public class Player {
         return false ;
     }
 
-    public boolean setBlock(RichGameMap map, int offset) {
-        return setTools(map,offset,Tool.Blockade);
+    public boolean block(int offset) {
+        return setTools(offset,Tool.Blockade);
     }
 
     private int getLandIndexWithOffSet(int offset) {
@@ -220,16 +230,18 @@ public class Player {
         return landIndex;
     }
 
-    private boolean canSetTools(RichGameMap map, int landIndex) {
+    private boolean canSetTools(int landIndex) {
         return map.isWithinRange(landIndex, currentIndex) && !map.hasOtherTools(landIndex) && !map.hasPlayer(landIndex);
     }
 
-    public void useRobot(RichGameMap map) {
-        clearBombAndBlock(map);
+    public void robot() {
+        if(getToolNum(Tool.Robot)>0) {
+        clearBombAndBlock();
         toolList.remove(Tool.Robot);
+        }
     }
 
-    public void clearBombAndBlock(RichGameMap map) {
+    public void clearBombAndBlock() {
         int startIndex=getLandIndexWithOffSet(-SEARCHSTEP);
         for(int i=startIndex;i<startIndex+2*SEARCHSTEP;i++) {
             int tempIndex=i%SpecialNum.LANDNUM.getNum();
@@ -303,8 +315,8 @@ public class Player {
         capital.put(gift.getName(),capital.get(gift.getName())+gift.getValue());
     }
 
-    public void sellLand(RichGameMap map, int landIndex, Game rich) {
-        rich.sellLands(map, this, landIndex);
+    public void sell(int landIndex) {
+        sellLands(landIndex);
         for(int i=0;i<landList.size();i++){
             BareLand land=landList.get(i);
             if(land.getLandIndex()==landIndex){
@@ -327,7 +339,7 @@ public class Player {
         capital.put("money",totalMoney+addAmount);
     }
 
-    public void sellTools(int toolIndex) {
+    public void selltool(int toolIndex) {
         Tool tool=null;
         if(toolIndex== Tool.Blockade.getToolIndex()){
             tool=Tool.Blockade;
@@ -340,10 +352,10 @@ public class Player {
             return;
         }
         if(tool!=null){
-        sellTool(tool);
+        sellToolsInName(tool);
         }
     }
-    public void sellTool(Tool tool) {
+    public void sellToolsInName(Tool tool) {
         if(getToolNum(tool)>0){
         addPoint(tool.getPoint());
         toolList.remove(tool);
@@ -459,7 +471,7 @@ public class Player {
     }
 
 
-    public void upGradeLand(RichGameMap map, int landIndex) {
+    public void upGradeLand(int landIndex) {
           BareLand tempBareLand=(BareLand)map.landList.get(landIndex);
           if(getMoney()>tempBareLand.getPrice()){
           deductMoney(tempBareLand.getPrice());
@@ -470,5 +482,43 @@ public class Player {
     public int getTotalToolNum() {
         return toolList.size();
     }
+    public void roll() {
+        int rollingStep=(int)Math.ceil(Math.random() * 6);
+        System.out.print("向前前进" + rollingStep + "步，");
+        forward(rollingStep);
+        map.displayMap();
 
+    }
+   public void quit() {
+        System.out.println("强制结束游戏");
+        System.exit(0);
+    }
+
+    public void help() {
+        System.out.println("roll    掷骰子命令，行走1~6步。步数由随即算法产生。   \n" +
+                "block n    玩家拥有路障后，可将路障放置到离当前位置前后10步的距离，任一玩家经过路障，都将被拦截。该道具一次有效。n指定与当前位置的相对距离，范围 [-10~10]，负数表示后方。\n" +
+                "bomb n    可将路障放置到离当前位置前后10步的距离，任一玩家j 经过在该位置，将被炸伤，送往医院，住院三天。n指定与当前位置的相对距离，范围 [-10~10],负数表示后方。\n" +
+                "robot    使用该道具，可清扫前方路面上10步以内的其它道具，如炸弹、路障。\n" +
+                "sell x     出售自己的房产，x 地图上的绝对位置，即地产的编号。\n" +
+                "selltool x    出售道具，x 道具编号\n" +
+                "query     显示自家资产信息   \n" +
+                "help     查看命令帮助   \n" +
+                "quit     强制退出");
+    }
+    public void sellLands(int landIndex) {
+        LandForm tempLand=(LandForm)map.landList.get(landIndex);
+        if(Game.isBareLand(tempLand)){
+        BareLand landToSell=(BareLand)map.landList.get(landIndex);
+        if(ABHL.isOwner(this, landIndex)){
+        int paidMoney=landToSell.getPrice()*2*(landToSell.getHouseLevel()+1);
+        System.out.println(getName()+">成功出售编号为" + tempLand.getLandIndex() + "的地产!售价为"+paidMoney);
+        addMoney(paidMoney);
+        Game.makeBareLand(landToSell);
+        }else{
+            System.out.println("玩家不是编号为" + tempLand.getLandIndex() + "的地产的主人!");
+        }
+        }else {
+            System.out.println("编号为"+tempLand.getLandIndex()+"的土地为非空地，无法出售!");
+        }
+    }
 }

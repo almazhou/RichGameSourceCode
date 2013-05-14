@@ -19,10 +19,10 @@ public class TestLands {
     ABHL abhl;
     @Before
     public void setUp(){
-        rich=new Game(2);
+        map=new RichGameMap();
+        rich=new Game(2,map);
         player= rich.getPlayer(0);
         player1=rich.getPlayer(1);
-        map=new RichGameMap();
         abhl=new ABHL(map);
 
     }
@@ -72,7 +72,7 @@ public class TestLands {
     public void player_will_cost_200_for_upGrade_its_land_in_3(){
         player.buyLand(3);
         int money0=player.getMoney();
-        player.upGradeLand(map,3);
+        player.upGradeLand(3);
         int money=player.getMoney();
         money=money0-money;
         //then
@@ -83,7 +83,7 @@ public class TestLands {
 
         player.buyLand(30);
         int money0=player.getMoney();
-        player.upGradeLand(map,30);
+        player.upGradeLand(30);
         int money=player.getMoney();
         money=money0-money;
         //then
@@ -94,7 +94,7 @@ public class TestLands {
 
         player.buyLand(40);
         int money0=player.getMoney();
-        player.upGradeLand(map,40);
+        player.upGradeLand(40);
         int money=player.getMoney();
         money=money0-money;
         //then
@@ -103,7 +103,7 @@ public class TestLands {
     @Test
     public void player_can_upgrade_its_land_to_cottage(){
         player.buyLand(3);
-        player.upGradeLand(map,3);
+        player.upGradeLand(3);
         BareLand land=(BareLand)map.landList.get(3);
         int level=land.getHouseLevel();
         //then
@@ -113,8 +113,8 @@ public class TestLands {
     @Test
     public void player_can_upgrade_its_cottage_to_House(){
         player.buyLand(3);
-        player.upGradeLand(map,3);
-        player.upGradeLand(map,3);
+        player.upGradeLand(3);
+        player.upGradeLand(3);
         BareLand land=(BareLand)map.landList.get(3);
         int level=land.getHouseLevel();
         //then
@@ -124,9 +124,9 @@ public class TestLands {
     @Test
     public void player_can_upgrade_its_House_to_skyscraper(){
         player.buyLand(3);
-        player.upGradeLand(map,3);
-        player.upGradeLand(map,3);
-        player.upGradeLand(map,3);
+        player.upGradeLand(3);
+        player.upGradeLand(3);
+        player.upGradeLand(3);
         BareLand land=(BareLand)map.landList.get(3);
         int level=land.getHouseLevel();
         //then
@@ -136,10 +136,10 @@ public class TestLands {
     @Test
     public void player_can_not_upgrade_when_the_land_is_a_skyscraper(){
         player.buyLand(3);
-        player.upGradeLand(map,3);
-        player.upGradeLand(map,3);
-        player.upGradeLand(map,3);
-        player.upGradeLand(map,3);
+        player.upGradeLand(3);
+        player.upGradeLand(3);
+        player.upGradeLand(3);
+        player.upGradeLand(3);
         BareLand land=(BareLand)map.landList.get(3);
         int level=land.getHouseLevel();
         //then
@@ -152,7 +152,7 @@ public class TestLands {
         int money=player.getMoney();
         player.setColor(Color.RED);
         player.buyLand(3);
-        player.upGradeLand(map,3);
+        player.upGradeLand(3);
         BareLand land=(BareLand)map.landList.get(3);
         int level=land.getHouseLevel();
         //then
@@ -163,46 +163,46 @@ public class TestLands {
     public void player_receive_400_buy_selling_bareLands_in_3(){
         player.buyLand(3);
         int money=player.getMoney();
-        player.sellLand(map, 3, rich);
+        player.sell(3);
         int money1= player.getMoney();
         assertThat(money1-money,is(400));
     }
     @Test
     public void player_receive_800_buy_selling_cottage_in_3(){
         player.buyLand(3);
-        player.upGradeLand(map,3);
+        player.upGradeLand(3);
         int money=player.getMoney();
-        player.sellLand(map, 3, rich);
+        player.sell(3);
         int money1= player.getMoney();
         assertThat(money1-money,is(800));
     }
     @Test
     public void player_receive_1200_buy_selling_house_in_3(){
         player.buyLand(3);
-        player.upGradeLand(map,3);
-        player.upGradeLand(map,3);
+        player.upGradeLand(3);
+        player.upGradeLand(3);
         int money=player.getMoney();
-        player.sellLand(map, 3, rich);
+        player.sell(3);
         int money1= player.getMoney();
         assertThat(money1-money,is(1200));
     }
     @Test
     public void player_receive_1600_buy_selling_house_in_3(){
         player.buyLand(3);
-        player.upGradeLand(map,3);
-        player.upGradeLand(map,3);
-        player.upGradeLand(map,3);
+        player.upGradeLand(3);
+        player.upGradeLand(3);
+        player.upGradeLand(3);
         int money=player.getMoney();
-        player.sellLand(map, 3, rich);
+        player.sell(3);
         int money1= player.getMoney();
         assertThat(money1-money,is(1600));
     }
     @Test
     public void cottage_would_be_bareLand_after_selling(){
         player.buyLand(3);
-        player.upGradeLand(map,3);
+        player.upGradeLand(3);
         int money=player.getMoney();
-        player.sellLand(map, 3, rich);
+        player.sell(3);
         int money1= player.getMoney();
         BareLand bareLand=(BareLand)map.landList.get(3);
         int level=bareLand.getHouseLevel();
@@ -211,10 +211,10 @@ public class TestLands {
     @Test
     public void house_would_be_bareLand_after_selling(){
         player.buyLand(3);
-        player.upGradeLand(map,3);
-        player.upGradeLand(map,3);
+        player.upGradeLand(3);
+        player.upGradeLand(3);
         int money=player.getMoney();
-        player.sellLand(map, 3, rich);
+        player.sell(3);
         int money1= player.getMoney();
         BareLand bareLand=(BareLand)map.landList.get(3);
         int level=bareLand.getHouseLevel();
@@ -223,11 +223,11 @@ public class TestLands {
     @Test
     public void skyscraper_would_be_bareLand_after_selling(){
         player.buyLand(3);
-        player.upGradeLand(map,3);
-        player.upGradeLand(map,3);
-        player.upGradeLand(map,3);
+        player.upGradeLand(3);
+        player.upGradeLand(3);
+        player.upGradeLand(3);
         int money=player.getMoney();
-        player.sellLand(map, 3, rich);
+        player.sell(3);
         int money1= player.getMoney();
         BareLand bareLand=(BareLand)map.landList.get(3);
         int level=bareLand.getHouseLevel();

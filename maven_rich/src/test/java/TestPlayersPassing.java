@@ -23,10 +23,10 @@ public class TestPlayersPassing {
     ABHL abhl;
     @Before
     public void setUp(){
-        rich=new Game(2);
+        map=new RichGameMap();
+        rich=new Game(2,map);
         player= rich.getPlayer(0);
         player1= rich.getPlayer(1);
-        map=new RichGameMap();
         abhl=new ABHL(map);
 
     }
@@ -36,7 +36,7 @@ public class TestPlayersPassing {
         player.buyLand(3);
         int money0=player1.getMoney();
         map.displayMap();
-        player1.forward(map,3, rich);
+        player1.forward(3);
         map.displayMap();
         int money=player1.getMoney();
         //then
@@ -47,7 +47,7 @@ public class TestPlayersPassing {
     public void should_owner_of_land_3_will_receive_100_if_other_player_passing_in_3(){
         player.buyLand(3);
         int money0=player.getMoney();
-        player1.forward(map,3, rich);
+        player1.forward(3);
         int money=player.getMoney();
         //then
         assertThat(money-money0,is(100));
@@ -56,9 +56,9 @@ public class TestPlayersPassing {
     @Test
     public void should_players_pay_for_200_when_passing_a_cottage_of_others_in_3(){
         player.buyLand(3);
-        player.upGradeLand(map,3);
+        player.upGradeLand(3);
         int money0=player1.getMoney();
-        player1.forward(map,3, rich);
+        player1.forward(3);
         int money=player1.getMoney();
         //then
         assertThat(money0-money,is(200));
@@ -66,9 +66,9 @@ public class TestPlayersPassing {
     @Test
     public void should_owner_of_land_3_will_receive_200_if_other_player_passing_a_cottage(){
         player.buyLand(3);
-        player.upGradeLand(map,3);
+        player.upGradeLand(3);
         int money0=player.getMoney();
-        player1.forward(map,3, rich);
+        player1.forward(3);
         int money=player.getMoney();
         //then
         assertThat(money-money0,is(200));
@@ -76,10 +76,10 @@ public class TestPlayersPassing {
     @Test
     public void should_players_pay_for_400_when_passing_a_House_of_others_in_3(){
         player.buyLand(3);
-        player.upGradeLand(map,3);
-        player.upGradeLand(map,3);
+        player.upGradeLand(3);
+        player.upGradeLand(3);
         int money0=player1.getMoney();
-        player1.forward(map,3, rich);
+        player1.forward(3);
         int money=player1.getMoney();
         //then
         assertThat(money0-money,is(400));
@@ -87,10 +87,10 @@ public class TestPlayersPassing {
     @Test
     public void should_owner_of_land_3_will_receive_400_if_other_player_passing_a_House(){
         player.buyLand(3);
-        player.upGradeLand(map,3);
-        player.upGradeLand(map,3);
+        player.upGradeLand(3);
+        player.upGradeLand(3);
         int money0=player.getMoney();
-        player1.forward(map,3, rich);
+        player1.forward(3);
         int money=player.getMoney();
         //then
         assertThat(money-money0,is(400));
@@ -98,11 +98,11 @@ public class TestPlayersPassing {
     @Test
     public void should_players_pay_for_800_when_passing_a_cottage_of_others_in_3(){
         player.buyLand(3);
-        player.upGradeLand(map,3);
-        player.upGradeLand(map,3);
-        player.upGradeLand(map,3);
+        player.upGradeLand(3);
+        player.upGradeLand(3);
+        player.upGradeLand(3);
         int money0=player1.getMoney();
-        player1.forward(map,3, rich);
+        player1.forward(3);
         int money=player1.getMoney();
         //then
         assertThat(money0-money,is(800));
@@ -110,11 +110,11 @@ public class TestPlayersPassing {
     @Test
     public void should_owner_of_land_3_will_receive_800_if_other_player_passing_a_skyscraper(){
         player.buyLand(3);
-        player.upGradeLand(map,3);
-        player.upGradeLand(map,3);
-        player.upGradeLand(map,3);
+        player.upGradeLand(3);
+        player.upGradeLand(3);
+        player.upGradeLand(3);
         int money0=player.getMoney();
-        player1.forward(map,3, rich);
+        player1.forward(3);
         int money=player.getMoney();
         //then
         assertThat(money-money0,is(800));
@@ -125,11 +125,11 @@ public class TestPlayersPassing {
         rich.setPlayerLocation(0);
         player1.buyLand(10);
         rich.buyBomb(player);
-        boolean flag=player.setBomb(map,7);
+        boolean flag=player.bomb(7);
         assertThat(flag,is(true));
-        player1.forward(map,7, rich);
+        player1.forward(7);
         int money0=player.getMoney();
-        player.forward(map,10, rich);
+        player.forward(10);
         int money=player.getMoney();
         //then
         assertThat(money0-money,is(0));
@@ -140,11 +140,11 @@ public class TestPlayersPassing {
         //when
         Game.debugFlag=true;
         rich.setPlayerLocation(0);
-        player.forward(map,35, rich);
+        player.forward(35);
         player.chooseGift("3");
         player1.buyLand(40);
         int money0=player.getMoney();
-        player.forward(map,5, rich);
+        player.forward(5);
         int money=player.getMoney();
         assertThat(money0-money,is(0));
 

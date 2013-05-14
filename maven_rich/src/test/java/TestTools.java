@@ -24,10 +24,10 @@ public class TestTools {
     @Before
     public void setUp(){
         Game.debugFlag=true;
-        rich=new Game(2);
+        map=new RichGameMap();
+        rich=new Game(2,map);
         player= rich.getPlayer(0);
         player1= rich.getPlayer(1);
-        map=new RichGameMap();
         abhl=new ABHL(map);
 
     }
@@ -68,7 +68,7 @@ public class TestTools {
          public void should_player_receive_50_point_by_selling_a_block(){
         player.buyTools(Tool.Blockade);
         int point=player.getPoint();
-        player.sellTools(1);
+        player.selltool(1);
         int point1=player.getPoint();
         assertThat(point1-point,is(50));
 
@@ -85,7 +85,7 @@ public class TestTools {
     public void should_player_receive_30_point_by_selling_a_Robot(){
         player.buyTools(Tool.Robot);
         int point=player.getPoint();
-        player.sellTools(2);
+        player.selltool(2);
         int point1=player.getPoint();
         assertThat(point1-point,is(30));
 
@@ -94,7 +94,7 @@ public class TestTools {
     public void should_player_receive_50_point_by_selling_a_bomb(){
         player.buyTools(Tool.Bomb);
         int point=player.getPoint();
-        player.sellTools(3);
+        player.selltool(3);
         int point1=player.getPoint();
         assertThat(point1-point,is(50));
 
@@ -103,7 +103,7 @@ public class TestTools {
     public void should_not_setBomb_when_targetIndex_is_out_of_range(){
         //When
         player.buyTools(Tool.Bomb);
-        boolean flag=player.setBomb(map,15);
+        boolean flag=player.bomb(15);
         //Then
         assertThat(flag,is(false));
     }
@@ -111,24 +111,24 @@ public class TestTools {
     public void should_not_set_Block_when_it_already_has_block(){
         player.buyTools(Tool.Blockade);
         player.buyTools(Tool.Blockade);
-        player.setBlock(map,5);
-        boolean flag=player.setBlock(map,5);
+        player.block(5);
+        boolean flag=player.block(5);
         assertThat(flag,is(false));
     }
     @Test
     public void should_not_set_Block_when_it_already_has_bomb(){
         player.buyTools(Tool.Blockade);
         player.buyTools(Tool.Bomb);
-        player.setBomb(map,5);
-        boolean flag=player.setBlock(map,5);
+        player.bomb(5);
+        boolean flag=player.block(5);
         assertThat(flag,is(false));
     }
     @Test
     public void should_not_set_Bomb_when_it_already_has_bomb(){
         player.buyTools(Tool.Bomb);
         player.buyTools(Tool.Bomb);
-        player.setBomb(map,5);
-        boolean flag=player.setBomb(map,5);
+        player.bomb(5);
+        boolean flag=player.bomb(5);
         assertThat(flag,is(false));
 
 
@@ -137,8 +137,8 @@ public class TestTools {
     public void should_not_set_Bomb_when_it_already_has_block(){
         player.buyTools(Tool.Bomb);
         player.buyTools(Tool.Blockade);
-        player.setBlock(map,5);
-        boolean flag=player.setBomb(map,5);
+        player.block(5);
+        boolean flag=player.bomb(5);
         assertThat(flag,is(false));
 
 
@@ -146,31 +146,31 @@ public class TestTools {
     @Test
     public void should_not_set_Block_when_any_player_is_in_the_destIndex(){
         rich.setPlayerLocation(0);
-        player.forward(map,6, rich);
-        player1.forward(map,3, rich);
+        player.forward(6);
+        player1.forward(3);
         player.buyTools(Tool.Blockade);
-        boolean flag=player.setBlock(map,-3);
+        boolean flag=player.block(-3);
         assertThat(flag,is(false));
     }
     @Test
     public void should_not_set_Bomb_when_any_player_is_in_the_destIndex(){
         rich.setPlayerLocation(0);
-        player.forward(map,6, rich);
-        player1.forward(map,3, rich);
+        player.forward(6);
+        player1.forward(3);
         player.buyTools(Tool.Bomb);
-        boolean flag=player.setBomb(map,-3);
+        boolean flag=player.bomb(-3);
         assertThat(flag,is(false));
     }
     @Test
     public void should_display_users_abbreviation_when_player_is_on_this_land(){
         map.displayMap();
-        player.forward(map,6, rich);
+        player.forward(6);
     }
     @Test
     public void should_players_free_Pass_be_4_when_used_one(){
         player.chooseGift("3");
         player1.buyLand(3);
-        player.forward(map,3,rich);
+        player.forward(3);
         int result=player.getFreePassingNum() ;
         assertThat(result,is(4));
     }
